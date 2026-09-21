@@ -3,4 +3,5 @@ node_modules/
 .runs/
 test-runs/
 .env.local
+JMeter-bundle-FE.ziptest-runs/
 JMeter-bundle-FE.zip
