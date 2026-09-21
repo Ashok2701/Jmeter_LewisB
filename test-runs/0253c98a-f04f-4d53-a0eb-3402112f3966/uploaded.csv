@@ -1,0 +1,6 @@
+"API_ID","API_NAME","ENDPOINT"
+"1","XAPP1ITEMS","/XAPP1ITEMS?representation=XAPP1ITEMS.$query"
+"2","XITMDBPC","/XITMDBPC?representation=XITMDBPC.$query"
+"3","X10CITMRD","/X10CITMRD?representation=X10CITMRD.$query"
+"4","XITMBPC2","/XITMBPC2?representation=XITMBPC2.$query"
+"5","XBPCHOLIDAY","/XBPCHOLIDAY?representation=XBPCHOLIDAY.$query"

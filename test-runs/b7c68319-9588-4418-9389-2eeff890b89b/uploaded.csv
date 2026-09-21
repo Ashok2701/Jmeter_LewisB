@@ -1,0 +1,458 @@
+﻿"Method","URL","Protocol","Host","Port","Path","Query Parameters","Request Parameters","Content-Type","Accept","Authorization","Headers","Cookies","Request Body","CSRF/XSRF Token","Referer","Origin","User-Agent","Response Status Code","Response Content-Type"
+"POST","https://pwa.lewisbakeries.com:8087/api/login","https","pwa.lewisbakeries.com","8087","/api/login","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 39
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""username"":""XS0ADW"",""password"":""1234""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/user/image/XS0ADW","https","pwa.lewisbakeries.com","8087","/api/user/image/XS0ADW","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""10-oV4hJxRVSENxc/wX8+mA4/Pe4tA""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/dashboard/admin/write/XS0ADW","https","pwa.lewisbakeries.com","8087","/api/dashboard/admin/write/XS0ADW","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""ba-rLqMWZTNDTIl58G5xx8u0Iq71VM""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/dashboard/sales-manager-vp/DCHANCE","https","pwa.lewisbakeries.com","8087","/api/dashboard/sales-manager-vp/DCHANCE","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""782-xH7TcFZzQbVWbcjNNYJuxLjfzE0""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/dashboard/salesManager/detail/M0216","https","pwa.lewisbakeries.com","8087","/api/dashboard/salesManager/detail/M0216","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""c34-pwgXnxj4qhlqKhNnqVC63hyLhlc""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/dashboard/week/list","https","pwa.lewisbakeries.com","8087","/api/dashboard/week/list","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 34
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""dateTime"":""2026-08-18 01:20:16""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/customer/list/store-door/TLINDAUER","https","pwa.lewisbakeries.com","8087","/api/customer/list/store-door/TLINDAUER","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""e83-bF/ljWcsa5fmbvmSd8sr1daxBIU""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/customer/availability/02938310","https","pwa.lewisbakeries.com","8087","/api/customer/availability/02938310","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 45
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02938310"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/order/lock","https","pwa.lewisbakeries.com","8087","/api/order/lock","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 47
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""site"":""102"",""dateTime"":""2026-08-18 01:20:26""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/site/holiday/week/35","https","pwa.lewisbakeries.com","8087","/api/site/holiday/week/35","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""11d-j58SD6UtuarFZDwIEdJFvmtbXAQ""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/site/103","https","pwa.lewisbakeries.com","8087","/api/site/103","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""1a-s3B6blipWxCo2IriQlJeaz0uh7I""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/product/list/02938310","https","pwa.lewisbakeries.com","8087","/api/product/list/02938310","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""2b91-UtrLK+PwCYu7e/E50nDlpzlO9KM""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/product/order/4601787","https","pwa.lewisbakeries.com","8087","/api/product/order/4601787","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 58
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02938310"",""site"":""103"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/order/suggest/zero-value","https","pwa.lewisbakeries.com","8087","/api/order/suggest/zero-value","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 131
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""site"":""103"",""customer"":""02938310"",""product"":""4601787"",""revisedValue"":[{""date"":""20260831"",""qty"":20},{""date"":""20260901"",""qty"":20}]}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/product/order/4601788","https","pwa.lewisbakeries.com","8087","/api/product/order/4601788","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 58
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02938310"",""site"":""103"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/product/order/4601289","https","pwa.lewisbakeries.com","8087","/api/product/order/4601289","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 58
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02938310"",""site"":""103"",""date"":""2026-12-21""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/final/order","https","pwa.lewisbakeries.com","8087","/api/final/order","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 177
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""Customer"":""02938310"",""Site"":""103"",""Order_date"":[""2026-08-18"",""2026-08-19"",""2026-08-20"",""2026-08-21"",""2026-08-22"",""2026-08-23"",""2026-08-24""],""Product"":""4601787"",""isStore"":true}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/dashboard/salesManager/detail/S0219","https","pwa.lewisbakeries.com","8087","/api/dashboard/salesManager/detail/S0219","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/dashboard/sales-supervisor/DPOGUE1","https","pwa.lewisbakeries.com","8087","/api/dashboard/sales-supervisor/DPOGUE1","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/customer/list/route/020639","https","pwa.lewisbakeries.com","8087","/api/customer/list/route/020639","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/customer/availability/02400590","https","pwa.lewisbakeries.com","8087","/api/customer/availability/02400590","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 45
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02400590"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/site/102","https","pwa.lewisbakeries.com","8087","/api/site/102","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/product/list/02400590","https","pwa.lewisbakeries.com","8087","/api/product/list/02400590","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/product/order/4601745","https","pwa.lewisbakeries.com","8087","/api/product/order/4601745","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 58
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02400590"",""site"":""102"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/product/order/4601746","https","pwa.lewisbakeries.com","8087","/api/product/order/4601746","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 58
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02400590"",""site"":""102"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/customer/list/route/020650","https","pwa.lewisbakeries.com","8087","/api/customer/list/route/020650","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"POST","https://pwa.lewisbakeries.com:8087/api/customer/availability/02002130","https","pwa.lewisbakeries.com","8087","/api/customer/availability/02002130","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Length: 45
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","{""customerId"":""02002130"",""date"":""2026-08-31""}","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/product/list/02002130","https","pwa.lewisbakeries.com","8087","/api/product/list/02002130","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","200","application/json"
+"GET","https://pwa.lewisbakeries.com:8087/api/logout/XS0ADW","https","pwa.lewisbakeries.com","8087","/api/logout/XS0ADW","","","application/json","application/json","","Accept: application/json
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en-GB;q=0.9,en;q=0.8
+Connection: keep-alive
+Content-Type: application/json
+Host: pwa.lewisbakeries.com:8087
+If-None-Match: W/""68-dPbwjDkg4dSyGZjZBjxRAn7EXKo""
+Origin: https://pwa.lewisbakeries.com:8086
+Referer: https://pwa.lewisbakeries.com:8086/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+sec-ch-ua: ""Not=A?Brand"";v=""99"", ""Google Chrome"";v=""151"", ""Chromium"";v=""151""
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: ""Windows""","","","","https://pwa.lewisbakeries.com:8086/","https://pwa.lewisbakeries.com:8086","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","304","application/json"

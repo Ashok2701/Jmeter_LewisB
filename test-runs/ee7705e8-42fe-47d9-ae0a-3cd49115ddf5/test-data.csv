@@ -1,0 +1,663 @@
+ServiceName,PublicName,SoapEndpoint,SoapAction,RequestXml,ExpectedStatus,ExpectedMessage
+XX10CCONF,XX10CCONF,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XX10CCONF</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XCPY"" TYPE=""Char"">100</FLD>
+   <FLD NAME=""I_XIP"" TYPE=""Char"">x3tms.tema-systems.com</FLD>
+   <FLD NAME=""I_XFOLDER"" TYPE=""Char"">TMSNEW</FLD>
+   <FLD NAME=""I_XPORT"" TYPE=""Char"">8851</FLD>
+   <FLD NAME=""I_XUSR"" TYPE=""Char"">TMSWE</FLD>
+   <FLD NAME=""I_PWD"" TYPE=""Char"">*Tbs@12345123</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=1,Configuration Success
+,X10AADMIN,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">020247</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",XFLG=1,
+X10CGDRPWD,X10CGDRPWD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CGDRPWD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XDRIVERLID"" TYPE=""Char"">039902</FLD>
+             <FLD NAME=""I_XCURPWD"" TYPE=""Char"">12345</FLD>
+             <FLD NAME=""I_XNEWPWD"" TYPE=""Char"">1234</FLD>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=1,Entered current pwd incorrect.
+XX10CDCSAD,XX10CDCSAD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XX10CDCSAD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+		   </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_FLAG=0,0-Records found
+X10CRMEMOS,X10CRMEMOS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CRMEMOS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+             <FLD NAME=""I_XBPC"" TYPE=""Char"">02940110</FLD>
+             <FLD NAME=""I_XTYPESDC"" TYPE=""Char"">Damaged in store</FLD>
+             <FLD NAME=""I_XDATE"" TYPE=""Date""></FLD>
+                <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+                     <LIN NUM=""1"">
+                        <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601876</FLD>
+                        <FLD NAME=""I_XQTY"" TYPE=""Decimal"">5.00</FLD>
+                        <FLD NAME=""I_XSTAT"" TYPE=""Integer"">2</FLD>
+                     </LIN>
+                 </TAB>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=2,Credit memo No.: SCM000124 created successfully.
+X10CVALSDH,X10CVALSDH,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CVALSDH</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_YCREUSR"" TYPE=""Char"">PH90</FLD>
+             <FLD NAME=""I_YSDHNUM"" TYPE=""Char"">SHP001020028</FLD>
+             <FLD NAME=""I_I_XX10CLAT"" TYPE=""Char"">17.4146053</FLD>
+             <FLD NAME=""I_XX10CLOG"" TYPE=""Char"">78.4983067</FLD>
+             <FLD NAME=""I_XX10CADD"" TYPE=""Char"">Hyderbad</FLD>
+             <FLD NAME=""I_XVALFLG"" TYPE=""Char"">2</FLD>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_YFLG=0,Shipment non exist
+XINFORLVS,XINFORLVS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XINFORLVS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XVR"" TYPE=""Char"">VR-102-260326-0002</FLD>
+             <FLD NAME=""I_XCHKFLG"" TYPE=""Char"">1</FLD>
+             <FLD NAME=""I_XVEHICLE"" TYPE=""Char"">102513026</FLD>
+             <FLD NAME=""I_YQSTNID"" TYPE=""Char"">INS025120006</FLD>
+             <FLD NAME=""I_YQSTND"" TYPE=""Char"">PRE Trip - Inspection</FLD>
+             <FLD NAME=""I_XLATITUDE"" TYPE=""Char"">17.44044</FLD>
+             <FLD NAME=""I_XLONGITUDE"" TYPE=""Char"">78.397151</FLD>
+             <FLD NAME=""I_XDRIVCMTS"" TYPE=""Char"">comments</FLD>
+                <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+                     <LIN NUM=""1"">
+                        <FLD NAME=""I_XCATG"" TYPE=""Char"">Signature</FLD>
+                        <FLD NAME=""I_YQSTNCOD"" TYPE=""Decimal"">Check the Brakes</FLD>
+                        <FLD NAME=""I_YQSTNRES"" TYPE=""Char"">1</FLD>
+                        <FLD NAME=""I_YADDNOTES"" TYPE=""Char"">Notes</FLD>
+                        <FLD NAME=""I_XLINENO"" TYPE=""Char"">1000</FLD>
+                     </LIN>
+                 </TAB>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XSFLG=0,
+X10CINVUPD,X10CINVUPD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CINVUPD</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XBPC"" TYPE=""Char"">24000</FLD>
+   <FLD NAME=""I_XMBPC"" TYPE=""Char"">240</FLD>
+   <FLD NAME=""I_XDATE"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char"">1129</FLD>
+   <FLD NAME=""I_XSERENDTYM"" TYPE=""Char"">1120</FLD>
+   <FLD NAME=""I_XTIME"" TYPE=""Char"">1100</FLD>
+   <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">1</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">20</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010550</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=2,
+X10CINUPOF,X10CINUPOF,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CINUPOF</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XBPC"" TYPE=""Char"">24000</FLD>
+         <FLD NAME=""I_XMBPC"" TYPE=""Char"">240</FLD>
+         <FLD NAME=""I_XDATE"" TYPE=""Date"">date$</FLD>
+         <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char"">1129</FLD>
+         <FLD NAME=""I_XSERENDTYM"" TYPE=""Char"">1120</FLD>
+         <FLD NAME=""I_XTIME"" TYPE=""Char"">1100</FLD>
+         <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">20</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010550</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=2,
+X10CMERBPC,X10CMERBPC,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CMERBPC</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XMERCNDSR"" TYPE=""Char"">020463</FLD>
+   <FLD NAME=""I_XSALMGR"" TYPE=""Char"">M0205</FLD>
+
+   <TAB DIM=""9999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XCUSTOMER"" TYPE=""Char"">02941230</FLD>
+         <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">2</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=2,02941230 : Removed successfully
+X10CMRACOF,X10CMRACOF,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CMRACOF</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XMERCHADSER"" TYPE=""Char"">M02ML</FLD>
+         <FLD NAME=""I_XMERNAME"" TYPE=""Char"">BRENT TROUT</FLD>
+         <FLD NAME=""I_XBPC"" TYPE=""Char"">02364620</FLD>
+         <FLD NAME=""I_XBPCNAME"" TYPE=""Char"">COUNTRYMART 2704</FLD>
+         <FLD NAME=""I_XDATE"" TYPE=""Date"">19/05/2026</FLD>
+         <FLD NAME=""I_XTIME"" TYPE=""Char"">1518</FLD>
+         <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I_XDEVICEID"" TYPE=""Char"">101200f367bff2cb</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=2,
+X10CXMISUS,X10CXMISUS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CXMISUS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XBPC"" TYPE=""Char"">02943570</FLD>
+   <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4600899</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">25.00</FLD>
+         <FLD NAME=""I_XSTAT"" TYPE=""Integer"">2</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4600899</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">34.00</FLD>
+         <FLD NAME=""I_XSTAT"" TYPE=""Integer"">3</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=1,There is no stock present at the customer location to create the Misc. issue
+X1CSOHUPD,X1CSOHUPD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X1CSOHUPD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XSOHNUM"" TYPE=""Char"">1022602SON00000028</FLD>
+   <FLD NAME=""I_XDLVDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I_XSHIDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I_XORDDAT"" TYPE=""Date"">date$</FLD>
+
+   <TAB DIM=""100"" ID=""GRP2"" SIZE=""4"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">3000003</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">1000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">20</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1999999</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">40</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">2000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">25</FLD>
+      </LIN>
+      <LIN NUM=""3"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010101</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">12</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">3000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">30</FLD>
+      </LIN>
+      <LIN NUM=""4"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">010502</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">11</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">4000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">35</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XSFLG=0,Sales Order Updation Failed
+X10CCNFDEP,X10CCNFDEP,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CCNFDEP</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XUSRID"" TYPE=""Char"">039904</FLD>
+   <FLD NAME=""I_XDAT"" TYPE=""Date"">20260512</FLD>
+   <FLD NAME=""I_XDOCNUM"" TYPE=""Char"">1022605SDI00000013</FLD>
+   <FLD NAME=""I_XNOP"" TYPE=""Char"">f</FLD>
+   <FLD NAME=""I_XDOCTYP"" TYPE=""Integer"">1</FLD>
+   <FLD NAME=""I_XVEHCODE"" TYPE=""Char"">102513017</FLD>
+   <FLD NAME=""I_XVR"" TYPE=""Char"">VR-102-260512-0011</FLD>
+   <FLD NAME=""I_XCONARRLAT"" TYPE=""Char"">17.4146434</FLD>
+   <FLD NAME=""I_XCONARRLOG"" TYPE=""Char"">78.498256</FLD>
+   <FLD NAME=""I_XCREDOCLAT"" TYPE=""Char"">17.4146394</FLD>
+   <FLD NAME=""I_XCREDOCLOG"" TYPE=""Char"">78.4982598</FLD>
+   <FLD NAME=""I_XCONDEPLAT"" TYPE=""Char"">17.4146434</FLD>
+   <FLD NAME=""I_XCONDEPLOG"" TYPE=""Char"">78.498256</FLD>
+   <FLD NAME=""I_XCONARRDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XCONARRTIM"" TYPE=""Char"">1743</FLD>
+   <FLD NAME=""I_XSTRUNLDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XSTRUNLTIM"" TYPE=""Char"">1743</FLD>
+   <FLD NAME=""I_XTIMDIFF"" TYPE=""Char"">00:00</FLD>
+   <FLD NAME=""I_XCAPDELTIM"" TYPE=""Char"">20240212</FLD>
+   <FLD NAME=""I_XENDUNLDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XENDUNLTIM"" TYPE=""Char"">1744</FLD>
+   <FLD NAME=""I_XCONDEPDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XCONDEPTIM"" TYPE=""Char"">1744</FLD>
+   <FLD NAME=""I_XVALDOCDAT"" TYPE=""Date"">20230913</FLD>
+   <FLD NAME=""I_XVALDOCTIM"" TYPE=""Char"">1744</FLD>
+   <FLD NAME=""I_XSERVICETIME"" TYPE=""Char"">00:01</FLD>
+   <FLD NAME=""I_XBPRATING"" TYPE=""Decimal"">4</FLD>
+   <FLD NAME=""I_XACTDISTMTS"" TYPE=""Decimal"">13049547.41</FLD>
+   <FLD NAME=""I_XDEVICEID"" TYPE=""Char"">329dc7bdd32943fc</FLD>
+   <FLD NAME=""I_XGEOFLG"" TYPE=""Integer"">1</FLD>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=0,
+X10CSIHCRE,X10CSIHCRE,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CSIHCRE</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XSDHNUM"" TYPE=""Char"">SHP600010152</FLD>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=0,
+X10CSIHDET,X10CSIHDET,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CSIHDET</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XSIHNUM"" TYPE=""Char"">INV000002</FLD>
+   </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=0,
+X10CSTOSDH,X10CSTOSDH,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CSTOSDH</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XFSALMGRLOC"" TYPE=""Char"">M02CO</FLD>
+   <FLD NAME=""I_XTCUSLOC"" TYPE=""Char"">02942930</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601022</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">1</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",STAT=-1,Intersite transfer unsuccessful
+X10CFCUSMG,X10CFCUSMG,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CFCUSMG</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XFCUSLOC"" TYPE=""Char"">02942930</FLD>
+   <FLD NAME=""I_XTSALMGRLOC"" TYPE=""Char"">M02CO</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601022</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">1</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",STAT=0,
+XSALTRANS,XSALTRANS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">XSALTRANS</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+   <FLD NAME=""I_SLOC"" TYPE=""Char"">0215</FLD>
+   <FLD NAME=""I_DLOC"" TYPE=""Char"">0218</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010901</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">5.00</FLD>
+         <FLD NAME=""I_XLOT"" TYPE=""Char"">L26030130</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=2,Inventory transfer Successfully
+XUSRCKI1,XUSRCKI1,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XUSRCKI1</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_X10CUSRID"" TYPE=""Char"">BERTO_11</FLD>
+   <FLD NAME=""I_XDATE"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XSRCNUM"" TYPE=""Char"">BERTO2204XCHG0000001</FLD>
+   <FLD NAME=""I_XDOCNUM"" TYPE=""Char"">XVR-220411-BERTO-001</FLD>
+   <FLD NAME=""I_XDSCONARRDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSCONARRTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSSTRLODDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSSTRLODTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSENDLODDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSENDLODTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSVEHINSPDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSVEHINSPTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSGATINSPDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSGATINSPTIM"" TYPE=""Char"">1904</FLD>
+    </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",O_XFLG=0,

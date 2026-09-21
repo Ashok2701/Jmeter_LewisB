@@ -1,0 +1,6 @@
+Method,URL,Protocol,Host,Port,Path,Query_Parameters,Request_Parameters,Content_Type,Accept,Authorization,Headers,Cookies,Request_Body,CSRF_XSRF_Token,Referer,Origin,User_Agent,Response_Status_Code,Response_Content_Type
+GET,http://127.0.0.1:8099/api/XAPP1ITEMS?representation=XAPP1ITEMS.$query,http,127.0.0.1,8099,/api/XAPP1ITEMS?representation=XAPP1ITEMS.$query,,,,application/json,,,,,,,,,,
+GET,http://127.0.0.1:8099/api/XITMDBPC?representation=XITMDBPC.$query,http,127.0.0.1,8099,/api/XITMDBPC?representation=XITMDBPC.$query,,,,application/json,,,,,,,,,,
+GET,http://127.0.0.1:8099/api/X10CITMRD?representation=X10CITMRD.$query,http,127.0.0.1,8099,/api/X10CITMRD?representation=X10CITMRD.$query,,,,application/json,,,,,,,,,,
+GET,http://127.0.0.1:8099/api/XITMBPC2?representation=XITMBPC2.$query,http,127.0.0.1,8099,/api/XITMBPC2?representation=XITMBPC2.$query,,,,application/json,,,,,,,,,,
+GET,http://127.0.0.1:8099/api/XBPCHOLIDAY?representation=XBPCHOLIDAY.$query,http,127.0.0.1,8099,/api/XBPCHOLIDAY?representation=XBPCHOLIDAY.$query,,,,application/json,,,,,,,,,,

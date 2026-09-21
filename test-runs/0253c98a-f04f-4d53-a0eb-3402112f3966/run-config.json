@@ -1,0 +1,21 @@
+{
+  "runId": "0253c98a-f04f-4d53-a0eb-3402112f3966",
+  "applicationName": "Load Test App",
+  "apiType": "REST",
+  "baseUrl": "http://127.0.0.1:8099/api",
+  "csvName": "REST_API_List_5.csv",
+  "csvSchema": "endpoint",
+  "totalApis": 5,
+  "apiNames": [
+    "XAPP1ITEMS",
+    "XITMDBPC",
+    "X10CITMRD",
+    "XITMBPC2",
+    "XBPCHOLIDAY"
+  ],
+  "skippedRows": [],
+  "threads": "10",
+  "rampup": "10",
+  "loops": "2",
+  "createdAt": "2026-09-09T12:47:46.392Z"
+}

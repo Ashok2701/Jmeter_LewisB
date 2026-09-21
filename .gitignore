@@ -1,7 +1,5 @@
 node_modules/
 .next/
 .runs/
-test-runs/
-.env.local
 JMeter-bundle-FE.ziptest-runs/
-JMeter-bundle-FE.zip
+JMeter-bundle-FE.zip 
