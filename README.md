@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # JMeter Performance Test — Web UI
 
 A web UI around the existing JMeter setup. It contains no JMeter logic of its
@@ -203,3 +204,6 @@ Copy the project folder (excluding `node_modules\`, `.next\`, `.runs\`,
 `test-runs\`), then on the target machine install Node.js 20.9+ and JMeter,
 point `PROJECT_DIR` and `JMETER_BAT` in `run_jmeter_test.bat` at their new
 locations, and run `setup-webapp.bat` followed by `start-webapp.bat`.
+=======
+# JMeter-UI
+>>>>>>> 43a769b93b9f82e06e30cdfd096b135a64d8d251
