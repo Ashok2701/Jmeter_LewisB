@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const POLL_INTERVAL_MS = 3000;
 
 function formatElapsed(startedAt, finishedAt) {
+  console.log("testing");
   const start = new Date(startedAt).getTime();
   const end = finishedAt ? new Date(finishedAt).getTime() : Date.now();
   const seconds = Math.max(0, Math.floor((end - start) / 1000));
