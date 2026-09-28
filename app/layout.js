@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'JMeter Test Center',
+  title: 'Lewis Bakers - Tema App',
   description: 'Run the JMeter performance test and generate the HTML report.',
 };
 

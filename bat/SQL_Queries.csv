@@ -1,0 +1,5 @@
+TestName,Query,Parameters,ExpectedRows,Enabled,Description
+BasicConnectivity,"SELECT 1 AS Ok",,1,true,"Basic database connectivity test - no table access"
+CurrentTime,"SELECT GETDATE() AS Now",,1,true,"Confirms the server responds to a simple scalar query"
+ParameterizedSample,"SELECT ? AS EchoedValue",Value=test,1,true,"Sample parameterized query - binds one value to one placeholder"
+DisabledSample,"SELECT 1",,1,false,"Disabled row - should be recorded as SKIPPED, not executed"

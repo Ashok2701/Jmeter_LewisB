@@ -1,0 +1,114 @@
+/*
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+#stats td, th
+{
+
+    width: 9%;//140px;
+    height: 30px;
+}
+#stats td
+{
+    text-align: center;
+}
+#stats th
+{
+    font-weight:bold;
+}
+.blue
+{
+    background-color: #dff0d8;
+}
+#errors td, th
+{
+    text-align: center;
+    width: 400px;
+    height: 30px;
+}
+#errors td
+{
+
+}
+#errors th
+{
+    font-weight:bold;
+}
+
+/* Statistics table: the "Total" row (JMeter's overall row, rendered in its
+   own unsortable tbody) is highlighted so it stands apart from the per-API
+   rows. The id selector outranks the tablesorter theme's zebra/hover rules. */
+#statisticsTable > tbody.tablesorter-no-sort > tr > td
+{
+    background-color: #1f3a5f;
+    color: #ffffff;
+    font-weight: bold;
+    border-top: 2px solid #0f2340;
+    border-bottom: 2px solid #0f2340;
+}
+
+/* Statistics table: the Response column (expand/collapse arrow) and the response
+   body row that opens beneath an API. */
+.response-toggle
+{
+    padding: 0 8px;
+    border: 0;
+    background: none;
+    color: #337ab7;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+}
+.response-toggle:hover, .response-toggle:focus
+{
+    color: #23527c;
+    outline: none;
+}
+#statisticsTable tr.response-row > td
+{
+    padding: 10px 14px;
+    background: #f7f9fb !important;
+    text-align: left;
+}
+.response-panel
+{
+    text-align: left;
+}
+.response-title
+{
+    font-weight: bold;
+    color: #555;
+}
+.response-note
+{
+    margin: 4px 0;
+    color: #777;
+    font-style: italic;
+}
+/* Long responses scroll inside their own box instead of stretching the page. */
+.response-body
+{
+    max-height: 320px;
+    margin: 6px 0 10px;
+    padding: 10px 12px;
+    overflow: auto;
+    border: 1px solid #d9dfe6;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #222;
+    font: 12px/1.45 Consolas, Menlo, "Courier New", monospace;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-word;

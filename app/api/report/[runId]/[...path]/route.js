@@ -45,7 +45,7 @@ export async function GET(request, { params }) {
 
   const run = await loadRun(runId);
   if (!run || !run.outputFolderName) {
-    return new Response('Report not found.', { status: 404 });
+    return new Response('Report file is no longer available.', { status: 404 });
   }
 
   const dashboardDir = path.join(OUTPUT_DIR, run.outputFolderName, 'dashboard');
@@ -63,10 +63,10 @@ export async function GET(request, { params }) {
   try {
     stat = await fsp.stat(requested);
   } catch {
-    return new Response('Report file not found.', { status: 404 });
+    return new Response('Report file is no longer available.', { status: 404 });
   }
   if (stat.isDirectory()) {
-    return new Response('Report file not found.', { status: 404 });
+    return new Response('Report file is no longer available.', { status: 404 });
   }
 
   const contentType =

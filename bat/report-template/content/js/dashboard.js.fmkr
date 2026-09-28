@@ -1,0 +1,662 @@
+/*
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+var showControllersOnly = ${showControllersOnly?c!"false"};
+var seriesFilter = ${seriesFilter!"undefined"};
+var filtersOnlySampleSeries = ${filtersOnlySampleSeries?c!"false"};
+
+/*
+ * Add header in statistics table to group metrics by category
+ * format
+ *
+ */
+function summaryTableHeader(header) {
+    var newRow = header.insertRow(-1);
+    newRow.className = "tablesorter-no-sort";
+    var cell = document.createElement('th');
+    cell.setAttribute("data-sorter", false);
+    // S.No, Method, Service, Status Code
+    cell.colSpan = 4;
+    cell.innerHTML = "Requests";
+    newRow.appendChild(cell);
+
+    cell = document.createElement('th');
+    cell.setAttribute("data-sorter", false);
+    // # Services, Response, FAIL, Error %
+    cell.colSpan = 4;
+    cell.innerHTML = "Executions";
+    newRow.appendChild(cell);
+
+    cell = document.createElement('th');
+    cell.setAttribute("data-sorter", false);
+    cell.colSpan = 7;
+    cell.innerHTML = "Response Times (ms)";
+    newRow.appendChild(cell);
+
+    cell = document.createElement('th');
+    cell.setAttribute("data-sorter", false);
+    cell.colSpan = 1;
+    cell.innerHTML = "Throughput";
+    newRow.appendChild(cell);
+
+    cell = document.createElement('th');
+    cell.setAttribute("data-sorter", false);
+    cell.colSpan = 2;
+    cell.innerHTML = "Network (KB/sec)";
+    newRow.appendChild(cell);
+}
+
+/*
+ * Display-only text substitutions for table column headings.
+ * The underlying JMeter data field names and sampler labels are unchanged.
+ */
+function renameColumnTitle(title) {
+    switch (title) {
+        case "Label":
+            return "Service";
+        case "#Samples":
+            return "# Services";
+        case "T (Toleration threshold)":
+            return "T (Tolerance threshold)";
+        default:
+            return title;
+    }
+}
+
+/*
+ * Per-label HTTP method / status codes and per-error status codes, read from
+ * results.jtl by scripts\Write-ReportSampleInfo.ps1 into
+ * content/js/report-sample-info.js. The report still renders without it.
+ */
+var reportSampleInfo = (typeof REPORT_SAMPLE_INFO !== "undefined" && REPORT_SAMPLE_INFO) || {};
+
+// Upper-case only: the REST labels are "<METHOD> <path>", and a SOAP service
+// name such as "Get Customer" must not be mistaken for a GET.
+var HTTP_METHOD_PREFIX = /^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE|CONNECT)\s/;
+
+function escapeHtmlText(text) {
+    return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Error types reach the page HTML-escaped by JMeter; decode to match the raw
+// error keys recorded from the JTL.
+function decodeHtmlText(text) {
+    var textarea = document.createElement("textarea");
+    textarea.innerHTML = text;
+    return textarea.value;
+}
+
+function sampleInfoForLabel(label) {
+    var labels = reportSampleInfo.labels;
+    if (!labels) {
+        return undefined;
+    }
+    return labels[label] || labels[decodeHtmlText(label)];
+}
+
+// The method recorded for this label in the JTL (REC_METHOD), else the method
+// the label itself starts with ("GET /api/..."), else "-".
+function methodForLabel(label, recordedMethod) {
+    var info = sampleInfoForLabel(label);
+    var method = recordedMethod || (info && info.method);
+    if (method) {
+        return escapeHtmlText(method.toUpperCase());
+    }
+    var match = HTTP_METHOD_PREFIX.exec(String(label).replace(/^\s+/, ""));
+    return match ? match[1].toUpperCase() : "-";
+}
+
+// The Service/API Path column: the label without its leading HTTP method
+// ("GET /api/users" -> "/api/users"), or the "SQL " of a Query Testing label
+// ("SQL Login" -> "Login"), since the method has its own column. Labels with
+// no such prefix (e.g. SOAP service names) are shown as-is.
+function pathForLabel(label) {
+    return String(label).replace(/^\s*(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE|CONNECT|SQL)?\s+/, "");
+}
+
+// One status code as JMeter recorded it. A real HTTP response always shows
+// its numeric code (400, 401, 404, 500...). Only a request that got no HTTP
+// response at all (connection refused, read timeout...) - which JMeter
+// records as "Non HTTP response code: <exception>" - is shown as "Non HTTP",
+// with the full text kept in the tooltip.
+function formatStatusCode(code, tooltip) {
+    var text = /^\d+$/.test(code) ? code
+        : /^Non HTTP response code/i.test(code) ? "Non HTTP"
+        : code === "" ? "None" : code;
+    return '<span title="' + escapeHtmlText(tooltip || code) + '">' + escapeHtmlText(text) + '</span>';
+}
+
+// [[code, count], ...] -> "200, 404".
+function formatStatusCodes(codes) {
+    if (!codes || codes.length === 0) {
+        return "-";
+    }
+    var parts = [];
+    for (var i = 0; i < codes.length; i++) {
+        var count = codes[i][1];
+        parts.push(formatStatusCode(codes[i][0],
+            codes[i][0] + " (" + count + (count === 1 ? " sample)" : " samples)")));
+    }
+    return parts.join(", ");
+}
+
+function statusCodesForLabel(label) {
+    var info = sampleInfoForLabel(label);
+    return formatStatusCodes(info && info.codes);
+}
+
+// Codes recorded for this error type in the JTL; failing that, the code
+// JMeter put at the front of the type itself ("404/Not Found").
+function statusCodesForError(errorType) {
+    var errors = reportSampleInfo.errors;
+    var decoded = decodeHtmlText(errorType);
+    if (errors && errors[decoded]) {
+        return formatStatusCodes(errors[decoded]);
+    }
+    var match = /^(\d{3})\//.exec(decoded);
+    if (match) {
+        return match[1];
+    }
+    return /^Non HTTP response code/i.test(decoded) ? "Non HTTP" : "-";
+}
+
+// ---- Statistics "Response" column: expand / collapse the response body ----
+//
+// The arrow in each API's row opens a row beneath it holding the response body
+// JMeter received for that API. The bodies are not in the page: they are in one
+// small script per API (content/responses/r<N>.js, written by
+// scripts\Write-ReportSampleInfo.ps1) that is loaded the first time its arrow
+// is clicked. Everything is inserted with textContent, never as HTML, so a
+// response can never alter the report.
+
+// Built with String.fromCharCode: JMeter reads this template as Windows-1252,
+// so a literal non-ASCII character here would be garbled in the report.
+var ARROW_DOWN = String.fromCharCode(0x25BC);
+var ARROW_UP = String.fromCharCode(0x25B2);
+var EM_DASH = String.fromCharCode(0x2014);
+var ELLIPSIS = String.fromCharCode(0x2026);
+
+function responseToggleCell(label) {
+    return '<button type="button" class="response-toggle" aria-expanded="false" ' +
+        'title="Show response" data-label="' + escapeHtmlText(label) + '">' + ARROW_DOWN + '</button>';
+}
+
+function setResponseToggle($button, open) {
+    $button.attr("aria-expanded", open ? "true" : "false")
+        .attr("title", open ? "Hide response" : "Show response")
+        .text(open ? ARROW_UP : ARROW_DOWN);
+}
+
+function collapseAllResponses($table) {
+    $table.find("tr.response-row").remove();
+    setResponseToggle($table.find(".response-toggle"), false);
+}
+
+// Re-indents JSON without touching any value: strings are copied verbatim,
+// and numbers, true/false/null are copied as written (JSON.parse/stringify
+// would round large numbers and reorder keys, so it is used only to check the
+// text is valid JSON, never to produce the output).
+function prettyPrintJson(source) {
+    var out = "", indent = 0, inString = false, escaped = false;
+    function pad(levels) {
+        return new Array(levels + 1).join("  ");
+    }
+    for (var i = 0; i < source.length; i++) {
+        var ch = source.charAt(i);
+        if (inString) {
+            out += ch;
+            if (escaped) {
+                escaped = false;
+            } else if (ch === "\\") {
+                escaped = true;
+            } else if (ch === '"') {
+                inString = false;
+            }
+        } else if (ch === '"') {
+            inString = true;
+            out += ch;
+        } else if (ch === "{" || ch === "[") {
+            var j = i + 1;
+            while (j < source.length && /\s/.test(source.charAt(j))) {
+                j++;
+            }
+            var closer = ch === "{" ? "}" : "]";
+            if (source.charAt(j) === closer) {
+                out += ch + closer;
+                i = j;
+            } else {
+                indent++;
+                out += ch + "\n" + pad(indent);
+            }
+        } else if (ch === "}" || ch === "]") {
+            indent--;
+            out += "\n" + pad(indent) + ch;
+        } else if (ch === ",") {
+            out += ",\n" + pad(indent);
+        } else if (ch === ":") {
+            out += ": ";
+        } else if (!/\s/.test(ch)) {
+            out += ch;
+        }
+    }
+    return out;
+}
+
+// JSON is pretty-printed; XML, plain text and anything else is shown exactly
+// as received.
+function formatResponseBody(body) {
+    var trimmed = body.replace(/^\s+|\s+$/g, "");
+    if (/^[\[{]/.test(trimmed)) {
+        try {
+            JSON.parse(trimmed);
+            return prettyPrintJson(trimmed);
+        } catch (e) {
+            // not valid JSON (or carries a truncation notice): show it as received
+        }
+    }
+    return body;
+}
+
+// Loads content/responses/r<N>.js once, then calls done(entries) or failed().
+function loadResponseEntries(number, done, failed) {
+    var key = "r" + number;
+    if (window.REPORT_RESPONSES && window.REPORT_RESPONSES[key]) {
+        done(window.REPORT_RESPONSES[key]);
+        return;
+    }
+    var script = document.createElement("script");
+    script.src = "content/responses/" + key + ".js";
+    script.onload = function() {
+        if (window.REPORT_RESPONSES && window.REPORT_RESPONSES[key]) {
+            done(window.REPORT_RESPONSES[key]);
+        } else {
+            failed();
+        }
+    };
+    script.onerror = failed;
+    document.head.appendChild(script);
+}
+
+// Why an API has no body to show, from the status codes recorded for it.
+function noResponseMessage(info) {
+    if (!reportSampleInfo.responsesCaptured) {
+        return "Response bodies were not recorded for this run (it was run before responses were captured).";
+    }
+    var codes = info && info.codes ? info.codes : [];
+    var allMatch = function(test) {
+        for (var i = 0; i < codes.length; i++) {
+            if (!test(String(codes[i][0]))) {
+                return false;
+            }
+        }
+        return codes.length > 0;
+    };
+    if (allMatch(function(c) { return /^Non HTTP response code/i.test(c); })) {
+        return "This request received no HTTP response, so there is no response body.";
+    }
+    if (allMatch(function(c) { return c === "SKIPPED"; })) {
+        return "This request was skipped (not executed), so there is no response.";
+    }
+    return "The response body was empty.";
+}
+
+function showResponse(label, $panel) {
+    var info = sampleInfoForLabel(label);
+    var addNote = function(text) {
+        $panel.empty().append($('<div class="response-note"></div>').text(text));
+    };
+    if (!info || !info.resp) {
+        addNote(noResponseMessage(info));
+        return;
+    }
+    $panel.empty().append($('<div class="response-note"></div>').text("Loading response" + ELLIPSIS));
+    loadResponseEntries(info.resp, function(entries) {
+        $panel.empty();
+        for (var i = 0; i < entries.length; i++) {
+            var code = String(entries[i].code);
+            var heading = /^\d+$/.test(code) ? "Response " + EM_DASH + " HTTP " + code : "Response";
+            $panel.append($('<div class="response-title"></div>').text(heading));
+            $panel.append($('<pre class="response-body"></pre>').text(formatResponseBody(entries[i].body)));
+        }
+        if (entries.length > 1) {
+            $panel.append($('<div class="response-note"></div>').text(
+                "This API returned different status codes; the first response for each is shown."));
+        }
+    }, function() {
+        addNote("The response could not be loaded (content/responses is missing from this report).");
+    });
+}
+
+function toggleResponse(button) {
+    var $button = $(button);
+    var $row = $button.closest("tr");
+    if ($button.attr("aria-expanded") === "true") {
+        $row.next("tr.response-row").remove();
+        setResponseToggle($button, false);
+        return;
+    }
+    setResponseToggle($button, true);
+    var columns = $row.closest("table").find("thead tr").last().children("th").length;
+    var $panel = $('<div class="response-panel"></div>');
+    $row.after($('<tr class="response-row"></tr>').append($('<td></td>').attr("colspan", columns).append($panel)));
+    showResponse($button.attr("data-label"), $panel);
+}
+
+// Numbers the visible rows of a table's sortable body 1..n in their current
+// display order, so S.No stays sequential after the user re-sorts.
+function renumberRows(table, column) {
+    table.find("tbody").not(".tablesorter-no-sort").each(function() {
+        $(this).children("tr").not(".response-row").each(function(index) {
+            this.cells[column].innerHTML = index + 1;
+        });
+    });
+}
+
+/*
+ * Populates the table identified by id parameter with the specified data and
+ * format. An optional columnOrder (array of source-column indices, in the
+ * desired display order) reorders which columns are rendered and in what
+ * position, without altering the underlying data, calculations, filtering
+ * (seriesIndex still refers to the original/source column) or sorting.
+ *
+ */
+function createTable(table, info, formatter, defaultSorts, seriesIndex, headerCreator, columnOrder) {
+    var tableRef = table[0];
+
+    // Create header and populate it with data.titles array
+    var header = tableRef.createTHead();
+
+    // Call callback is available
+    if(headerCreator) {
+        headerCreator(header);
+    }
+
+    // With a columnOrder, exactly the columns it lists are rendered - source
+    // columns left out of it (e.g. the raw label kept for filtering) stay hidden.
+    var columnCount = columnOrder ? columnOrder.length : info.titles.length;
+
+    var newRow = header.insertRow(-1);
+    for (var index = 0; index < columnCount; index++) {
+        var titleIndex = columnOrder ? columnOrder[index] : index;
+        var cell = document.createElement('th');
+        cell.innerHTML = renameColumnTitle(info.titles[titleIndex]);
+        // The Response column holds an expand/collapse arrow, not sortable data.
+        if (info.titles[titleIndex] === "Response") {
+            cell.className = "sorter-false";
+        }
+        newRow.appendChild(cell);
+    }
+
+    var tBody;
+
+    // Create overall body if defined
+    if(info.overall){
+        tBody = document.createElement('tbody');
+        tBody.className = "tablesorter-no-sort";
+        tableRef.appendChild(tBody);
+        var newRow = tBody.insertRow(-1);
+        var data = info.overall.data;
+        for(var index=0;index < (columnOrder ? columnCount : data.length); index++){
+            var sourceIndex = columnOrder ? columnOrder[index] : index;
+            var cell = newRow.insertCell(-1);
+            cell.innerHTML = formatter ? formatter(sourceIndex, data[sourceIndex]): data[sourceIndex];
+        }
+    }
+
+    // Create regular body
+    tBody = document.createElement('tbody');
+    tableRef.appendChild(tBody);
+
+    var regexp;
+    if(seriesFilter) {
+        regexp = new RegExp(seriesFilter, 'i');
+    }
+    // Populate body with data.items array
+    for(var index=0; index < info.items.length; index++){
+        var item = info.items[index];
+        if((!regexp || filtersOnlySampleSeries && !info.supportsControllersDiscrimination || regexp.test(item.data[seriesIndex]))
+                &&
+                (!showControllersOnly || !info.supportsControllersDiscrimination || item.isController)){
+            if(item.data.length > 0) {
+                var newRow = tBody.insertRow(-1);
+                for(var col=0; col < (columnOrder ? columnCount : item.data.length); col++){
+                    var sourceCol = columnOrder ? columnOrder[col] : col;
+                    var cell = newRow.insertCell(-1);
+                    cell.innerHTML = formatter ? formatter(sourceCol, item.data[sourceCol]) : item.data[sourceCol];
+                }
+            }
+        }
+    }
+
+    // Add support of columns sort
+    table.tablesorter({sortList : defaultSorts});
+}
+
+$(document).ready(function() {
+
+    // Customize table sorter default options
+    $.extend( $.tablesorter.defaults, {
+        theme: 'blue',
+        cssInfoBlock: "tablesorter-no-sort",
+        widthFixed: true,
+        widgets: ['zebra']
+    });
+
+    // Note: "Test and Report Information" fields (Application Name, API Type,
+    // Passed, Failed, Total APIs, Threads, Ramp-up Time) are populated by
+    // content/js/dashboard-commons.js, which is shared by this page and the
+    // Over Time / Throughput / Response Times / Custom Graphs sub-pages.
+
+    // Requests Summary pie chart (Passed / Failed), from actual JTL results.
+    var data = ${requestsSummary!"{}"};
+    var dataset = [
+        {
+            "label" : "FAIL",
+            "data" : data.KoPercent,
+            "color" : "#FF6347"
+        },
+        {
+            "label" : "PASS",
+            "data" : data.OkPercent,
+            "color" : "#9ACD32"
+        }];
+    $.plot($("#flot-requests-summary"), dataset, {
+        series : {
+            pie : {
+                show : true,
+                radius : 1,
+                label : {
+                    show : true,
+                    radius : 3 / 4,
+                    formatter : function(label, series) {
+                        return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'
+                            + label
+                            + '<br/>'
+                            + Math.round10(series.percent, -2)
+                            + '%</div>';
+                    },
+                    background : {
+                        opacity : 0.5,
+                        color : '#000'
+                    }
+                }
+            }
+        },
+        legend : {
+            show : true
+        }
+    });
+
+    // Creates APDEX table. columnOrder=[3,0,1,2] moves the Service (Label)
+    // column from last to first: Service | Apdex | T | F. The formatter still
+    // receives the original column index (0=Apdex,1=T,2=F), so calculations
+    // and formatting are unchanged.
+    createTable($("#apdexTable"), ${apdexSummary!"{}"}, function(index, item){
+        switch(index){
+            case 0:
+                item = item.toFixed(3);
+                break;
+            case 1:
+            case 2:
+                item = formatDuration(item);
+                break;
+        }
+        return item;
+    }, [[0, 0]], 3, undefined, [3, 0, 1, 2]);
+
+    // Create statistics table. S.No (14), Method (15), Status Code (16),
+    // Service/API Path (17 - the label without its method) and Response (18 -
+    // the expand/collapse arrow) are appended to JMeter's 14 source columns
+    // and placed with columnOrder:
+    // S.No | Method | Service/API Path | Status Code | # Services | Response | FAIL ... Sent.
+    // The raw label (0) is not displayed but stays in the data, so the series
+    // filter still matches on it. The formatter still receives each column's
+    // original index, so every existing calculation and format is unchanged.
+    var statisticsSummary = ${statisticsSummary!"{}"};
+    if (statisticsSummary.titles) {
+        statisticsSummary.titles = statisticsSummary.titles.concat(
+            ["S.No", "Method", "Status Code", "Service/API Path", "Response"]);
+        if (statisticsSummary.overall) {
+            var overallData = statisticsSummary.overall.data;
+            statisticsSummary.overall.data = overallData.concat(
+                ["", "", "", overallData[0], ""]);
+        }
+        for (var s = 0; s < statisticsSummary.items.length; s++) {
+            var statsItem = statisticsSummary.items[s];
+            if (statsItem.data.length > 0) {
+                var statsLabel = statsItem.data[0];
+                statsItem.data = statsItem.data.concat(
+                    ["", methodForLabel(statsLabel), statusCodesForLabel(statsLabel),
+                     pathForLabel(statsLabel), responseToggleCell(statsLabel)]);
+            }
+        }
+    }
+    createTable($("#statisticsTable"), statisticsSummary, function(index, item){
+        switch(index){
+            // Errors pct
+            case 3:
+                item = item.toFixed(2) + '%';
+                break;
+            // Mean
+            case 4:
+            // Mean
+            case 7:
+            // Median
+            case 8:
+            // Percentile 1
+            case 9:
+            // Percentile 2
+            case 10:
+            // Percentile 3
+            case 11:
+            // Throughput
+            case 12:
+            // Kbytes/s
+            case 13:
+            // Sent Kbytes/s
+                item = item.toFixed(2);
+                break;
+        }
+        return item;
+    }, [[2, 0]], 0, summaryTableHeader, [14, 15, 17, 16, 1, 18, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+    // createTable pins the Total row above the API rows; in this table it goes
+    // last (its Status Code cell is left empty above - the API rows carry the
+    // codes). It is a separate, unsorted body, so sorting never moves it.
+    $("#statisticsTable").append($("#statisticsTable > tbody.tablesorter-no-sort"));
+    renumberRows($("#statisticsTable"), 0);
+    $("#statisticsTable").on("sortEnd", function() {
+        renumberRows($(this), 0);
+    });
+    // Response arrows: one click opens that API's response beneath its row,
+    // the next closes it. Re-sorting collapses every open response first, so
+    // an open row can never end up detached from its API.
+    $("#statisticsTable").on("click", ".response-toggle", function() {
+        toggleResponse(this);
+    });
+    $("#statisticsTable").on("sortStart", function() {
+        collapseAllResponses($(this));
+    });
+
+    // Create error table: one row per failed API, from results.jtl -
+    // S.No | Method | Service/API Path | Status Code | Error | Number of errors
+    // | % in errors | % in all samples. Status Code is the code of the actual
+    // HTTP response. Reports without that data (report-sample-info.js missing)
+    // fall back to JMeter's own table grouped by error type.
+    var errorRows = reportSampleInfo.errorRows;
+    if (errorRows && reportSampleInfo.errorCount > 0) {
+        var errorTable = {
+            titles: ["S.No", "Method", "Service/API Path", "Status Code", "Error",
+                     "Number of errors", "% in errors", "% in all samples", "Label"],
+            items: []
+        };
+        for (var r = 0; r < errorRows.length; r++) {
+            var errorRow = errorRows[r];
+            errorTable.items.push({ data: [
+                "",
+                methodForLabel(errorRow.label, errorRow.method),
+                escapeHtmlText(pathForLabel(errorRow.label)),
+                formatStatusCode(errorRow.code),
+                escapeHtmlText(errorRow.error || "-"),
+                errorRow.count,
+                errorRow.count * 100 / reportSampleInfo.errorCount,
+                errorRow.count * 100 / reportSampleInfo.sampleCount,
+                errorRow.label
+            ]});
+        }
+        createTable($("#errorsTable"), errorTable, function(index, item){
+            switch(index){
+                case 6:
+                case 7:
+                    item = item.toFixed(2) + '%';
+                    break;
+            }
+            return item;
+        }, [[5, 1]], 8, undefined, [0, 1, 2, 3, 4, 5, 6, 7]);
+        renumberRows($("#errorsTable"), 0);
+        $("#errorsTable").on("sortEnd", function() {
+            renumberRows($(this), 0);
+        });
+    } else {
+    // Fallback: JMeter's errors-by-type table, with Status Code appended as
+    // column 4 and shown right after Type of error.
+    var errorsSummary = ${errorsSummary!"{}"};
+    if (errorsSummary.titles) {
+        errorsSummary.titles = errorsSummary.titles.concat(["Status Code"]);
+        for (var e = 0; e < errorsSummary.items.length; e++) {
+            var errorItem = errorsSummary.items[e];
+            if (errorItem.data.length > 0) {
+                errorItem.data = errorItem.data.concat([statusCodesForError(errorItem.data[0])]);
+            }
+        }
+    }
+    createTable($("#errorsTable"), errorsSummary, function(index, item){
+        switch(index){
+            case 2:
+            case 3:
+                item = item.toFixed(2) + '%';
+                break;
+        }
+        return item;
+    }, [[2, 1]], undefined, undefined, [0, 4, 1, 2, 3]);
+    }
+
+        // Create top5 errors by sampler
+    createTable($("#top5ErrorsBySamplerTable"), ${top5ErrorsBySampler!"{}"}, function(index, item){
+        return item;
+    }, [[0, 0]], 0);
+
+});

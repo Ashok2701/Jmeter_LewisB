@@ -1,0 +1,25 @@
+API_ID,API_NAME,ENDPOINT,BASE_URL
+1,XAPP1ITEMS,/XAPP1ITEMS?representation=XAPP1ITEMS.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+2,XITMDBPC,/XITMDBPC?representation=XITMDBPC.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+3,X10CITMRD,/X10CITMRD?representation=X10CITMRD.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+4,XITMBPC2,/XITMBPC2?representation=XITMBPC2.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+5,XBPCHOLIDAY,/XBPCHOLIDAY?representation=XBPCHOLIDAY.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+6,XX10CLTLST,/XX10CLTLST?representation=XX10CLTLST.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+7,XROUTLIST,/XROUTLIST?representation=XROUTLIST.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+8,X10CROUTRA,/X10CROUTRA?representation=X10CROUTRA.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+9,X10CROUDE,/X10CROUDE?representation=X10CROUDE.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+10,X10CSITES,/X10CSITES?representation=X10CSITES.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+11,XRUTBLST,/XRUTBLST?representation=XRUTBLST.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+12,XINSPQN,/XINSPQN?representation=XINSPQN.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+13,XITMSAMLOC,/XITMSAMLOC?representation=XITMSAMLOC.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+14,X10CTRLIST,/X10CTRLIST?representation=X10CTRLIST.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+15,XX10CMBPC,/XX10CMBPC?representation=XX10CMBPC.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+16,XX10CROUBPC,/XX10CROUBPC?representation=XX10CROUBPC.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+17,XPRILIST,/XPRILIST?representation=XPRILIST.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+18,XBPCWDYS,/XBPCWDYS?representation=XBPCWDYS.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+19,XSALSUP,/XSALSUP?representation=XSALSUP.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+20,X10CUSRDLST,/X10CUSRDLST?representation=X10CUSRDLST.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+21,XORDCHGRD,/XORDCHGRD?representation=XORDCHGRD.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+22,XORDCHNG,/XORDCHNG?representation=XORDCHNG.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+23,X10CROU,/X10CROU?representation=X10CROU.$query,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+24,XSOHNUM,/XORDCHNG?representation=XORDCHNG.$query&where= XSOHNUM eq '1022607SON00000001',https://sage.lewisbakeries.com/api1/x3/erp/PILOT

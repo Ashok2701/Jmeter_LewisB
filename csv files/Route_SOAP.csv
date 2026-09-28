@@ -1,0 +1,1791 @@
+﻿SERVICE_NO,SERVICE_NAME,PUBLIC_NAME,SOAP_ENDPOINT,SOAP_VERSION,SOAP_ACTION,CODE_LANG,POOL_ALIAS,POOL_ID,REQUEST_CONFIG,REQUEST_XML,INPUT_PARAMETERS,EXPECTED_RESPONSE,EXPECTED_STATUS,EXPECTED_MESSAGE,SOURCE_HEADER,DESCRIPTION,NOTES
+1,X10AADMIN,X10AADMIN,,SoapUI 5.9.1,,ENG,PILOT,,,"     <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">020247</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","XUNAME=""020247""
+XPWD='1234'
+XMACADD='70890b738f03ad10'","  <RESULT>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""XUNAME"" TYPE=""Char"">020247</FLD>
+        <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XDRITYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XDNAME"" TYPE=""Char"">LAUREN WESTER </FLD>
+        <FLD NAME=""XDRIVERID"" TYPE=""Char"">020247</FLD>
+        <FLD NAME=""XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""XFCYDES"" TYPE=""Char"">Hartford Bakery, Inc. (Evansville)</FLD>
+        <FLD NAME=""XCONFCY"" TYPE=""Char"">202</FLD>
+        <FLD NAME=""XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""XEMAIL"" TYPE=""Char""/>
+        <FLD NAME=""XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XROLE"" TYPE=""Integer"">20</FLD>
+        <FLD NAME=""O\\\_XSUPID"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XSALMGR"" TYPE=""Char""/>
+        <FLD NAME=""XDISTBR"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XMERTYP"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XCHQDAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_YDIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O\\\_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+        <FLD NAME=""O\\\_XLOGINSEQNO"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XPAYCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSKPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XRESCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XQTYCHGCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSPOTCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XPICKUPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSIHCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEOCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEODIST"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O\\\_XSTARTTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XENDTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XRESETPWD"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XLOCKORD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XDRIADD"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""10"" ID=""GRP3"" SIZE=""5"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Friday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Tuesday</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Monday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Thursday</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Thursday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Monday</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Tuesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Friday</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Wednesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Saturday</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>
+
+]]",XFLG=1,,[[SERVICE NUM : 1 (X10AADMIN),,
+2,,X10AADMIN,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">020453</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","XUNAME=""020453""
+XPWD='1234'
+XMACADD='70890b738f03ad10'","<RESULT>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""XUNAME"" TYPE=""Char"">020453</FLD>
+        <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XDRITYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XDNAME"" TYPE=""Char"">TIFFANY ALBRITTON</FLD>
+        <FLD NAME=""XDRIVERID"" TYPE=""Char"">020453</FLD>
+        <FLD NAME=""XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""XFCYDES"" TYPE=""Char"">Hartford Bakery, Inc. (Evansville)</FLD>
+        <FLD NAME=""XCONFCY"" TYPE=""Char"">202</FLD>
+        <FLD NAME=""XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""XEMAIL"" TYPE=""Char""/>
+        <FLD NAME=""XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XROLE"" TYPE=""Integer"">20</FLD>
+        <FLD NAME=""O\\\_XSUPID"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XSALMGR"" TYPE=""Char""/>
+        <FLD NAME=""XDISTBR"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XMERTYP"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XCHQDAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_YDIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O\\\_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+        <FLD NAME=""O\\\_XLOGINSEQNO"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XPAYCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSKPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XRESCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XQTYCHGCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSPOTCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XPICKUPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSIHCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEOCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEODIST"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O\\\_XSTARTTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XENDTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XRESETPWD"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XLOCKORD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XDRIADD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Login Success</FLD>
+    </GRP>
+    <TAB DIM=""10"" ID=""GRP3"" SIZE=""5"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Friday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Tuesday</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Monday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Thursday</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Thursday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Monday</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Tuesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Friday</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Wednesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Saturday</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",XFLG=1,Login Success,Ex 2 :,,
+3,,X10AADMIN,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">020463</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","XUNAME=""020463""
+XPWD='1234'
+XMACADD='70890b738f03ad10'","<RESULT>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""XUNAME"" TYPE=""Char"">020463</FLD>
+        <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XDRITYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XDNAME"" TYPE=""Char"">MIKE PERKINS</FLD>
+        <FLD NAME=""XDRIVERID"" TYPE=""Char"">020463</FLD>
+        <FLD NAME=""XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""XFCYDES"" TYPE=""Char"">Hartford Bakery, Inc. (Evansville)</FLD>
+        <FLD NAME=""XCONFCY"" TYPE=""Char"">202</FLD>
+        <FLD NAME=""XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""XEMAIL"" TYPE=""Char""/>
+        <FLD NAME=""XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XROLE"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSUPID"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XSALMGR"" TYPE=""Char""/>
+        <FLD NAME=""XDISTBR"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XMERTYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XCHQDAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_YDIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O\\\_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+        <FLD NAME=""O\\\_XLOGINSEQNO"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XPAYCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSKPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XRESCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XQTYCHGCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSPOTCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XPICKUPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSIHCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEOCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEODIST"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O\\\_XSTARTTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XENDTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XRESETPWD"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XLOCKORD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XDRIADD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Login Success</FLD>
+    </GRP>
+    <TAB DIM=""10"" ID=""GRP3"" SIZE=""5"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Friday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Tuesday</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Monday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Thursday</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Thursday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Monday</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Tuesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Friday</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Wednesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Saturday</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",XFLG=1,Login Success,Ex:3,,
+4,,X10AADMIN,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">SFAIR</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","XUNAME=""SFAIR""
+XPWD='1234'
+XMACADD='70890b738f03ad10'","<RESULT>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""XUNAME"" TYPE=""Char"">024722</FLD>
+        <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XDRITYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XDNAME"" TYPE=""Char"">TWAYNA RORER</FLD>
+        <FLD NAME=""XDRIVERID"" TYPE=""Char"">024722</FLD>
+        <FLD NAME=""XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""XFCYDES"" TYPE=""Char"">Hartford Bakery, Inc. (Evansville)</FLD>
+        <FLD NAME=""XCONFCY"" TYPE=""Char"">202</FLD>
+        <FLD NAME=""XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""XEMAIL"" TYPE=""Char""/>
+        <FLD NAME=""XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XROLE"" TYPE=""Integer"">20</FLD>
+        <FLD NAME=""O\\\_XSUPID"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XSALMGR"" TYPE=""Char""/>
+        <FLD NAME=""XDISTBR"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XMERTYP"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XCHQDAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_YDIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O\\\_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+        <FLD NAME=""O\\\_XLOGINSEQNO"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XPAYCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSKPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XRESCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XQTYCHGCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSPOTCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XPICKUPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XSIHCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEOCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XGEODIST"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O\\\_XSTARTTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XENDTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XRESETPWD"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XLOCKORD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XDRIADD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Login Success</FLD>
+    </GRP>
+    <TAB DIM=""10"" ID=""GRP3"" SIZE=""5"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Friday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Tuesday</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Monday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Thursday</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Thursday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Monday</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Tuesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Friday</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Wednesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Saturday</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",XFLG=1,Login Success,Ex 4:,,
+5,,X10AADMIN,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">MMCMAHON</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","XUNAME=""MMCMAHON""
+XPWD='1234'
+XMACADD='70890b738f03ad10'","<RESULT>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""XUNAME"" TYPE=""Char"">MMCMAHON</FLD>
+        <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XDRITYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XDNAME"" TYPE=""Char"">MIKE MCMAHON</FLD>
+        <FLD NAME=""XDRIVERID"" TYPE=""Char"">020639</FLD>
+        <FLD NAME=""XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""XFCYDES"" TYPE=""Char"">Hartford Bakery, Inc. (Evansville)</FLD>
+        <FLD NAME=""XCONFCY"" TYPE=""Char"">202</FLD>
+        <FLD NAME=""XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""XEMAIL"" TYPE=""Char""/>
+        <FLD NAME=""XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XROLE"" TYPE=""Integer"">10</FLD>
+        <FLD NAME=""O\\\_XSUPID"" TYPE=""Char"">S0219</FLD>
+        <FLD NAME=""O\\\_XSALMGR"" TYPE=""Char""/>
+        <FLD NAME=""XDISTBR"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XMERTYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XCHQDAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_YDIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O\\\_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+        <FLD NAME=""O\\\_XLOGINSEQNO"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O\\\_XPAYCON"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XSKPCON"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XRESCON"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XQTYCHGCON"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XSPOTCON"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XPICKUPCON"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XSIHCON"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XGEOCON"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XGEODIST"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O\\\_XSTARTTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XENDTIM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XRESETPWD"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_XLOCKORD"" TYPE=""Char"">11:15</FLD>
+        <FLD NAME=""O\\\_XDRIADD"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Login Success</FLD>
+    </GRP>
+    <TAB DIM=""10"" ID=""GRP3"" SIZE=""5"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Friday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Tuesday</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Monday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Thursday</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Thursday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Monday</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Tuesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Friday</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O\\\_XNDAY"" TYPE=""Char"">Wednesday</FLD>
+            <FLD NAME=""O\\\_XPDAY"" TYPE=""Char"">Saturday</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",XFLG=1,Login Success,Ex 5 :,,
+6,XX10CCONF,XX10CCONF,,SoapUI 5.9.1,,ENG,PILOT,,,"     <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XX10CCONF</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_XCPY"" TYPE=""Char"">100</FLD>
+   <FLD NAME=""I\\\_XIP"" TYPE=""Char"">x3tms.tema-systems.com</FLD>
+   <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">TMSNEW</FLD>
+   <FLD NAME=""I\\\_XPORT"" TYPE=""Char"">8851</FLD>
+   <FLD NAME=""I\\\_XUSR"" TYPE=""Char"">TMSWE</FLD>
+   <FLD NAME=""I\\\_PWD"" TYPE=""Char"">*Tbs@12345123</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XCPY=""100""
+I_XIP=""https://sage.lewisbakeries.com""
+I_XFOLDER=""PILOT""
+I_XPORT=""1""
+I_XUSR=""TEMADEV1""
+I_PWD=""*TBs@Dev162*""","   <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""I\\\_XIP"" TYPE=""Char"">https://sage.lewisbakeries.com</FLD>
+        <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
+        <FLD NAME=""I\\\_XPORT"" TYPE=""Char"">1</FLD>
+        <FLD NAME=""I\\\_XUSR"" TYPE=""Char"">TEMADEV1</FLD>
+        <FLD NAME=""I\\\_PWD"" TYPE=""Char"">*TBs@Dev162*</FLD>
+        <FLD NAME=""I\\\_XLICENSE"" TYPE=""Char""/>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O\\\_XLEG"" TYPE=""Char"">USA</FLD>
+        <FLD NAME=""O\\\_XSDES"" TYPE=""Char"">Lewis Bake</FLD>
+        <FLD NAME=""O\\\_XLDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""O\\\_XCPYTXID"" TYPE=""Char"">37-0636786</FLD>
+        <FLD NAME=""O\\\_XCPYCUR"" TYPE=""Char"">USD</FLD>
+        <FLD NAME=""O\\\_XCPYADDCOD"" TYPE=""Char"">CORP</FLD>
+        <FLD NAME=""O\\\_XCPYADDLINE1"" TYPE=""Char"">1220 West Michigan </FLD>
+        <FLD NAME=""O\\\_XCPYADDLINE2"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XCPYADDLINE3"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XCPYCOUNTRY"" TYPE=""Char"">United States of America</FLD>
+        <FLD NAME=""O\\\_XCPYCITY"" TYPE=""Char"">Evansville</FLD>
+        <FLD NAME=""O\\\_XCPYEMIRATES"" TYPE=""Char"">IN</FLD>
+        <FLD NAME=""O\\\_XCPYPOSCODE"" TYPE=""Char"">47710</FLD>
+        <FLD NAME=""O\\\_XCPYMOB"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XCPYTEL"" TYPE=""Char""/>
+        <FLD BYTES=""11561"" MIMETYPE=""image/png"" NAME=""O\\\_XCPYIMG"" TYPE=""Blob"">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</FLD>
+        <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Configuration Success</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=1,Configuration Success,{{{[ Service No.2 (XX10CCONF),,
+7,XPWDWRKFWR,XPWDWRKFWR,,SoapUI 5.9.1,,ENG,PILOT,,,"  <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XPWDWRKFWR</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">RWILKERSON</FLD>
+   <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","  I_DRIVERID=""RWILKERSON""
+  I_XFOLDER=""PILOT""","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">RWILKERSON</FLD>
+        <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
+        <FLD NAME=""O\\\_STATUS"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_MESSAGE"" TYPE=""Char"">Password reset link sent successfully to Sales Supervisior S0388</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_STATUS=2,Password reset link sent successfully to Sales Supervisior S0388,[[Service Num : 3 {XPWDWRKFWR},,
+8,,XPWDWRKFWR,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XPWDWRKFWR</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">MMCMAHON</FLD>
+   <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>"," I_DRIVERID=""MMCMAHON""
+ I_XFOLDER=""PILOT""","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">MMCMAHON</FLD>
+        <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
+        <FLD NAME=""O\\\_STATUS"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_MESSAGE"" TYPE=""Char"">Password reset link sent successfully to Sales Supervisior S0219</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_STATUS=2,Password reset link sent successfully to Sales Supervisior S0219,Ex 2:,,
+11,X10CGDRPWD,X10CGDRPWD,,SoapUI 5.9.1,,ENG,PILOT,,,"	<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CGDRPWD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_XDRIVERLID"" TYPE=""Char"">039902</FLD>
+   <FLD NAME=""I\\\_XCURPWD"" TYPE=""Char"">12345</FLD>
+   <FLD NAME=""I\\\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDRIVERLID='039902'
+I_XCURPWD='12345'
+I_XNEWPWD='1234'","  <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_XDRIVERLID"" TYPE=""Char"">039902</FLD>
+        <FLD NAME=""I\\\_XCURPWD"" TYPE=""Char"">12345</FLD>
+        <FLD NAME=""I\\\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XMSG"" TYPE=""Char"">Entered current pwd incorrect.</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=1,Entered current pwd incorrect.,[[Service Num : 4 {X10CGDRPWD},,
+12,,X10CGDRPWD,,,,ENG,PILOT,?,?,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string"">?</poolId>
+            <requestConfig xsi:type=""xsd:string"">?</requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CGDRPWD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+         <![CDATA[<PARAM>
+   <FLD NAME=""I\_XDRIVERLID"" TYPE=""Char"">020463</FLD>
+   <FLD NAME=""I\_XCURPWD"" TYPE=""Char"">12345</FLD>
+   <FLD NAME=""I\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDRIVERLID='020463'
+I_XCURPWD='12345'
+I_XNEWPWD='1234'","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\_XDRIVERLID"" TYPE=""Char"">020463</FLD>
+        <FLD NAME=""I\_XCURPWD"" TYPE=""Char"">12345</FLD>
+        <FLD NAME=""I\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""O\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\_XMSG"" TYPE=""Char"">Entered current pwd incorrect.</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=1,Entered current pwd incorrect.,Ex 2:,,
+13,,X10CGDRPWD,,,,ENG,PILOT,?,?,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string"">?</poolId>
+            <requestConfig xsi:type=""xsd:string"">?</requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CGDRPWD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+         <![CDATA[<PARAM>
+   <FLD NAME=""I\_XDRIVERLID"" TYPE=""Char"">020548</FLD>
+   <FLD NAME=""I\_XCURPWD"" TYPE=""Char"">12345</FLD>
+   <FLD NAME=""I\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDRIVERLID='020548'
+I_XCURPWD='12345'
+I_XNEWPWD='1234'","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\_XDRIVERLID"" TYPE=""Char"">020548</FLD>
+        <FLD NAME=""I\_XCURPWD"" TYPE=""Char"">12345</FLD>
+        <FLD NAME=""I\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""O\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\_XMSG"" TYPE=""Char"">Entered current pwd incorrect.</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=1,Entered current pwd incorrect.,EX 3:,,
+14,,X10CGDRPWD,,,,ENG,PILOT,?,?,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string"">?</poolId>
+            <requestConfig xsi:type=""xsd:string"">?</requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CGDRPWD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+         <![CDATA[<PARAM>
+   <FLD NAME=""I\_XDRIVERLID"" TYPE=""Char"">020650</FLD>
+   <FLD NAME=""I\_XCURPWD"" TYPE=""Char"">12345</FLD>
+   <FLD NAME=""I\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDRIVERLID='020650'
+I_XCURPWD='12345'
+I_XNEWPWD='1234'","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\_XDRIVERLID"" TYPE=""Char"">020650</FLD>
+        <FLD NAME=""I\_XCURPWD"" TYPE=""Char"">12345</FLD>
+        <FLD NAME=""I\_XNEWPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""O\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\_XMSG"" TYPE=""Char"">Entered current pwd incorrect.</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=1,Entered current pwd incorrect.,Ex 4:,,THIS SERVICE NEEDS TO BE RESCHEDULE THEN ONLY WE CAN WORK WITH THE SERVICE.
+15,XX10CDCSAD,XX10CDCSAD,,SoapUI 5.9.1,,ENG,PILOT,,,"    <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XX10CDCSAD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_TYP"" TYPE=""Integer"">0</FLD>
+   <FLD NAME=""I\\\_BPR"" TYPE=""Char"">B300</FLD>
+   <FLD NAME=""I\\\_SREP"" TYPE=""Char"">BU10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>"," I_TYP=0
+I_BPR=""B300""
+I_SREP='BU10'","  <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_TYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I\\\_BPR"" TYPE=""Char"">B300</FLD>
+        <FLD NAME=""I\\\_SREP"" TYPE=""Char"">BU10</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O\\\_FLAG"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O\\\_MESS"" TYPE=""Char"">0-Records found</FLD>
+    </GRP>
+    <TAB DIM=""9999"" ID=""GRP2"" SIZE=""0""/>
+    <TAB DIM=""100"" ID=""GRP4"" SIZE=""0""/></RESULT>]]>
+</resultXml>
+ 
+   ]]]",O_FLAG=0,0-Records found,[[Service Num : 5 {XX10CDCSAD},,
+16,X10CUSRCKT,X10CUSRCKT,,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CUSRCKT</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_X10CUSRID"" TYPE=""Char"">C400</FLD>
+   <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDECONARRDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDECONARRTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XDESTRUNLODDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDESTRUNLODTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XDEUNLODSTKDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDEUNLODSTKTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XDEENDUNLODDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDEENDUNLODTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XDEVEHINPDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDEVEHINPTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XDEGATINPDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDEGATINPTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XDECHKOUTDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I\\\_XDECHKOUTTIM"" TYPE=""Char"">time$</FLD>
+   <FLD NAME=""I\\\_XTRANUM"" TYPE=""Char"">CO0012410XCHG0000003</FLD>
+   <FLD NAME=""I\\\_XSODORED"" TYPE=""Integer"">0</FLD>
+   <FLD NAME=""I\\\_XFODORED"" TYPE=""Integer"">2</FLD>
+   <FLD NAME=""I\\\_XLOADBAY"" TYPE=""Integer"">1</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>"," I_X10CUSRID=""C400""
+I_XDATE=date$
+I_XDECONARRDAT=date$
+I_XDECONARRTIM=time$
+I_XDESTRUNLODDAT=date$
+I_XDESTRUNLODTIM=time$
+I_XDEUNLODSTKDAT=date$
+I_XDEUNLODSTKTIM=time$
+I_XDEENDUNLODDAT=date$
+I_XDEENDUNLODTIM=time$
+I_XDEVEHINPDAT=date$
+I_XDEVEHINPTIM=time$
+I_XDEGATINPDAT=date$
+I_XDEGATINPTIM=time$
+I_XDECHKOUTDAT=date$
+I_XDECHKOUTTIM=time$
+I_XTRANUM=""CO0012410XCHG0000003""
+I_XSODORED=0
+I_XFODORED=2
+I_XLOADBAY=1","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_X10CUSRID"" TYPE=""Char"">C400</FLD>
+        <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDECONARRDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDECONARRTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XDESTRUNLODDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDESTRUNLODTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XDEUNLODSTKDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDEUNLODSTKTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XDEENDUNLODDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDEENDUNLODTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XDEVEHINPDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDEVEHINPTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XDEGATINPDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDEGATINPTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XDECHKOUTDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I\\\_XDECHKOUTTIM"" TYPE=""Char"">time$</FLD>
+        <FLD NAME=""I\\\_XTRANUM"" TYPE=""Char"">CO0012410XCHG0000003</FLD>
+        <FLD NAME=""I\\\_XSODORED"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I\\\_XFODORED"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""I\\\_XCOGEOX"" TYPE=""Char""/>
+        <FLD NAME=""I\\\_XCOGEOY"" TYPE=""Char""/>
+        <FLD NAME=""I\\\_XLOADBAY"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""I\\\_XACTDISTCKOT"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O\\\_YFLG"" TYPE=""Integer"">0</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_YFLG=0,,{[[ Service Num : 7 {X10CUSRCKT},,
+17,X10CDRIACT,X10CDRIACT,,SoapUI 5.9.1,,ENG,PILOT,,,"   <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CDRIACT</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+         <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+         <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+         <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS</FLD>
+         <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2123</FLD>
+         <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+
+      <LIN NUM=""2"">
+         <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+         <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+         <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+         <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS 2</FLD>
+         <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2124</FLD>
+         <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>"," I_XDRIVERID(0)=""039901""
+I_XDRIVERNAME(0)=""BOBBY WILLIAMS""
+I_XCHECKIN(0)=Time$
+I_XCHECOUT(0)=Time$
+I_XDATE(0)=Date$
+I_XTIME(0)=Time$
+I_XORDCHG(0)=1
+I_XADVORD(0)=2
+I_XRETURN(0)=1
+I_XDELIVRY(0)=1
+I_XSTATUS(0)=1
+I_XBUYBACK(0)=1
+I_XOHAND(0)=2
+I_XCUST(0)=""02000710""
+I_XCUSTDES(0)=""ASSOCIATED WHOLESALE GROCERS""
+I_XSTORECODE(0)=""2123""
+I_XDEVICEID(0)=""andfdafgge""
+
+I_XDRIVERID(1)=""039901""
+I_XDRIVERNAME(1)=""BOBBY WILLIAMS""
+I_XCHECKIN(1)=Time$
+I_XCHECOUT(1)=Time$
+I_XDATE(1)=Date$
+I_XTIME(1)=Time$
+I_XORDCHG(1)=1
+I_XADVORD(1)=2
+I_XRETURN(1)=1
+I_XDELIVRY(1)=1
+I_XSTATUS(1)=1
+I_XBUYBACK(1)=1
+I_XOHAND(1)=2
+I_XCUST(1)=""02000710""
+I_XCUSTDES(1)=""ASSOCIATED WHOLESALE GROCERS 2""
+I_XSTORECODE(1)=""2124""
+I_XDEVICEID(1)=""andfdafgge"""," <RESULT>
+    <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+            <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+            <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+            <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+            <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS</FLD>
+            <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2123</FLD>
+            <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+            <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+            <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+            <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+            <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS 2</FLD>
+            <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2124</FLD>
+            <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+        </LIN>
+    </TAB>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\\\_XMSG"" TYPE=""Char"">Updated Successfully</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=2,Updated Successfully,{[[ Service Num : 9 {X10CDRIACT},,
+18,X10CDRIACT,X10CDRIACT,,SoapUI 5.9.1,,ENG,PILOT,,,"   <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CDRIACT</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+         <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+         <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+         <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS</FLD>
+         <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2123</FLD>
+         <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+
+      <LIN NUM=""2"">
+         <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+         <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+         <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+         <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS 2</FLD>
+         <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2124</FLD>
+         <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","   I_XDRIVERID(0)=""039901""
+I_XDRIVERNAME(0)=""BOBBY WILLIAMS""
+I_XCHECKIN(0)=Time$
+I_XCHECOUT(0)=Time$
+I_XDATE(0)=Date$
+I_XTIME(0)=Time$
+I_XORDCHG(0)=1
+I_XADVORD(0)=2
+I_XRETURN(0)=1
+I_XDELIVRY(0)=1
+I_XSTATUS(0)=1
+I_XBUYBACK(0)=1
+I_XOHAND(0)=2
+I_XCUST(0)=""02000710""
+I_XCUSTDES(0)=""ASSOCIATED WHOLESALE GROCERS""
+I_XSTORECODE(0)=""2123""
+I_XDEVICEID(0)=""andfdafgge""
+
+I_XDRIVERID(1)=""039901""
+I_XDRIVERNAME(1)=""BOBBY WILLIAMS""
+I_XCHECKIN(1)=Time$
+I_XCHECOUT(1)=Time$
+I_XDATE(1)=Date$
+I_XTIME(1)=Time$
+I_XORDCHG(1)=1
+I_XADVORD(1)=2
+I_XRETURN(1)=1
+I_XDELIVRY(1)=1
+I_XSTATUS(1)=1
+I_XBUYBACK(1)=1
+I_XOHAND(1)=2
+I_XCUST(1)=""02000710""
+I_XCUSTDES(1)=""ASSOCIATED WHOLESALE GROCERS 2""
+I_XSTORECODE(1)=""2124""
+I_XDEVICEID(1)=""andfdafgge""","<RESULT>
+    <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+            <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+            <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+            <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+            <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS</FLD>
+            <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2123</FLD>
+            <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I\\\_XDRIVERID"" TYPE=""Char"">039901</FLD>
+            <FLD NAME=""I\\\_XDRIVERNAME"" TYPE=""Char"">BOBBY WILLIAMS</FLD>
+            <FLD NAME=""I\\\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XDATE"" TYPE=""Date"">Date$</FLD>
+            <FLD NAME=""I\\\_XTIME"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\\\_XORDCHG"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XADVORD"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XRETURN"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\\\_XOHAND"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\\\_XCUST"" TYPE=""Char"">02000710</FLD>
+            <FLD NAME=""I\\\_XCUSTDES"" TYPE=""Char"">ASSOCIATED WHOLESALE GROCERS 2</FLD>
+            <FLD NAME=""I\\\_XSTORECODE"" TYPE=""Char"">2124</FLD>
+            <FLD NAME=""I\\\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+        </LIN>
+    </TAB>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XMSG"" TYPE=""Char"">Failed to Update</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=1,Failed to Update,{[[ Service Num : 9 {X10CDRIACT},,
+19,,X10CDRIACT,,,,ENG,PILOT,?,?,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string"">?</poolId>
+            <requestConfig xsi:type=""xsd:string"">?</requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CDRIACT</publicName>
+         <inputXml xsi:type=""xsd:string"">
+         <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I\_XDRIVERID"" TYPE=""Char"">091040</FLD>
+         <FLD NAME=""I\_XDRIVERNAME"" TYPE=""Char"">HARVEY RT 1040 D. CAMPBELL</FLD>
+         <FLD NAME=""I\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XCUST"" TYPE=""Char"">09620660</FLD>
+         <FLD NAME=""I\_XCUSTDES"" TYPE=""Char"">PETE'S FRESH MARKET #559</FLD>
+         <FLD NAME=""I\_XSTORECODE"" TYPE=""Char"">0559</FLD>
+         <FLD NAME=""I\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+ 
+      <LIN NUM=""2"">
+      <FLD NAME=""I\_XDRIVERID"" TYPE=""Char"">091040</FLD>
+         <FLD NAME=""I\_XDRIVERNAME"" TYPE=""Char"">HARVEY RT 1040 D. CAMPBELL</FLD>
+         <FLD NAME=""I\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XCUST"" TYPE=""Char"">09620660</FLD>
+         <FLD NAME=""I\_XCUSTDES"" TYPE=""Char"">PETE'S FRESH MARKET #559</FLD>
+         <FLD NAME=""I\_XSTORECODE"" TYPE=""Char"">0559</FLD>
+         <FLD NAME=""I\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDRIVERID(0)=""091040""
+I_XDRIVERNAME(0)=""HARVEY RT 1040 D. CAMPBELL""
+I_XCHECKIN(0)=Time$
+I_XCHECOUT(0)=Time$
+I_XDATE(0)=Date$
+I_XTIME(0)=Time$
+I_XORDCHG(0)=1
+I_XADVORD(0)=2
+I_XRETURN(0)=1
+I_XDELIVRY(0)=1
+I_XSTATUS(0)=1
+I_XBUYBACK(0)=1
+I_XOHAND(0)=2
+I_XCUST(0)=""09620660""
+I_XCUSTDES(0)=""PETE'S FRESH MARKET #559""
+I_XSTORECODE(0)=""0559""
+I_XDEVICEID(0)=""andfdafgge""
+
+I_XDRIVERID(1)=""091040""
+I_XDRIVERNAME(1)=""HARVEY RT 1040 D. CAMPBELL""
+I_XCHECKIN(1)=Time$
+I_XCHECOUT(1)=Time$
+I_XDATE(1)=Date$
+I_XTIME(1)=Time$
+I_XORDCHG(1)=1
+I_XADVORD(1)=2
+I_XRETURN(1)=1
+I_XDELIVRY(1)=1
+I_XSTATUS(1)=1
+I_XBUYBACK(1)=1
+I_XOHAND(1)=2
+I_XCUST(1)=""09620660""
+I_XCUSTDES(1)=""PETE'S FRESH MARKET #559""
+I_XSTORECODE(1)=""0559""
+I_XDEVICEID(1)=""andfdafgge""","<RESULT>
+    <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I\_XDRIVERID"" TYPE=""Char"">091040</FLD>
+            <FLD NAME=""I\_XDRIVERNAME"" TYPE=""Char"">HARVEY RT 1040 D. CAMPBELL</FLD>
+            <FLD NAME=""I\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\_XDATE"" TYPE=""Date"">Date$</FLD>
+            <FLD NAME=""I\_XTIME"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\_XORDCHG"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XADVORD"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\_XRETURN"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XOHAND"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\_XCUST"" TYPE=""Char"">09620660</FLD>
+            <FLD NAME=""I\_XCUSTDES"" TYPE=""Char"">PETE&apos;S FRESH MARKET #559</FLD>
+            <FLD NAME=""I\_XSTORECODE"" TYPE=""Char"">0559</FLD>
+            <FLD NAME=""I\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I\_XDRIVERID"" TYPE=""Char"">091040</FLD>
+            <FLD NAME=""I\_XDRIVERNAME"" TYPE=""Char"">HARVEY RT 1040 D. CAMPBELL</FLD>
+            <FLD NAME=""I\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\_XDATE"" TYPE=""Date"">Date$</FLD>
+            <FLD NAME=""I\_XTIME"" TYPE=""Char"">Time$</FLD>
+            <FLD NAME=""I\_XORDCHG"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XADVORD"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\_XRETURN"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I\_XOHAND"" TYPE=""Integer"">2</FLD>
+            <FLD NAME=""I\_XCUST"" TYPE=""Char"">09620660</FLD>
+            <FLD NAME=""I\_XCUSTDES"" TYPE=""Char"">PETE&apos;S FRESH MARKET #559</FLD>
+            <FLD NAME=""I\_XSTORECODE"" TYPE=""Char"">0559</FLD>
+            <FLD NAME=""I\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+        </LIN>
+    </TAB>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O\_XFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O\_XMSG"" TYPE=""Char"">Updated Successfully</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=2,Updated Successfully,EX 2:,,
+20,,X10CDRIACT,,,,ENG,PILOT,?,?,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string"">?</poolId>
+            <requestConfig xsi:type=""xsd:string"">?</requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CDRIACT</publicName>
+         <inputXml xsi:type=""xsd:string"">
+         <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I\_XDRIVERID"" TYPE=""Char"">097290</FLD>
+         <FLD NAME=""I\_XDRIVERNAME"" TYPE=""Char"">ELGIN RT 7290 E JURSA
+</FLD>
+         <FLD NAME=""I\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XCUST"" TYPE=""Char"">09619320</FLD>
+         <FLD NAME=""I\_XCUSTDES"" TYPE=""Char"">WAL MART #5060 SC</FLD>
+         <FLD NAME=""I\_XSTORECODE"" TYPE=""Char"">5060</FLD>
+         <FLD NAME=""I\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+ 
+      <LIN NUM=""2"">
+      <FLD NAME=""I\_XDRIVERID"" TYPE=""Char"">097290</FLD>
+         <FLD NAME=""I\_XDRIVERNAME"" TYPE=""Char"">ELGIN RT 7290 E JURSA
+</FLD>
+         <FLD NAME=""I\_XCHECKIN"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XCHECOUT"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XDATE"" TYPE=""Date"">Date$</FLD>
+         <FLD NAME=""I\_XTIME"" TYPE=""Char"">Time$</FLD>
+         <FLD NAME=""I\_XORDCHG"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XADVORD"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XRETURN"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XDELIVRY"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XBUYBACK"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I\_XOHAND"" TYPE=""Integer"">2</FLD>
+         <FLD NAME=""I\_XCUST"" TYPE=""Char"">09619320</FLD>
+         <FLD NAME=""I\_XCUSTDES"" TYPE=""Char"">WAL MART #5060 SC</FLD>
+         <FLD NAME=""I\_XSTORECODE"" TYPE=""Char"">5060</FLD>
+         <FLD NAME=""I\_XDEVICEID"" TYPE=""Char"">andfdafgge</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDRIVERID(0)=""097290""
+I_XDRIVERNAME(0)=""ELGIN RT 7290 E JURSA""
+I_XCHECKIN(0)=Time$
+I_XCHECOUT(0)=Time$
+I_XDATE(0)=Date$
+I_XTIME(0)=Time$
+I_XORDCHG(0)=1
+I_XADVORD(0)=2
+I_XRETURN(0)=1
+I_XDELIVRY(0)=1
+I_XSTATUS(0)=1
+I_XBUYBACK(0)=1
+I_XOHAND(0)=2
+I_XCUST(0)=""09619320""
+I_XCUSTDES(0)=""WAL MART #5060 SC""
+I_XSTORECODE(0)=""5060""
+I_XDEVICEID(0)=""andfdafgge""
+
+I_XDRIVERID(1)=""097290""
+I_XDRIVERNAME(1)=""ELGIN RT 7290 E JURSA""
+I_XCHECKIN(1)=Time$
+I_XCHECOUT(1)=Time$
+I_XDATE(1)=Date$
+I_XTIME(1)=Time$
+I_XORDCHG(1)=1
+I_XADVORD(1)=2
+I_XRETURN(1)=1
+I_XDELIVRY(1)=1
+I_XSTATUS(1)=1
+I_XBUYBACK(1)=1
+I_XOHAND(1)=2
+I_XCUST(1)=""09619320""
+I_XCUSTDES(1)=""WAL MART #5060 SC""
+I_XSTORECODE(1)=""5060""
+I_XDEVICEID(1)=""andfdafgge""",,,,Ex 3:,,THIS SERVICE NEEDS TO BE RESCHEDULE THEN ONLY WE CAN WORK WITH THE SERVICE.
+21,X10CREASON,X10CREASON,,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CREASON</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_CODE"" TYPE=""Integer"">11</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",   I_CODE = 11,"  <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_CODE"" TYPE=""Integer"">11</FLD>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""8"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">CUS</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Customer order</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">DEF</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Product Defect</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">DLL</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Delivery delay</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">ERR</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">User Error</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">NCO</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Not conforming to Requirement</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""6"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">NDQ</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Quantity not delivered</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""7"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">PRI</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Non-competitive price</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""8"">
+            <FLD NAME=""O\\\_TEXTCOD"" TYPE=""Char"">SSH</FLD>
+            <FLD NAME=""O\\\_TEXT"" TYPE=""Char"">Stock shortage</FLD>
+            <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">0</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",O_XFLG=0,,{[[ Service Num : 11 {X10CREASON},,
+22,X10CRESSDH,X10CRESSDH,,SoapUI 5.9.1,,ENG,PILOT,,,"      <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CRESSDH</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_XDOCTYP"" TYPE=""Integer"">1</FLD>
+   <FLD NAME=""I\\\_XCREUSR"" TYPE=""Char"">1251</FLD>
+   <FLD NAME=""I\\\_XSDHNUM"" TYPE=""Char"">SH13201334550</FLD>
+   <FLD NAME=""I\\\_XRESDATE"" TYPE=""Date"">20230607</FLD>
+   <FLD NAME=""I\\\_XVEHCODE"" TYPE=""Char"">DAFPV002</FLD>
+   <FLD NAME=""I\\\_YREASON"" TYPE=""Char"">CUST</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDOCTYP=1
+I_XCREUSR=""1251""
+I_XSDHNUM=""SH13201334550""
+I_XRESDATE=""20230607""
+I_XVEHCODE=""DAFPV002""
+I_YREASON=""CUST""","   <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_XDOCTYP"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""I\\\_XCREUSR"" TYPE=""Char"">1251</FLD>
+        <FLD NAME=""I\\\_XSDHNUM"" TYPE=""Char"">SH13201334550</FLD>
+        <FLD NAME=""I\\\_XRESDATE"" TYPE=""Date"">20230607</FLD>
+        <FLD NAME=""I\\\_XVEHCODE"" TYPE=""Char"">DAFPV002</FLD>
+        <FLD NAME=""I\\\_YREASON"" TYPE=""Char"">CUST</FLD>
+        <FLD NAME=""I\\\_YSPECRSON"" TYPE=""Char""/>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O\\\_XSDHNUM"" TYPE=""Char""/>
+        <FLD NAME=""O\\\_XSTATUS"" TYPE=""Integer"">10</FLD>
+        <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Reschedule date should not be less or equal to current date</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XSTATUS=10,Reschedule date should not be less or equal to current date,{[[ Service Num : 12 {X10CRESSDH},,
+23,X10CSDHRES,X10CSDHRES,,SoapUI 5.9.1,,ENG,PILOT,,,"  <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CSDHRES</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_XDOCTYP"" TYPE=""Integer"">9</FLD>
+   <FLD NAME=""I\\\_YSDHNUM"" TYPE=""Char"">2032608SON00000001</FLD>
+   <FLD NAME=""I\\\_YFLG"" TYPE=""Integer"">2</FLD>
+   <FLD NAME=""I\\\_YREASON"" TYPE=""Char"">NCF</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XDOCTYP=9
+I_YSDHNUM=""2032608SON00000001""
+I_YFLG=2
+I_YREASON=""NCF""","   <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_XDOCTYP"" TYPE=""Integer"">9</FLD>
+        <FLD NAME=""I\\\_YSDHNUM"" TYPE=""Char"">2032608SON00000001</FLD>
+        <FLD NAME=""I\\\_YFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""I\\\_RESDATE"" TYPE=""Date""></FLD>
+        <FLD NAME=""I\\\_XSIGNATURE"" TYPE=""Blob""></FLD>
+        <FLD NAME=""I\\\_YREASON"" TYPE=""Char"">NCF</FLD>
+        <FLD NAME=""I\\\_YSPECRSON"" TYPE=""Char""/>
+        <FLD NAME=""I\\\_YCOMENT"" TYPE=""Char""/>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O\\\_YFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_YMSG"" TYPE=""Char"">2032608SON00000001-Sales order not rescheduled</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_YFLG=1,2032608SON00000001-Sales order not rescheduled,{[[ Service Num : 13 {X10CSDHRES},,
+24,X10CRETURN,X10CRETURN,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   soapenv:Header/
+   soapenv:Body
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CRETURN</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I\\\_XBPC"" TYPE=""Char"">02090215</FLD>
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I\\\_XITMREF"" TYPE=""Char"">1010516</FLD>
+         <FLD NAME=""I\\\_XQTY"" TYPE=""Decimal"">2.00</FLD>
+         <FLD NAME=""I\\\_XLOT"" TYPE=""Char"">L26030011</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","  I_XBPC=""02090215""
+I_XITMREF(0)=""1010516""
+I_XQTY(0)=2.00
+I_XLOT(0)=""L26030011""","  <RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I\\\_XBPC"" TYPE=""Char"">02090215</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O\\\_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O\\\_XMSG"" TYPE=""Char"">Insufficient or no stock for product 1010516 at location 02090215</FLD>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I\\\_XITMREF"" TYPE=""Char"">1010516</FLD>
+            <FLD NAME=""I\\\_XQTY"" TYPE=""Decimal"">2.00</FLD>
+            <FLD NAME=""I\\\_XLOT"" TYPE=""Char"">L26030011</FLD>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",O_XFLG=1,Insufficient or no stock for product 1010516 at location 02090215,{[[ Service Num : 14 {X10CRETURN},,
+25,XINFORLVS,XLOADSTK2,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XLOADSTK2</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XSCHVR"" TYPE=""Char"">VR-012826-00102-001</FLD>
+             <FLD NAME=""I_XUNSCHVR"" TYPE=""Char"">LVS-012826-00102-001</FLD>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XSCHVR = VR-012826-00102-001
+I_XUNSCHVR = LVS-012826-00102-001","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XSCHVR"" TYPE=""Char"">VR-012826-00102-001</FLD>
+        <FLD NAME=""I_XUNSCHVR"" TYPE=""Char"">LVS-012826-00102-001</FLD>
+    </GRP>
+    <GRP ID=""GRP4"">
+        <FLD NAME=""O_XSCHSTK"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XSCHVOL"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XUNSCHSTK"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XUNSCHVOL"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XSCHSTKUN"" TYPE=""Char""/>
+        <FLD NAME=""O_XUNSCHSTKUN"" TYPE=""Char""/>
+        <FLD NAME=""O_XPICKUPSTK"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XDROPSTK"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XVANMASS"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XVANVOL"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XVNMASUN"" TYPE=""Char""/>
+        <FLD NAME=""O_XVNVOLUN"" TYPE=""Char""/>
+        <FLD NAME=""O_XTOTVEHQTY"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XTOTVEHUNI"" TYPE=""Char""></FLD>
+    </GRP>
+    <TAB DIM=""499"" ID=""GRP2"" SIZE=""0""/>
+    <TAB DIM=""999"" ID=""GRP3"" SIZE=""0""/></RESULT>]]>
+</resultXml>",,,{{ Service Number 15: XINFORLVS,,
+26,X10CPAYDET,X10CPAYDET,,,,ENG,PILOT,,," <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CPAYDET</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XPAYNUM"" TYPE=""Char"">CCSH2109SHERV000014</FLD>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XPAYNUM = CCSH2109SHERV000014,"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XPAYNUM"" TYPE=""Char"">CCSH2109SHERV000014</FLD>
+        <FLD NAME=""O_XPAYNUM"" TYPE=""Char"">CCSH2109SHERV000014</FLD>
+        <FLD NAME=""O_XCREDAT"" TYPE=""Date""></FLD>
+        <FLD NAME=""O_XCRETIM"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITE"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITEDES"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITADDLIG0"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITADDLIG1"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITADDLIG2"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITCRY"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITCTY"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITPOS"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITLND"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITFAX"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITEML1"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITEML2"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITWEB"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYNAM"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYDES"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYADDLIG0"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYADDLIG1"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYADDLIG2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYCRY"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYCTY"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYPOS"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYLND"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYFAX"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYEML1"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYEML2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O_XBPNAM"" TYPE=""Char""/>
+        <FLD NAME=""O_XBPRSHO"" TYPE=""Char""/>
+        <FLD NAME=""O_XADDLIG0"" TYPE=""Char""/>
+        <FLD NAME=""O_XADDLIG1"" TYPE=""Char""/>
+        <FLD NAME=""O_XADDLIG2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCTY"" TYPE=""Char""/>
+        <FLD NAME=""O_XCRY"" TYPE=""Char""/>
+        <FLD NAME=""O_XPOS"" TYPE=""Char""/>
+        <FLD NAME=""O_XLND"" TYPE=""Char""/>
+        <FLD NAME=""O_XMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XFAX"" TYPE=""Char""/>
+        <FLD NAME=""O_XEML1"" TYPE=""Char""/>
+        <FLD NAME=""O_XAMT"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XCUR"" TYPE=""Char""/>
+        <FLD NAME=""O_XBANK"" TYPE=""Char""/>
+        <FLD NAME=""O_XCHKNUM"" TYPE=""Char""/>
+        <FLD NAME=""O_XDAT"" TYPE=""Date""></FLD>
+        <FLD NAME=""O_XUSER"" TYPE=""Char""/>
+        <FLD NAME=""O_XUSERID"" TYPE=""Char""/>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">1</FLD>
+    </GRP>
+    <TAB DIM=""99"" ID=""GRP2"" SIZE=""0""/></RESULT>]]>
+</resultXml>",O_XFLG=1,,Service Number 16 : X10CPAYDET,,
+27,X10CSHPOS,X10CSHPOS,,,,ENG,PILOT,,,"      <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CSHPOS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+         
+      <FLD NAME=""I_XLVS"" TYPE=""Char"">VR-210323-SHERV-011</FLD>
+      <FLD NAME=""I_XUSR"" TYPE=""Char"">1104</FLD>
+         
+  </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XLVS = VR-210323-SHERV-011
+I_XUSR = 1104","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XLVS"" TYPE=""Char"">VR-210323-SHERV-011</FLD>
+        <FLD NAME=""I_XUSR"" TYPE=""Char"">1104</FLD>
+        <FLD NAME=""I_XCSHEXPGAS"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""I_XCSHOTH"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""I_XCSHMONEY"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=2,,SERVICE NUM : 17 [X10CSHPOS],"Description : Cash on - exp,oth,money",
+28,X10CSIHCRE,X10CSIHCRE,,,,ENG,PILOT,,,"     <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CSIHCRE</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+      <FLD NAME=""I_XSDHNUM"" TYPE=""Char"">SHP600010152</FLD>        
+  </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XSDHNUM = ""SHP600010152""","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XSDHNUM"" TYPE=""Char"">SHP600010152</FLD>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O_XSIHNUM"" TYPE=""Char""/>
+        <FLD NAME=""O_XMESS"" TYPE=""Char""/>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">0</FLD>
+    </GRP></RESULT>]]>
+</resultXml>",O_XFLG=0,,SERVICE NUMBER 18 : [X10CSIHCRE],Description   : This script is used to Create Invoice against shipment,
+29,X10CROUTRN,X10CROUTRN,,,,ENG,PILOT,?,?,"   <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string"">?</poolId>
+            <requestConfig xsi:type=""xsd:string"">?</requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CROUTRN</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+         <![CDATA[<PARAM>
+  <GRP ID=""GRP1"">
+    <FLD NAME=""I_XVEHFROM"" TYPE=""Char"">102513022</FLD>
+    <FLD NAME=""I_XVEHTO"" TYPE=""Char"">102513024</FLD>
+    <FLD NAME=""I_XSTATUS"" TYPE=""Char"">2</FLD>
+  </GRP>
+  
+  <TAB DIM=""99"" ID=""GRP2"" SIZE=""1"">
+    <LIN NUM=""1"">
+      <FLD NAME=""I_XITMREF"" TYPE=""Date"">1010516</FLD>
+      <FLD NAME=""I_XQUANTITY"" TYPE=""Decimal"">34.00</FLD>
+    </LIN>
+  </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XVEHFROM = 102513022
+I_XVEHTO = 102513024
+I_XITMREF = 1010516
+I_XQUANTITY = 34.00","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XVEHFROM"" TYPE=""Char"">102513022</FLD>
+        <FLD NAME=""I_XVEHTO"" TYPE=""Char"">102513024</FLD>
+        <FLD NAME=""I_XDRIVERID"" TYPE=""Char""/>
+        <FLD NAME=""I_XDATE"" TYPE=""Date""></FLD>
+        <FLD NAME=""I_XTIME"" TYPE=""Char""/>
+        <FLD NAME=""I_XVRNUM"" TYPE=""Char""/>
+        <FLD NAME=""I_XVRNUMT"" TYPE=""Char""/>
+        <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">2</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O_XMESS"" TYPE=""Char"">Updated Successfully</FLD>
+    </GRP>
+    <TAB DIM=""9999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+            <FLD NAME=""I_XQUANTITY"" TYPE=""Decimal"">34.00</FLD>
+            <FLD NAME=""I_XLOT"" TYPE=""Char""/>
+        </LIN>
+    </TAB></RESULT>]]>
+</resultXml>",O_XFLG=2,Updated Successfully,SERVICE NUM : 18 [X10CROUTRN],,

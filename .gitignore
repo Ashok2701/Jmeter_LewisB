@@ -2,4 +2,11 @@ node_modules/
 .next/
 .runs/
 JMeter-bundle-FE.ziptest-runs/
-JMeter-bundle-FE.zip 
+JMeter-bundle-FE.zip
+.env
+bat/output/
+bat/test-runs/
+bat/jmeter.log
+.credentials.json
+.credentials.json.tmp
+credentials/
