@@ -133,6 +133,6 @@ export async function POST(request) {
     totalApis: normalised.apiCount,
     // A short sample is enough for the client to confirm it is the right file.
     apiNames: normalised.apiNames.slice(0, 8),
-    skipped: normalised.skipped ?? [],
+    skipped: [...(normalised.skipped ?? []), ...(csv.skipped ?? [])],
   });
 }

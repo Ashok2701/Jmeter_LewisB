@@ -16,14 +16,16 @@ import { normaliseSoapCsv } from '@/lib/soapCsvSchema';
 import { normaliseSqlCsv } from '@/lib/sqlCsvSchema';
 import { loadAppCsv, validateApplicationName } from '@/lib/appCsv';
 import { API_TYPES, credentialGroupFor, isApiTypeAllowed } from '@/lib/applications';
-import { loadCredentials, writeUsersCsv } from '@/lib/credentials';
+import { loadCredentials, writeRunUsersCsv, writeUsersCsv } from '@/lib/credentials';
 import { checkDbReachable, dbDefaults } from '@/lib/dbConfig';
 import { getActiveRun, startRun, toPublicRun } from '@/lib/runs';
+import { getActiveBatch, startBatch, toPublicBatch } from '@/lib/batches';
 import {
   validateApiKind,
   validateBaseUrl,
   validateDbConfig,
   validateNumber,
+  validateNumUsers,
 } from '@/lib/validate';
 
 const apiTypeLabel = (value) => API_TYPES.find((t) => t.value === value)?.label ?? value;
@@ -38,13 +40,279 @@ function fail(message, status = 400, extra = {}) {
 
 export async function GET() {
   // Lets the UI recover its state after a page refresh mid-test.
+  const batch = getActiveBatch();
+  if (batch) return NextResponse.json({ run: null, batch: toPublicBatch(batch) });
   const active = getActiveRun();
-  return NextResponse.json({ run: active ? toPublicRun(active) : null });
+  return NextResponse.json({ run: active ? toPublicRun(active) : null, batch: null });
+}
+
+/**
+ * The test configurations in this request. A client that sends `configurations`
+ * (a JSON array of any length, entries of { applicationName, apiType,
+ * numUsers }) gets one run per entry; a client that sends the older single set
+ * of fields (applicationName / apiType / numUsers) gets exactly one, as before.
+ */
+function readConfigurations(form) {
+  const raw = form.get('configurations');
+  if (raw === null) {
+    return {
+      ok: true,
+      list: [
+        {
+          applicationName: form.get('applicationName'),
+          apiType: form.get('apiType'),
+          numUsers: form.get('numUsers'),
+          baseUrl: form.get('baseUrl'),
+          // Older single-set clients send one set of load settings for the run.
+          threads: form.get('threads'),
+          rampup: form.get('rampup'),
+          loops: form.get('loops'),
+        },
+      ],
+    };
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(String(raw));
+  } catch {
+    return { ok: false, message: 'The test configurations could not be read. Please try again.' };
+  }
+  if (!Array.isArray(parsed) || parsed.length < 1) {
+    return { ok: false, message: 'Please configure at least one test.' };
+  }
+  return {
+    ok: true,
+    list: parsed.map((c) => ({
+      applicationName: c?.applicationName,
+      apiType: c?.apiType,
+      numUsers: c?.numUsers == null ? '' : String(c.numUsers),
+      baseUrl: '',
+      threads: c?.threads == null ? '' : String(c.threads),
+      rampup: c?.rampup == null ? '' : String(c.rampup),
+      loops: c?.loops == null ? '' : String(c.loops),
+    })),
+  };
+}
+
+/**
+ * Validates one configuration exactly as a single run always was - bat, CSV,
+ * saved login, Number of Users, normalisation - and returns what is needed to
+ * start it. Nothing is written for the run itself until materialize() is
+ * called, so a batch can be rejected as a whole without leaving run folders
+ * behind.
+ */
+async function prepareConfig(cfg, shared) {
+  // Load Test Configuration: every Test Configuration has its own.
+  const threadsCheck = validateNumber('threads', cfg.threads);
+  if (!threadsCheck.ok) return { ok: false, message: threadsCheck.message };
+  const rampupCheck = validateNumber('rampup', cfg.rampup);
+  if (!rampupCheck.ok) return { ok: false, message: rampupCheck.message };
+  const loopsCheck = validateNumber('loops', cfg.loops);
+  if (!loopsCheck.ok) return { ok: false, message: loopsCheck.message };
+  const load = { threads: threadsCheck.value, rampup: rampupCheck.value, loops: loopsCheck.value };
+
+  const apiKindCheck = validateApiKind(cfg.apiType);
+  if (!apiKindCheck.ok) return { ok: false, message: apiKindCheck.message };
+  const apiKind = apiKindCheck.value; // 'REST', 'SOAP', or 'SQL'
+
+  // Which .bat runs, and its display name in logs/errors - decided here, from
+  // the validated apiKind, never from anything else client-supplied.
+  const batName =
+    apiKind === 'SOAP' ? SOAP_BAT_NAME : apiKind === 'SQL' ? SQL_BAT_NAME : BAT_NAME;
+  const batPath =
+    apiKind === 'SOAP' ? SOAP_BAT_PATH : apiKind === 'SQL' ? SQL_BAT_PATH : BAT_PATH;
+
+  if (!fs.existsSync(batPath)) {
+    return { ok: false, status: 500, message: `${batName} was not found in ${BAT_DIR}.` };
+  }
+
+  const appNameCheck = validateApplicationName(cfg.applicationName);
+  if (!appNameCheck.ok) return { ok: false, message: appNameCheck.message };
+  if (!isApiTypeAllowed(appNameCheck.value, apiKind)) {
+    return {
+      ok: false,
+      message: `${apiTypeLabel(apiKind)} is not available for ${appNameCheck.value}.`,
+    };
+  }
+
+  // The CSV is no longer uploaded: it is the file in csv files\ for this
+  // Application Name + API Type, picked server-side by lib/appCsv.js. From
+  // here on it goes through exactly the same normalisation and run-directory
+  // steps an uploaded CSV did.
+  const csv = await loadAppCsv(appNameCheck.value, apiKind);
+  if (!csv.ok) return { ok: false, message: csv.message };
+
+  // The login REST and SOAP runs authenticate with - a SOAP gateway (e.g. Sage
+  // X3's Web Service) sits behind the same login as the REST API.
+  // run_soap_test.bat passes it on to scripts\ApplyAuthHeader.groovy exactly as
+  // run_jmeter_test.bat already does for a REST endpoint-list CSV with no login
+  // step of its own. It is no longer typed on the Test Run form: it is the
+  // login saved under Configuration for this application's credential group
+  // (Merchandiser App and Route App share one; Sales Order Adjustment Web App
+  // has its own), decrypted here and handed to startRun, which passes it
+  // to JMeter as before. Anything a client sends as username/password is
+  // ignored. Query Testing has no such login - it connects with the
+  // Database Configuration instead (see run_sql_test.bat).
+  let username = '';
+  let password = '';
+  let usersCsvPath = '';
+  let numUsers = null; // REST / SOAP only - Query Testing has no login concept.
+  let selectedUsers = [];
+  if (apiKind !== 'SQL') {
+    const group = credentialGroupFor(appNameCheck.value, apiKind);
+    const saved = group ? await loadCredentials(group.id) : { ok: false, reason: 'missing' };
+    if (!saved.ok) {
+      const label = group?.label ?? appNameCheck.value;
+      return {
+        ok: false,
+        message:
+          saved.reason === 'unreadable'
+            ? `The users file for ${label} (${group?.usersCsv ?? 'credentials folder'}) could not be read. It needs LOGIN_USERNAME and LOGIN_PASSWORD columns.`
+            : `No users found for ${label}. Add them to credentials\\${group?.usersCsv ?? ''} (LOGIN_USERNAME, LOGIN_PASSWORD columns).`,
+      };
+    }
+    ({ username, password } = saved);
+
+    // Number of Users: the maximum number of the group's configured logins
+    // this run may use, taken from the beginning of the list in order. Never
+    // more than are actually configured - checked against saved.users.length,
+    // the real count, not a guess.
+    const numUsersCheck = validateNumUsers(cfg.numUsers, saved.users.length);
+    if (!numUsersCheck.ok) return { ok: false, message: numUsersCheck.message };
+    numUsers = numUsersCheck.value;
+    selectedUsers = saved.users.slice(0, numUsers);
+
+    // Keeps the group's persistent users CSV (webapp\credentials\<group>.csv)
+    // in sync with Configuration, exactly as before - unrelated to Number of
+    // Users, which is applied to a separate, run-scoped copy at materialize.
+    // A file-backed group (credentials\Route_App_Users.csv, ...) is the source
+    // itself and is never rewritten.
+    try {
+      if (!group.fileBacked) usersCsvPath = await writeUsersCsv(group, saved.users);
+    } catch (err) {
+      return {
+        ok: false,
+        status: 500,
+        message: `The users CSV ${group.usersCsv} could not be written: ${err.message}`,
+      };
+    }
+  }
+
+  const csvText = csv.buffer.toString('utf8');
+
+  let normalised;
+  let baseUrlValue = '';
+
+  if (apiKind === 'SOAP') {
+    normalised = normaliseSoapCsv(csvText);
+    if (!normalised.ok) return { ok: false, message: normalised.message };
+  } else if (apiKind === 'SQL') {
+    normalised = normaliseSqlCsv(csvText);
+    if (!normalised.ok) return { ok: false, message: normalised.message };
+  } else {
+    // --- REST: unchanged from before the SOAP flow existed ---
+    // A Base URL is only meaningful for the relative-endpoint CSV layout. Try
+    // normalising with no externally supplied one first: this succeeds outright
+    // for a Method/URL export, and for an endpoint list that carries its own
+    // BASE_URL column - in both cases the form's `baseUrl` is never required,
+    // and whatever the client sent there is ignored in favour of the CSV's own
+    // value. Only when the CSV needs a Base URL and doesn't supply one itself is
+    // the form field consulted (and required).
+    const detected = detectSchema(parseCsv(csvText));
+    normalised = normaliseCsv(csvText, {});
+    baseUrlValue = normalised.ok ? normalised.baseUrl || '' : '';
+
+    if (!normalised.ok) {
+      const baseUrlCheck = validateBaseUrl(cfg.baseUrl, {
+        required: detected.schema === 'endpoint',
+      });
+      if (!baseUrlCheck.ok) return { ok: false, message: baseUrlCheck.message };
+
+      normalised = normaliseCsv(csvText, { baseUrl: baseUrlCheck.value });
+      if (!normalised.ok) return { ok: false, message: normalised.message };
+      baseUrlValue = baseUrlCheck.value;
+    }
+  }
+
+  const skippedRows = [...(normalised.skipped ?? []), ...(csv.skipped ?? [])];
+
+  return {
+    ok: true,
+    apiKind,
+    applicationName: appNameCheck.value,
+    csvName: csv.fileName,
+    materialize: async () => {
+      const id = randomUUID();
+      const runDir = await createRunDirectory(id);
+      const { testDataPath } = await writeRunCsvFiles(runDir, {
+        uploadedBuffer: csv.buffer,
+        normalisedCsv: normalised.csv,
+      });
+
+      // The actual login data JMeter reads for this run: only the first
+      // `numUsers` configured logins, written fresh into this run's own
+      // directory. Overrides usersCsvPath (which so far points at the group's
+      // full persistent CSV) so LOGIN_USERS_CSV can never carry more users
+      // than were selected in the UI.
+      let runUsersCsvPath = usersCsvPath;
+      if (apiKind !== 'SQL') {
+        runUsersCsvPath = await writeRunUsersCsv(runDir, selectedUsers);
+      }
+
+      await writeRunConfig(runDir, {
+        runId: id,
+        applicationName: appNameCheck.value,
+        apiType: apiKind,
+        baseUrl: baseUrlValue,
+        csvName: csv.fileName,
+        csvSchema: normalised.schema,
+        totalApis: normalised.apiCount,
+        apiNames: normalised.apiNames,
+        skippedRows,
+        threads: load.threads,
+        rampup: load.rampup,
+        loops: load.loops,
+        numUsers,
+        createdAt: new Date().toISOString(),
+      });
+
+      return {
+        id,
+        applicationName: appNameCheck.value,
+        apiType: apiKind,
+        baseUrl: baseUrlValue,
+        threads: load.threads,
+        rampup: load.rampup,
+        loops: load.loops,
+        username,
+        password,
+        usersCsvPath: runUsersCsvPath,
+        numUsers,
+        // Display only - never used to build a path.
+        csvName: csv.fileName,
+        csvRows: normalised.apiCount,
+        csvSchema: normalised.schema,
+        skippedRows,
+        testDataPath,
+        batName,
+        batPath,
+        dbConfig: apiKind === 'SQL' ? shared.dbConfig : null,
+      };
+    },
+  };
 }
 
 export async function POST(request) {
-  // One test at a time - two JMeter runs at once would compete for the machine
-  // and make both sets of timings meaningless.
+  // One test (or one batch of tests) at a time - two JMeter runs at once would
+  // compete for the machine and make both sets of timings meaningless.
+  const activeBatch = getActiveBatch();
+  if (activeBatch) {
+    return fail(
+      'A test is already running. Please wait for it to finish before starting another.',
+      409,
+      { batch: toPublicBatch(activeBatch) }
+    );
+  }
   const active = getActiveRun();
   if (active) {
     return fail(
@@ -61,35 +329,16 @@ export async function POST(request) {
     return fail('Could not read the submitted form. Please try again.');
   }
 
-  const apiKindCheck = validateApiKind(form.get('apiType'));
-  if (!apiKindCheck.ok) return fail(apiKindCheck.message);
-  const apiKind = apiKindCheck.value; // 'REST', 'SOAP', or 'SQL'
-
-  // Which .bat runs, and its display name in logs/errors - decided here, from
-  // the validated apiKind, never from anything else client-supplied.
-  const batName =
-    apiKind === 'SOAP' ? SOAP_BAT_NAME : apiKind === 'SQL' ? SQL_BAT_NAME : BAT_NAME;
-  const batPath =
-    apiKind === 'SOAP' ? SOAP_BAT_PATH : apiKind === 'SQL' ? SQL_BAT_PATH : BAT_PATH;
-
-  if (!fs.existsSync(batPath)) {
-    return fail(
-      `${batName} was not found in ${BAT_DIR}.`,
-      500
-    );
-  }
-
-  const appNameCheck = validateApplicationName(form.get('applicationName'));
-  if (!appNameCheck.ok) return fail(appNameCheck.message);
-  if (!isApiTypeAllowed(appNameCheck.value, apiKind)) {
-    return fail(`${apiTypeLabel(apiKind)} is not available for ${appNameCheck.value}.`);
-  }
+  const parsed = readConfigurations(form);
+  if (!parsed.ok) return fail(parsed.message);
+  const multi = parsed.list.length > 1;
+  const where = (index, message) => (multi ? `Test Configuration ${index + 1}: ${message}` : message);
 
   // Query Testing: the SQL Server connection. Empty fields fall back to DB_*
   // in .env; the result reaches run_sql_test.bat only as environment
   // variables (see startRun), never as arguments, and is never persisted.
   let dbConfig = null;
-  if (apiKind === 'SQL') {
+  if (parsed.list.some((c) => c.apiType === 'SQL')) {
     const dbCheck = validateDbConfig(
       {
         host: form.get('dbHost'),
@@ -104,95 +353,14 @@ export async function POST(request) {
     dbConfig = dbCheck.value;
   }
 
-  // The CSV is no longer uploaded: it is the file in csv files\ for this
-  // Application Name + API Type, picked server-side by lib/appCsv.js. From
-  // here on it goes through exactly the same normalisation and run-directory
-  // steps an uploaded CSV did.
-  const csv = await loadAppCsv(appNameCheck.value, apiKind);
-  if (!csv.ok) return fail(csv.message);
+  const shared = { dbConfig };
 
-  const threadsCheck = validateNumber('threads', form.get('threads'));
-  if (!threadsCheck.ok) return fail(threadsCheck.message);
-
-  const rampupCheck = validateNumber('rampup', form.get('rampup'));
-  if (!rampupCheck.ok) return fail(rampupCheck.message);
-
-  const loopsCheck = validateNumber('loops', form.get('loops'));
-  if (!loopsCheck.ok) return fail(loopsCheck.message);
-
-  // The login REST and SOAP runs authenticate with - a SOAP gateway (e.g. Sage
-  // X3's Web Service) sits behind the same login as the REST API.
-  // run_soap_test.bat passes it on to scripts\ApplyAuthHeader.groovy exactly as
-  // run_jmeter_test.bat already does for a REST endpoint-list CSV with no login
-  // step of its own. It is no longer typed on the Test Run form: it is the
-  // login saved under Configuration for this application's credential group
-  // (Merchandiser App and Route App share one; Sales Order Adjustment Web App
-  // has its own), decrypted here and handed to startRun below, which passes it
-  // to JMeter as before. Anything a client sends as username/password is
-  // ignored. Query Testing has no such login - it connects with the Database
-  // Configuration above (see run_sql_test.bat).
-  let username = '';
-  let password = '';
-  let usersCsvPath = '';
-  if (apiKind !== 'SQL') {
-    const group = credentialGroupFor(appNameCheck.value, apiKind);
-    const saved = group ? await loadCredentials(group.id) : { ok: false, reason: 'missing' };
-    if (!saved.ok) {
-      const label = group?.label ?? appNameCheck.value;
-      return fail(
-        saved.reason === 'unreadable'
-          ? `The saved login for ${label} could not be read (it was saved by a different Windows user, or is damaged). Open Configuration in the sidebar and save the username and password again.`
-          : `No saved login for ${label}. Open Configuration in the sidebar, enter the username and password, and click Save.`
-      );
-    }
-    ({ username, password } = saved);
-
-    // Multi-user runs: JMeter reads every saved login from this group's users
-    // CSV (scripts\AssignLoginUser.groovy), one per thread. It is rewritten
-    // from the saved logins right now, so it is always current. username /
-    // password above stay user 1, exactly as for a single-user run.
-    try {
-      usersCsvPath = await writeUsersCsv(group, saved.users);
-    } catch (err) {
-      return fail(`The users CSV ${group.usersCsv} could not be written: ${err.message}`, 500);
-    }
-  }
-
-  const uploadedBuffer = csv.buffer;
-  const csvText = uploadedBuffer.toString('utf8');
-
-  let normalised;
-  let baseUrlValue = '';
-
-  if (apiKind === 'SOAP') {
-    normalised = normaliseSoapCsv(csvText);
-    if (!normalised.ok) return fail(normalised.message);
-  } else if (apiKind === 'SQL') {
-    normalised = normaliseSqlCsv(csvText);
-    if (!normalised.ok) return fail(normalised.message);
-  } else {
-    // --- REST: unchanged from before the SOAP flow existed ---
-    // A Base URL is only meaningful for the relative-endpoint CSV layout. Try
-    // normalising with no externally supplied one first: this succeeds outright
-    // for a Method/URL export, and for an endpoint list that carries its own
-    // BASE_URL column - in both cases the form's `baseUrl` is never required,
-    // and whatever the client sent there is ignored in favour of the CSV's own
-    // value. Only when the CSV needs a Base URL and doesn't supply one itself is
-    // the form field consulted (and required).
-    const detected = detectSchema(parseCsv(csvText));
-    normalised = normaliseCsv(csvText, {});
-    baseUrlValue = normalised.ok ? normalised.baseUrl || '' : '';
-
-    if (!normalised.ok) {
-      const baseUrlCheck = validateBaseUrl(form.get('baseUrl'), {
-        required: detected.schema === 'endpoint',
-      });
-      if (!baseUrlCheck.ok) return fail(baseUrlCheck.message);
-
-      normalised = normaliseCsv(csvText, { baseUrl: baseUrlCheck.value });
-      if (!normalised.ok) return fail(normalised.message);
-      baseUrlValue = baseUrlCheck.value;
-    }
+  // Validate every configuration before anything starts.
+  const prepared = [];
+  for (let i = 0; i < parsed.list.length; i += 1) {
+    const result = await prepareConfig(parsed.list[i], shared);
+    if (!result.ok) return fail(where(i, result.message), result.status ?? 400);
+    prepared.push(result);
   }
 
   if (dbConfig) {
@@ -200,58 +368,32 @@ export async function POST(request) {
     if (!reachable.ok) return fail(reachable.message);
   }
 
-  const id = randomUUID();
-  let testDataPath;
+  if (multi) {
+    const batch = startBatch(
+      prepared.map((p) => ({
+        applicationName: p.applicationName,
+        apiType: p.apiKind,
+        csvName: p.csvName,
+        materialize: p.materialize,
+      }))
+    );
+    return NextResponse.json({ batch: toPublicBatch(batch) }, { status: 202 });
+  }
+
+  // A single configuration: started directly, exactly as before.
+  const [only] = prepared;
+  let startArgs;
   try {
-    const runDir = await createRunDirectory(id);
-    ({ testDataPath } = await writeRunCsvFiles(runDir, {
-      uploadedBuffer,
-      normalisedCsv: normalised.csv,
-    }));
-    await writeRunConfig(runDir, {
-      runId: id,
-      applicationName: appNameCheck.value,
-      apiType: apiKind,
-      baseUrl: baseUrlValue,
-      csvName: csv.fileName,
-      csvSchema: normalised.schema,
-      totalApis: normalised.apiCount,
-      apiNames: normalised.apiNames,
-      skippedRows: normalised.skipped ?? [],
-      threads: threadsCheck.value,
-      rampup: rampupCheck.value,
-      loops: loopsCheck.value,
-      createdAt: new Date().toISOString(),
-    });
+    startArgs = await only.materialize();
   } catch (err) {
     return fail(`Could not prepare the test run directory: ${err.message}`, 500);
   }
 
   let run;
   try {
-    run = await startRun({
-      id,
-      applicationName: appNameCheck.value,
-      apiType: apiKind,
-      baseUrl: baseUrlValue,
-      threads: threadsCheck.value,
-      rampup: rampupCheck.value,
-      loops: loopsCheck.value,
-      username,
-      password,
-      usersCsvPath,
-      // Display only - never used to build a path.
-      csvName: csv.fileName,
-      csvRows: normalised.apiCount,
-      csvSchema: normalised.schema,
-      skippedRows: normalised.skipped ?? [],
-      testDataPath,
-      batName,
-      batPath,
-      dbConfig,
-    });
+    run = await startRun(startArgs);
   } catch (err) {
-    return fail(`Could not start ${batName}: ${err.message}`, 500);
+    return fail(`Could not start ${startArgs.batName}: ${err.message}`, 500);
   }
 
   return NextResponse.json({ run: toPublicRun(run) }, { status: 202 });

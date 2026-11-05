@@ -1,5 +1,5 @@
 /*
- * Fallback values for the dashboard's "Test Configuration" table.
+ * Fallback values for the dashboard's summary cells.
  *
  * Application Name and API Type are normally supplied per run - from the web
  * UI, or from the APP_NAME / API_TYPE environment variables when

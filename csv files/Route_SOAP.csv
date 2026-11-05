@@ -502,68 +502,6 @@ I_PWD=""*TBs@Dev162*""","   <RESULT>
         <FLD NAME=""O\\\_XMESSAGE"" TYPE=""Char"">Configuration Success</FLD>
     </GRP></RESULT>]]>
 </resultXml>",O_XFLG=1,Configuration Success,{{{[ Service No.2 (XX10CCONF),,
-7,XPWDWRKFWR,XPWDWRKFWR,,SoapUI 5.9.1,,ENG,PILOT,,,"  <soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
-                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
-                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
-                  xmlns:wss=""http://www.adonix.com/WSS"">
-   soapenv:Header/
-   soapenv:Body
-      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
-         <callContext xsi:type=""wss:CAdxCallContext"">
-            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
-            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
-            <poolId xsi:type=""xsd:string""></poolId>
-            <requestConfig xsi:type=""xsd:string""></requestConfig>
-         </callContext>
-         <publicName xsi:type=""xsd:string"">XPWDWRKFWR</publicName>
-         <inputXml xsi:type=""xsd:string"">
-            <![CDATA[<PARAM>
-   <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">RWILKERSON</FLD>
-   <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
-</PARAM>]]>
-         </inputXml>
-      </wss:run>
-   </soapenv:Body>
-</soapenv:Envelope>","  I_DRIVERID=""RWILKERSON""
-  I_XFOLDER=""PILOT""","<RESULT>
-    <GRP ID=""GRP1"">
-        <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">RWILKERSON</FLD>
-        <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
-        <FLD NAME=""O\\\_STATUS"" TYPE=""Integer"">2</FLD>
-        <FLD NAME=""O\\\_MESSAGE"" TYPE=""Char"">Password reset link sent successfully to Sales Supervisior S0388</FLD>
-    </GRP></RESULT>]]>
-</resultXml>",O_STATUS=2,Password reset link sent successfully to Sales Supervisior S0388,[[Service Num : 3 {XPWDWRKFWR},,
-8,,XPWDWRKFWR,,,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
-                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
-                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
-                  xmlns:wss=""http://www.adonix.com/WSS"">
-   soapenv:Header/
-   soapenv:Body
-      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
-         <callContext xsi:type=""wss:CAdxCallContext"">
-            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
-            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
-            <poolId xsi:type=""xsd:string""></poolId>
-            <requestConfig xsi:type=""xsd:string""></requestConfig>
-         </callContext>
-         <publicName xsi:type=""xsd:string"">XPWDWRKFWR</publicName>
-         <inputXml xsi:type=""xsd:string"">
-            <![CDATA[<PARAM>
-   <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">MMCMAHON</FLD>
-   <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
-</PARAM>]]>
-         </inputXml>
-      </wss:run>
-   </soapenv:Body>
-</soapenv:Envelope>"," I_DRIVERID=""MMCMAHON""
- I_XFOLDER=""PILOT""","<RESULT>
-    <GRP ID=""GRP1"">
-        <FLD NAME=""I\\\_DRIVERID"" TYPE=""Char"">MMCMAHON</FLD>
-        <FLD NAME=""I\\\_XFOLDER"" TYPE=""Char"">PILOT</FLD>
-        <FLD NAME=""O\\\_STATUS"" TYPE=""Integer"">2</FLD>
-        <FLD NAME=""O\\\_MESSAGE"" TYPE=""Char"">Password reset link sent successfully to Sales Supervisior S0219</FLD>
-    </GRP></RESULT>]]>
-</resultXml>",O_STATUS=2,Password reset link sent successfully to Sales Supervisior S0219,Ex 2:,,
 11,X10CGDRPWD,X10CGDRPWD,,SoapUI 5.9.1,,ENG,PILOT,,,"	<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
                   xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
                   xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""

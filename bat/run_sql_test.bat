@@ -182,7 +182,11 @@ goto :END
 :PARAMS_OK
 
 REM ---- Build a unique, timestamped output folder (never overwrites past runs) ----
-for /f %%T in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd_HHmmss"') do set "TIMESTAMP=%%T"
+REM The webapp sets RUN_OUTPUT_NAME so that tests running in parallel never pick the
+REM same folder (a timestamp alone is only unique to the second). Started by hand it
+REM is unset and the timestamp is used, exactly as before.
+set "TIMESTAMP=%RUN_OUTPUT_NAME%"
+if not defined TIMESTAMP for /f %%T in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd_HHmmss"') do set "TIMESTAMP=%%T"
 
 set "RUN_DIR=output\%TIMESTAMP%"
 set "RESULT_FILE=%RUN_DIR%\results.jtl"
@@ -206,7 +210,7 @@ REM Archive the exact CSV this run used next to its own results, so every
 REM output folder is self-contained and can be traced back to its input.
 copy /y "%CSV_FILE%" "%RUN_DIR%\test-data.csv" >nul
 
-REM Display timestamp for the report's Test Configuration section.
+REM Display timestamp for the report's summary cells.
 for /f "usebackq delims=" %%D in (`powershell -NoProfile -Command "Get-Date -Format 'dd-MMM-yyyy hh:mm tt'"`) do set "RUN_STARTED=%%D"
 
 echo ========================================
@@ -232,7 +236,7 @@ REM      passed as -J properties, so none of them are ever echoed to the
 REM      console or to jmeter.log the way -J values are. ----
 REM CSV_FILE / CSV_ROW_COUNT are quoted as whole tokens so a path containing
 REM spaces reaches JMeter as a single argument.
-call "%JMETER_BAT%" -n -t "%TEST_PLAN%" -l "%RESULT_FILE%" -j "%LOG_FILE%" -JTHREADS=%THREADS% -JRAMPUP=%RAMPUP% -JLOOPS=%LOOPS% "-JCSV_FILE=%CSV_FILE%" "-JCSV_ROW_COUNT=%TOTAL_APIS%" -Jsample_variables=REC_METHOD,REC_URL,REC_APINAME,REC_PASSFAIL,REC_ERROR,REC_RESPONSE
+call "%JMETER_BAT%" -n -t "%TEST_PLAN%" -l "%RESULT_FILE%" -j "%LOG_FILE%" -JTHREADS=%THREADS% -JRAMPUP=%RAMPUP% -JLOOPS=%LOOPS% "-JCSV_FILE=%CSV_FILE%" "-JCSV_ROW_COUNT=%TOTAL_APIS%" -Jjmeter.save.saveservice.autoflush=true -Jsample_variables=REC_METHOD,REC_URL,REC_APINAME,REC_PASSFAIL,REC_ERROR,REC_RESPONSE
 set "JMETER_EXIT_CODE=%ERRORLEVEL%"
 
 if not "%JMETER_EXIT_CODE%"=="0" (
@@ -245,10 +249,12 @@ if not "%JMETER_EXIT_CODE%"=="0" (
     goto :END
 )
 
-REM ---- Refresh per-run report info (the report's Test Configuration table) ----
+REM ---- Refresh per-run report info (the report's summary cells) ----
 REM Same helper the REST/SOAP flows use - every value belongs to the run that
 REM just executed, nothing is hard-coded. See scripts\Write-ReportRunInfo.ps1.
-set "RUN_INFO_FILE=%PROJECT_DIR%\report-template\content\js\report-run-info.js"
+REM Written into THIS run's dashboard after it is generated, never into the shared
+REM report-template\ (concurrent runs would overwrite each other's values there).
+set "RUN_INFO_FILE=%CD%\%DASHBOARD_DIR%\content\js\report-run-info.js"
 set "REPORT_TEMPLATE_DIR=%PROJECT_DIR%\report-template"
 set "RUN_INFO_TOTAL_APIS=%TOTAL_APIS%"
 set "RUN_INFO_THREADS=%THREADS%"
@@ -256,12 +262,6 @@ set "RUN_INFO_RAMPUP=%RAMPUP%"
 set "RUN_INFO_LOOPS=%LOOPS%"
 set "RUN_INFO_CSV=%CSV_FILE%"
 set "RUN_INFO_STARTED=%RUN_STARTED%"
-
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS_DIR%\Write-ReportRunInfo.ps1"
-if errorlevel 1 (
-    echo WARNING: Could not refresh report-run-info.js; the report's Test
-    echo Configuration table may show stale values.
-)
 
 REM ---- Generate HTML Dashboard (only after a successful test run) ----
 REM Same report template AND the same -q report-generator.properties filter
@@ -282,6 +282,12 @@ if not "%DASHBOARD_EXIT_CODE%"=="0" (
     goto :END
 )
 
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS_DIR%\Write-ReportRunInfo.ps1"
+if errorlevel 1 (
+    echo WARNING: Could not refresh report-run-info.js; the report's summary
+    echo cells may show stale values.
+)
+
 REM ---- Add per-API Method / Status Code data to the generated report ----
 REM JMeter's dashboard data has no per-API method or response status code, so
 REM scripts\Write-ReportSampleInfo.ps1 reads them from this run's results.jtl
@@ -294,6 +300,19 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS_DIR%\Write-ReportS
 if errorlevel 1 (
     echo WARNING: Could not write report-sample-info.js; the report's Method /
     echo Status Code columns may show "-".
+)
+
+REM ---- Add the actual per-user run counts to the generated report ----
+REM Query Testing has no login/users, so NUM_USERS is always empty here and
+REM the script writes an empty array - the report's Runs by User graph then
+REM stays hidden, same as its Number of Users / Number of Runs summary cells.
+set "USER_INFO_JTL=%CD%\%RESULT_FILE%"
+set "USER_INFO_FILE=%CD%\%DASHBOARD_DIR%\content\js\report-user-info.js"
+set "USER_INFO_NUM_USERS=%NUM_USERS%"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS_DIR%\Write-ReportUserInfo.ps1"
+if errorlevel 1 (
+    echo WARNING: Could not write report-user-info.js; the report's Runs by
+    echo User graph may be empty.
 )
 echo.
 echo ========================================

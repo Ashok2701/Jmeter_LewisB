@@ -1,0 +1,42 @@
+﻿Base_URL,API_Name,HTTP_Method,Endpoint,Parameter
+pwa.lewisbakeries.com:8084,Login,POST,/api/query/login,"JERLENBUSH, 1234"
+pwa.lewisbakeries.com:8084,Login SSO,GET,/api/query/login_sso,Email
+pwa.lewisbakeries.com:8084,Logout,POST,/api/query/logout,Sales_manager
+pwa.lewisbakeries.com:8084,Sales Admin Write,GET,/api/query/sales_admin_write,XS0ADW
+pwa.lewisbakeries.com:8084,Sales Admin Read,GET,/api/query/sales_admin_read,XS0ADR
+pwa.lewisbakeries.com:8084,User Image,GET,/api/query/user_image,XS0ADR
+pwa.lewisbakeries.com:8084,District Sales Manager,GET,/api/query/district_sales_manager,BBUSH2
+pwa.lewisbakeries.com:8084,Sales Supervisor,GET,/api/query/sales_supervisor,DPOGUE1
+pwa.lewisbakeries.com:8084,Sales Manager VP,GET,/api/query/sales_manager_vp,GFORD
+pwa.lewisbakeries.com:8084,Sales Coordinator,GET,/api/query/sales_coordinator,ABENNETT
+pwa.lewisbakeries.com:8084,Sales Manager Detail,GET,/api/query/sales_manager_detail,TUSER3
+pwa.lewisbakeries.com:8084,Week List,GET,/api/query/week_list,10/5/2026
+pwa.lewisbakeries.com:8084,Customer List Route,GET,/api/query/customer_list_route,20010
+pwa.lewisbakeries.com:8084,Lock Order,GET,/api/query/lock_order,"10/05/2026, 102"
+pwa.lewisbakeries.com:8084,Holiday List,GET,/api/query/holiday_list,103
+pwa.lewisbakeries.com:8084,Product List,GET,/api/query/product_list,XS0ADW
+pwa.lewisbakeries.com:8084,Product TOM,GET,/api/query/product_tom,"02113240, 4600892, 102"
+pwa.lewisbakeries.com:8084,Product Sold,GET,/api/query/product_sold,"02113240, 102, 4600892"
+pwa.lewisbakeries.com:8084,Total TOM,GET,/api/query/total_tom,"4600892, 02113240, 102"
+pwa.lewisbakeries.com:8084,Retail Price,GET,/api/query/retail_price,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,Wholesale Price,GET,/api/query/wholesale_price,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,Stale %,GET,/api/query/stale,"4600892, 02113240"
+pwa.lewisbakeries.com:8084,Tray / Order Unit,GET,/api/query/tray_order_unit,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,Facing,GET,/api/query/facing,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,LAO Holiday,GET,/api/query/lao_holiday,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,Gamble Value,GET,/api/query/gamble_value,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,Current Order,GET,/api/query/current_order,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,Customer Availability,GET,/api/query/customer_availability,"10/05/2026, 102, 02113240, 4600892"
+pwa.lewisbakeries.com:8084,Update Lock Order,POST,/api/query/update_lock_order,"02113240, 4600892,10/05/2026, true"
+pwa.lewisbakeries.com:8084,Current Order By Date,GET,/api/query/current_order_by_date,"02113240, 4600892, 10/05/2026"
+pwa.lewisbakeries.com:8084,Previous Week Sold,GET,/api/query/previous_week_sold,"02113240, 4600892, 10/05/2026"
+pwa.lewisbakeries.com:8084,On Hand,GET,/api/query/on_hand,"4600892, 02113240, 10/05/2026"
+pwa.lewisbakeries.com:8084,Average Sold,GET,/api/query/average_sold,"10/05/2026, 02113240, 4600892"
+pwa.lewisbakeries.com:8084,Previous Adjustment,GET,/api/query/previous_adjustment,"4600892, 02113240, 10/05/2026"
+pwa.lewisbakeries.com:8084,Tablet Adjustment,GET,/api/query/tablet_adjustment,"orderDate, 02113240, 4600892"
+pwa.lewisbakeries.com:8084,Facing Value,GET,/api/query/facing_value,"02113240, 4600892"
+pwa.lewisbakeries.com:8084,On-Hand Day-wise,GET,/api/query/onhand_daywise,"02113240, 4600892, 10/05/2026"
+pwa.lewisbakeries.com:8084,Suggested Order,GET,/api/query/suggested_order,"02113240, 4600892, 10/05/2026"
+pwa.lewisbakeries.com:8084,Shipping Adjustment,GET,/api/query/shipping_adjustment,"10/05/2026, 102, 02113240, 4600892"
+pwa.lewisbakeries.com:8084,List All APIs,GET,/api/queries,
+pwa.lewisbakeries.com:8084,Health Check,GET,/health,

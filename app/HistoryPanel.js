@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const API_TYPE_LABELS = { REST: 'REST', SOAP: 'SOAP', SQL: 'Query Testing' };
-const STATUS_LABELS = { completed: 'Completed', failed: 'Failed', running: 'Running' };
+const STATUS_LABELS = { completed: 'Completed', failed: 'Failed', stopped: 'Stopped', running: 'Running' };
 const REPORT_MISSING = 'Report file is no longer available.';
 
 // Dates and times are shown in the browser's own time zone, from the run's
@@ -101,6 +101,9 @@ function DeleteDialog({ run, busy, error, onCancel, onConfirm }) {
           <li><span>Date</span><b>{formatDate(run.startedAt)}</b></li>
           <li><span>Time</span><b>{formatTime(run.startedAt)}</b></li>
           <li><span>Application</span><b>{run.applicationName || '—'}</b></li>
+          {run.batchId && (
+            <li><span>Test Configuration</span><b>{run.batchIndex} of {run.batchSize} (batch {run.batchId.slice(0, 8)})</b></li>
+          )}
           <li><span>API Type</span><b>{API_TYPE_LABELS[run.apiType] ?? run.apiType}</b></li>
         </ul>
 
@@ -248,6 +251,7 @@ export default function HistoryPanel() {
             <option value="">All</option>
             <option value="completed">Completed</option>
             <option value="failed">Failed</option>
+            <option value="stopped">Stopped</option>
             <option value="running">Running</option>
           </select>
         </div>
@@ -313,7 +317,12 @@ export default function HistoryPanel() {
                 <tr key={run.id}>
                   <td>{formatDate(run.startedAt)}</td>
                   <td>{formatTime(run.startedAt)}</td>
-                  <td className="wrap">{run.applicationName || '—'}</td>
+                  <td className="wrap">
+                    {run.applicationName || '—'}
+                    {run.batchId && (
+                      <small title={`Batch ${run.batchId}`}> · Config {run.batchIndex}/{run.batchSize}</small>
+                    )}
+                  </td>
                   <td>{API_TYPE_LABELS[run.apiType] ?? run.apiType}</td>
                   <td className="num">{run.threads || '—'}</td>
                   <td className="num">{run.loops || '—'}</td>

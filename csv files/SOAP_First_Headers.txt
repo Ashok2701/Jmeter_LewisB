@@ -1,0 +1,21 @@
+HTTP/1.1 500 Internal Server Error
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Authorization
+Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT
+Access-Control-Allow-Origin: *
+Cache-Control: max-age=0, s-maxage=0, no-cache, must-revalidate, private, proxy-revalidate
+Content-Language: en-US
+Content-Length: 83
+Content-Security-Policy: frame-ancestors 'none';
+Content-Type: application/json;charset=UTF-8
+Date: Mon, 26 Oct 2026 06:45:54 GMT
+Pragma: no-cache
+Referrer-Policy: same-origin
+Set-Cookie: sage_lb=4a8c5323aa0af79a; Path=/; HttpOnly; Secure; SameSite=Lax
+Set-Cookie: syracuse.sid.443=fcbdc9b6-e8ec-4a97-88a0-33bfdb80b140; path=/; Secure; HttpOnly; SameSite=Lax
+Set-Cookie: client.id=395856b8-1f95-49cb-af3b-09da930ede4f; path=/; expires=Fri, 14 May 2027 06:45:54 GMT; Secure; HttpOnly; SameSite=Lax
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Xss-Protection: 1; mode=block
+

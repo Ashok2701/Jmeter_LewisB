@@ -330,7 +330,14 @@ function showResponse(label, $panel) {
             var code = String(entries[i].code);
             var heading = /^\d+$/.test(code) ? "Response " + EM_DASH + " HTTP " + code : "Response";
             $panel.append($('<div class="response-title"></div>').text(heading));
-            $panel.append($('<pre class="response-body"></pre>').text(formatResponseBody(entries[i].body)));
+            // A SOAP envelope gets a summary and collapsible formatted XML
+            // (content/js/soap-response.js); anything else is shown as before.
+            var soapView = window.SoapResponseView ? SoapResponseView.render(label, code, entries[i].body) : null;
+            if (soapView) {
+                $panel.append(soapView);
+            } else {
+                $panel.append($('<pre class="response-body"></pre>').text(formatResponseBody(entries[i].body)));
+            }
         }
         if (entries.length > 1) {
             $panel.append($('<div class="response-note"></div>').text(

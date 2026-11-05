@@ -16,6 +16,8 @@
         RUN_INFO_THREADS    threads for this run
         RUN_INFO_RAMPUP     ramp-up seconds for this run
         RUN_INFO_LOOPS      loops for this run
+        RUN_INFO_NUM_USERS  Number of Users selected for this run (REST/SOAP
+                             only; blank for Query Testing, which has no login)
         RUN_INFO_STARTED    display timestamp for this run
 #>
 
@@ -49,14 +51,26 @@ if (-not [string]::IsNullOrWhiteSpace($env:CSV_DISPLAY_NAME)) {
     $csvName = Split-Path -Leaf $env:RUN_INFO_CSV
 }
 
+$threads = Get-IntOrZero $env:RUN_INFO_THREADS
+$loops = Get-IntOrZero $env:RUN_INFO_LOOPS
+
+# Blank (Query Testing, or a .bat run started by hand with no NUM_USERS) means
+# there is no Number of Users for this run at all, not zero users - the report
+# omits both fields rather than showing a misleading "0".
+$numUsersRaw = $env:RUN_INFO_NUM_USERS
+$numUsers = Get-IntOrZero $numUsersRaw
+$hasNumUsers = -not [string]::IsNullOrWhiteSpace($numUsersRaw) -and $numUsers -gt 0
+
 $info = [ordered]@{
     applicationName = Get-TextOrDefault $env:APP_NAME 'Not specified'
     apiType         = Get-TextOrDefault $env:API_TYPE 'Not specified'
     csvFile         = Get-TextOrDefault $csvName 'Not specified'
     totalApis       = Get-IntOrZero $env:RUN_INFO_TOTAL_APIS
-    threads         = Get-IntOrZero $env:RUN_INFO_THREADS
+    threads         = $threads
     rampUpSeconds   = Get-IntOrZero $env:RUN_INFO_RAMPUP
-    loops           = Get-IntOrZero $env:RUN_INFO_LOOPS
+    loops           = $loops
+    numUsers        = if ($hasNumUsers) { $numUsers } else { $null }
+    numberOfRuns    = if ($hasNumUsers) { $numUsers * $threads * $loops } else { $null }
     testDateTime    = Get-TextOrDefault $env:RUN_INFO_STARTED (Get-Date -Format 'dd-MMM-yyyy hh:mm tt')
 }
 

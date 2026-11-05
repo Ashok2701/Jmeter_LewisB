@@ -1,0 +1,11 @@
+node_modules
+.next
+.next.zip
+.git
+.vercel
+coverage
+.nyc_output
+bat/output
+bat/test-runs
+bat/report-template
+*.jtl

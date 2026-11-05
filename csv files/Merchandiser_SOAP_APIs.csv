@@ -1,0 +1,1245 @@
+﻿SERVICE_NO,SERVICE_NAME,PUBLIC_NAME,SOAP_ENDPOINT,SOAP_VERSION,SOAP_ACTION,CODE_LANG,POOL_ALIAS,POOL_ID,REQUEST_CONFIG,REQUEST_XML,INPUT_PARAMETERS,EXPECTED_RESPONSE,EXPECTED_STATUS,EXPECTED_MESSAGE
+1,XX10CCONF,XX10CCONF,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XX10CCONF</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XCPY"" TYPE=""Char"">100</FLD>
+   <FLD NAME=""I_XIP"" TYPE=""Char"">x3tms.tema-systems.com</FLD>
+   <FLD NAME=""I_XFOLDER"" TYPE=""Char"">TMSNEW</FLD>
+   <FLD NAME=""I_XPORT"" TYPE=""Char"">8851</FLD>
+   <FLD NAME=""I_XUSR"" TYPE=""Char"">TMSWE</FLD>
+   <FLD NAME=""I_PWD"" TYPE=""Char"">*Tbs@12345123</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XCPY=""100""; I_XIP=""x3tms.tema-systems.com""; I_XFOLDER=""TMSNEW""; I_XPORT=""8851""; I_XUSR=""TMSWE""; I_PWD=""*Tbs@12345123""","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""I_XIP"" TYPE=""Char"">x3tms.tema-systems.com</FLD>
+        <FLD NAME=""I_XFOLDER"" TYPE=""Char"">TMSNEW</FLD>
+        <FLD NAME=""I_XPORT"" TYPE=""Char"">8851</FLD>
+        <FLD NAME=""I_XUSR"" TYPE=""Char"">TMSWE</FLD>
+        <FLD NAME=""I_PWD"" TYPE=""Char"">*Tbs@12345123</FLD>
+        <FLD NAME=""I_XLICENSE"" TYPE=""Char""/>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O_XLEG"" TYPE=""Char"">USA</FLD>
+        <FLD NAME=""O_XSDES"" TYPE=""Char"">Lewis Bake</FLD>
+        <FLD NAME=""O_XLDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""O_XCPYTXID"" TYPE=""Char"">37-0636786</FLD>
+        <FLD NAME=""O_XCPYCUR"" TYPE=""Char"">USD</FLD>
+        <FLD NAME=""O_XCPYADDCOD"" TYPE=""Char"">CORP</FLD>
+        <FLD NAME=""O_XCPYADDLINE1"" TYPE=""Char"">1220 West Michigan </FLD>
+        <FLD NAME=""O_XCPYADDLINE2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYADDLINE3"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYCOUNTRY"" TYPE=""Char"">United States of America</FLD>
+        <FLD NAME=""O_XCPYCITY"" TYPE=""Char"">Evansville</FLD>
+        <FLD NAME=""O_XCPYEMIRATES"" TYPE=""Char"">IN</FLD>
+        <FLD NAME=""O_XCPYPOSCODE"" TYPE=""Char"">47710</FLD>
+        <FLD NAME=""O_XCPYMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYTEL"" TYPE=""Char""/>
+        <FLD BYTES=""11561"" MIMETYPE=""image/png"" NAME=""O_XCPYIMG"" TYPE=""Blob"">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</FLD>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O_XMESSAGE"" TYPE=""Char"">Configuration Success</FLD>
+    </GRP></RESULT>",O_XFLG=1,Configuration Success
+2,,X10AADMIN,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10AADMIN</publicName>
+      <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""XUNAME"" TYPE=""Char"">020247</FLD>
+   <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+   <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","XUNAME=""020247""; XPWD='1234'; XMACADD='70890b738f03ad10'","<RESULT>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""XUNAME"" TYPE=""Char"">020247</FLD>
+        <FLD NAME=""XPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""XMACADD"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O_XDRITYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XDNAME"" TYPE=""Char"">LAUREN WESTER </FLD>
+        <FLD NAME=""XDRIVERID"" TYPE=""Char"">020247</FLD>
+        <FLD NAME=""XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""XFCYDES"" TYPE=""Char"">Hartford Bakery, Inc. (Evansville)</FLD>
+        <FLD NAME=""XCONFCY"" TYPE=""Char"">202</FLD>
+        <FLD NAME=""XCPY"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""XEMAIL"" TYPE=""Char""/>
+        <FLD NAME=""XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""XROLE"" TYPE=""Integer"">20</FLD>
+        <FLD NAME=""O_XSUPID"" TYPE=""Char""/>
+        <FLD NAME=""O_XSALMGR"" TYPE=""Char""/>
+        <FLD NAME=""XDISTBR"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""XMERTYP"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O_XCHQDAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_YDIMG"" TYPE=""Blob""></FLD>
+        <FLD NAME=""O_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+        <FLD NAME=""O_XLOGINSEQNO"" TYPE=""Char"">70890b738f03ad10</FLD>
+        <FLD NAME=""O_XPAYCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XSKPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XRESCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XQTYCHGCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XSPOTCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XPICKUPCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XSIHCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XGEOCON"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XGEODIST"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XSTARTTIM"" TYPE=""Char""/>
+        <FLD NAME=""O_XENDTIM"" TYPE=""Char""/>
+        <FLD NAME=""O_XRESETPWD"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XLOCKORD"" TYPE=""Char""/>
+        <FLD NAME=""O_XDRIADD"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""10"" ID=""GRP3"" SIZE=""5"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O_XNDAY"" TYPE=""Char"">Friday</FLD>
+            <FLD NAME=""O_XPDAY"" TYPE=""Char"">Tuesday</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""O_XNDAY"" TYPE=""Char"">Monday</FLD>
+            <FLD NAME=""O_XPDAY"" TYPE=""Char"">Thursday</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""O_XNDAY"" TYPE=""Char"">Thursday</FLD>
+            <FLD NAME=""O_XPDAY"" TYPE=""Char"">Monday</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""O_XNDAY"" TYPE=""Char"">Tuesday</FLD>
+            <FLD NAME=""O_XPDAY"" TYPE=""Char"">Friday</FLD>
+        </LIN>
+        <LIN NUM=""5"">
+            <FLD NAME=""O_XNDAY"" TYPE=""Char"">Wednesday</FLD>
+            <FLD NAME=""O_XPDAY"" TYPE=""Char"">Saturday</FLD>
+        </LIN>
+    </TAB></RESULT>",XFLG=1,
+4,X10CGDRPWD,X10CGDRPWD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CGDRPWD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XDRIVERLID"" TYPE=""Char"">039902</FLD>
+             <FLD NAME=""I_XCURPWD"" TYPE=""Char"">12345</FLD>
+             <FLD NAME=""I_XNEWPWD"" TYPE=""Char"">1234</FLD>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XDRIVERLID = '039902'; I_XCURPWD = '12345'; I_XNEWPWD = '1234',"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XDRIVERLID"" TYPE=""Char"">039902</FLD>
+        <FLD NAME=""I_XCURPWD"" TYPE=""Char"">12345</FLD>
+        <FLD NAME=""I_XNEWPWD"" TYPE=""Char"">1234</FLD>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O_XMSG"" TYPE=""Char"">Entered current pwd incorrect.</FLD>
+    </GRP></RESULT>",O_XFLG=1,Entered current pwd incorrect.
+5,XX10CDCSAD,XX10CDCSAD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XX10CDCSAD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+		   </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","""I_TYP"" = 0; ""I_BPR"" = B300; ""I_SREP""= BU10","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_TYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_BPR"" TYPE=""Char"">B300</FLD>
+        <FLD NAME=""I_SREP"" TYPE=""Char"">BU10</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_FLAG"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_MESS"" TYPE=""Char"">0-Records found</FLD>
+    </GRP>
+    <TAB DIM=""9999"" ID=""GRP2"" SIZE=""0""/>
+    <TAB DIM=""100"" ID=""GRP4"" SIZE=""0""/></RESULT>",O_FLAG=0,0-Records found
+6,X10CRMEMOS,X10CRMEMOS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CRMEMOS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+             <FLD NAME=""I_XBPC"" TYPE=""Char"">02200400</FLD>
+             <FLD NAME=""I_XTYPESDC"" TYPE=""Char"">Damaged in store</FLD>
+             <FLD NAME=""I_XDATE"" TYPE=""Date"">20261012</FLD>
+                <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+                     <LIN NUM=""1"">
+                        <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601876</FLD>
+                        <FLD NAME=""I_XQTY"" TYPE=""Decimal"">3.00</FLD>
+                        <FLD NAME=""I_XSTAT"" TYPE=""Integer"">2</FLD>
+                     </LIN>
+                 </TAB>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XFCY  = ""102""; I_XBPC = ""02200400""; I_XTYPESDC = ""Damaged in store""; I_XDATE = ""20261012""; I_XITMREF(0) = ""4601876""; I_XQTY(0) = 3.00; I_XSTAT(0) = 2","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""I_XBPC"" TYPE=""Char"">02940110</FLD>
+        <FLD NAME=""I_XTYPESDC"" TYPE=""Char"">Damaged in store</FLD>
+        <FLD NAME=""I_XDATE"" TYPE=""Date"">[0/0/0]</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O_XMSG"" TYPE=""Char"">Credit memo No.: SCM000124 created successfully.</FLD>
+    </GRP>
+    <TAB DIM=""9999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601876</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">5.00</FLD>
+            <FLD NAME=""I_XSTAT"" TYPE=""Integer"">2</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XFLG=2,Credit memo No.: SCM000124 created successfully.
+7,X10CVALSDH,X10CVALSDH,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CVALSDH</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_YCREUSR"" TYPE=""Char"">PH90</FLD>
+             <FLD NAME=""I_YSDHNUM"" TYPE=""Char"">SHP001020028</FLD>
+             <FLD NAME=""I_I_XX10CLAT"" TYPE=""Char"">17.4146053</FLD>
+             <FLD NAME=""I_XX10CLOG"" TYPE=""Char"">78.4983067</FLD>
+             <FLD NAME=""I_XX10CADD"" TYPE=""Char"">Hyderbad</FLD>
+             <FLD NAME=""I_XVALFLG"" TYPE=""Char"">2</FLD>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_YCREUSR = ""PH90""; I_YSDHNUM = ""SHP001020028""; I_XX10CLAT = ""17.4146053""; I_XX10CLOG = ""78.4983067""; I_XX10CADD = ""Hyderbad""; I_XVALFLG = 2","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_YMSG"" TYPE=""Char""/>
+        <FLD NAME=""I_YCREUSR"" TYPE=""Char"">PH90</FLD>
+        <FLD NAME=""I_YEMIRATEID"" TYPE=""Char""/>
+        <FLD NAME=""I_YSDHNUM"" TYPE=""Char"">SHP001020028</FLD>
+        <FLD NAME=""I_YPRHNUM"" TYPE=""Char""/>
+        <FLD NAME=""I_YSIGNATURE"" TYPE=""Blob""></FLD>
+        <FLD NAME=""I_XSTKVCR"" TYPE=""Char""/>
+        <FLD NAME=""I_YVEHCODE"" TYPE=""Char""/>
+        <FLD NAME=""I_XX10CLAT"" TYPE=""Char""/>
+        <FLD NAME=""I_XX10CLOG"" TYPE=""Char"">78.4983067</FLD>
+        <FLD NAME=""I_XX10CADD"" TYPE=""Char"">Hyderbad</FLD>
+        <FLD NAME=""I_XNOOFIMGES"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_XNOP"" TYPE=""Char""/>
+        <FLD NAME=""I_XVALFLG"" TYPE=""Integer"">2</FLD>
+    </GRP>
+    <GRP ID=""GRP4"">
+        <FLD NAME=""O_YSDHPRT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_YSDHEML"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_YFLG"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_YFLG2"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_YSTATUS"" TYPE=""Integer"">10</FLD>
+        <FLD NAME=""O_YMESSAGE"" TYPE=""Char"">Shipment non exist</FLD>
+        <FLD NAME=""O_XPTHNUM"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""5"" ID=""GRP2"" SIZE=""0""/>
+    <TAB DIM=""999"" ID=""GRP3"" SIZE=""0""/></RESULT>",O_YFLG=0,Shipment non exist
+8,XINFORLVS,XINFORLVS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XINFORLVS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+          <![CDATA[<PARAM>
+             <FLD NAME=""I_XVR"" TYPE=""Char"">VR-102-260326-0002</FLD>
+             <FLD NAME=""I_XCHKFLG"" TYPE=""Char"">1</FLD>
+             <FLD NAME=""I_XVEHICLE"" TYPE=""Char"">102513026</FLD>
+             <FLD NAME=""I_YQSTNID"" TYPE=""Char"">INS025120006</FLD>
+             <FLD NAME=""I_YQSTND"" TYPE=""Char"">PRE Trip - Inspection</FLD>
+             <FLD NAME=""I_XLATITUDE"" TYPE=""Char"">17.44044</FLD>
+             <FLD NAME=""I_XLONGITUDE"" TYPE=""Char"">78.397151</FLD>
+             <FLD NAME=""I_XDRIVCMTS"" TYPE=""Char"">comments</FLD>
+                <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+                     <LIN NUM=""1"">
+                        <FLD NAME=""I_XCATG"" TYPE=""Char"">Signature</FLD>
+                        <FLD NAME=""I_YQSTNCOD"" TYPE=""Decimal"">Check the Brakes</FLD>
+                        <FLD NAME=""I_YQSTNRES"" TYPE=""Char"">1</FLD>
+                        <FLD NAME=""I_YADDNOTES"" TYPE=""Char"">Notes</FLD>
+                        <FLD NAME=""I_XLINENO"" TYPE=""Char"">1000</FLD>
+                     </LIN>
+                 </TAB>
+            </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XVR='VR-102-260326-0002'; I_XCHKFLG=1; I_XVEHICLE='102513026'; I_YQSTNID='INS025120006'; I_YQSTND='PRE Trip - Inspection'; I_XLATITUDE=""17.44044""; I_XLONGITUDE=""78.397151""; I_XDRIVCMTS='comments'; I_XCATG(0) = 'Signature'; I_YQSTNCOD(0)=""Check the Brakes""; I_YQSTNRES(0)=1; I_YADDNOTES(0)=""Notes""; I_XLINENO(0) = 1000","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XVR"" TYPE=""Char"">VR-102-260326-0002</FLD>
+        <FLD NAME=""I_XCHKFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""I_YQSTNID"" TYPE=""Char"">INS025120006</FLD>
+        <FLD NAME=""I_YQSTND"" TYPE=""Char"">PRE Trip - Inspection</FLD>
+        <FLD NAME=""I_XDRIVCMTS"" TYPE=""Char"">comments</FLD>
+        <FLD NAME=""I_XLATITUDE"" TYPE=""Char"">17.44044</FLD>
+        <FLD NAME=""I_XLONGITUDE"" TYPE=""Char"">78.397151</FLD>
+        <FLD NAME=""I_YSIGNATURE"" TYPE=""Blob""></FLD>
+        <FLD NAME=""I_XNOOFIMGES"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_XEMAIL"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_XVEHICLE"" TYPE=""Char"">102513026</FLD>
+        <FLD NAME=""I_XVEHSTATUS"" TYPE=""Integer"">0</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XSFLG"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XSMESS"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""9"" ID=""GRP4"" SIZE=""0""/>
+    <TAB DIM=""9999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XLINENO"" TYPE=""Integer"">1000</FLD>
+            <FLD NAME=""I_XCATG"" TYPE=""Char"">Signature</FLD>
+            <FLD NAME=""I_YQSTNCOD"" TYPE=""Char"">Check the Brakes</FLD>
+            <FLD NAME=""I_YQSTNRES"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I_YADDNOTES"" TYPE=""Char"">Notes</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XSFLG=0,
+9,X10CINVUPD,X10CINVUPD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CINVUPD</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XBPC"" TYPE=""Char"">24000</FLD>
+   <FLD NAME=""I_XMBPC"" TYPE=""Char"">240</FLD>
+   <FLD NAME=""I_XDATE"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char"">1129</FLD>
+   <FLD NAME=""I_XSERENDTYM"" TYPE=""Char"">1120</FLD>
+   <FLD NAME=""I_XTIME"" TYPE=""Char"">1100</FLD>
+   <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">1</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">20</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010550</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XBPC=""24000""; I_XMBPC=""240""; I_XDATE=date$; I_XSERSTRTYM=""1129""; I_XSERENDTYM=""1120""; I_XTIME=""1100""; I_XSERTYP=1; I_XITMREF(0)=""1010516""; I_XQTY(0)=20; I_XITMREF(1)=""1010550""; I_XQTY(1)=10","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XBPC"" TYPE=""Char"">24000</FLD>
+        <FLD NAME=""I_XBPCDES"" TYPE=""Char""/>
+        <FLD NAME=""I_XMBPC"" TYPE=""Char"">240</FLD>
+        <FLD NAME=""I_XDATE"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I_XTIME"" TYPE=""Char"">1100</FLD>
+        <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char"">1129</FLD>
+        <FLD NAME=""I_XSERENDTYM"" TYPE=""Char"">1120</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""2"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">20</FLD>
+            <FLD NAME=""I_XONHAND"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XNOSOLD"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCHARGE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XSHORT"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XDAMAGED"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCRIPPLE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XTRANSFER"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XRECALL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010550</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+            <FLD NAME=""I_XONHAND"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XNOSOLD"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCHARGE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XSHORT"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XDAMAGED"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCRIPPLE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XTRANSFER"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XRECALL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XFLG=2,
+10,X10CINUPOF,X10CINUPOF,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CINUPOF</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XBPC"" TYPE=""Char"">24000</FLD>
+         <FLD NAME=""I_XMBPC"" TYPE=""Char"">240</FLD>
+         <FLD NAME=""I_XDATE"" TYPE=""Date"">date$</FLD>
+         <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char"">1129</FLD>
+         <FLD NAME=""I_XSERENDTYM"" TYPE=""Char"">1120</FLD>
+         <FLD NAME=""I_XTIME"" TYPE=""Char"">1100</FLD>
+         <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">20</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010550</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XBPC=""24000""; I_XMBPC=""240""; I_XDATE=date$; I_XSERSTRTYM=""1129""; I_XSERENDTYM=""1120""; I_XTIME=""1100""; I_XSERTYP=1; I_XITMREF(0)=""1010516""; I_XQTY(0)=20; I_XITMREF(1)=""1010550""; I_XQTY(1)=10","<RESULT>
+    <TAB DIM=""999"" ID=""GRP1"" SIZE=""2"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XBPC"" TYPE=""Char"">24000</FLD>
+            <FLD NAME=""I_XBPCDES"" TYPE=""Char""/>
+            <FLD NAME=""I_XMBPC"" TYPE=""Char"">240</FLD>
+            <FLD NAME=""I_XDATE"" TYPE=""Date"">date$</FLD>
+            <FLD NAME=""I_XTIME"" TYPE=""Char"">1100</FLD>
+            <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char"">1129</FLD>
+            <FLD NAME=""I_XSERENDTYM"" TYPE=""Char"">1120</FLD>
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010516</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">20</FLD>
+            <FLD NAME=""I_XONHAND"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XNOSOLD"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCHARGE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XSHORT"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XDAMAGED"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCRIPPLE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XTRANSFER"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XRECALL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I_XBPC"" TYPE=""Char""/>
+            <FLD NAME=""I_XBPCDES"" TYPE=""Char""/>
+            <FLD NAME=""I_XMBPC"" TYPE=""Char""/>
+            <FLD NAME=""I_XDATE"" TYPE=""Date""></FLD>
+            <FLD NAME=""I_XTIME"" TYPE=""Char""/>
+            <FLD NAME=""I_XSERTYP"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XSERSTRTYM"" TYPE=""Char""/>
+            <FLD NAME=""I_XSERENDTYM"" TYPE=""Char""/>
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010550</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+            <FLD NAME=""I_XONHAND"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XNOSOLD"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCHARGE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XSHORT"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XDAMAGED"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XCRIPPLE"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XTRANSFER"" TYPE=""Integer"">0</FLD>
+            <FLD NAME=""I_XRECALL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+    </TAB>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+    </GRP></RESULT>",O_XFLG=2,
+11,X10CMERBPC,X10CMERBPC,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CMERBPC</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XMERCNDSR"" TYPE=""Char"">020463</FLD>
+   <FLD NAME=""I_XSALMGR"" TYPE=""Char"">M0205</FLD>
+
+   <TAB DIM=""9999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XCUSTOMER"" TYPE=""Char"">02941230</FLD>
+         <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">2</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XMERCNDSR='020463'; I_XSALMGR='M0205'; I_XCUSTOMER(1)='02941230'; I_XSTATUS(1)=2,"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XMERCNDSR"" TYPE=""Char"">020463</FLD>
+        <FLD NAME=""I_XSALMGR"" TYPE=""Char"">M0205</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O_XMSG"" TYPE=""Char"">02941230 : Removed successfully</FLD>
+    </GRP>
+    <TAB DIM=""9999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XCUSTOMER"" TYPE=""Char"">02941230</FLD>
+            <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">2</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XFLG=2,02941230 : Removed successfully
+13,X10CMRACOF,X10CMRACOF,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CMRACOF</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <TAB DIM=""999"" ID=""GRP1"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XMERCHADSER"" TYPE=""Char"">M02ML</FLD>
+         <FLD NAME=""I_XMERNAME"" TYPE=""Char"">BRENT TROUT</FLD>
+         <FLD NAME=""I_XBPC"" TYPE=""Char"">02364620</FLD>
+         <FLD NAME=""I_XBPCNAME"" TYPE=""Char"">COUNTRYMART 2704</FLD>
+         <FLD NAME=""I_XDATE"" TYPE=""Date"">19/05/2026</FLD>
+         <FLD NAME=""I_XTIME"" TYPE=""Char"">1518</FLD>
+         <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">1</FLD>
+         <FLD NAME=""I_XDEVICEID"" TYPE=""Char"">101200f367bff2cb</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XMERCHADSER(0)=""M02ML""; I_XMERNAME(0)=""BRENT TROUT""; I_XBPC(0)=""02364620""; I_XBPCNAME(0)=""COUNTRYMART 2704""; I_XDATE(0)=[19/05/2026]; I_XTIME(0)=""1518""; I_XSTATUS(0)=1; I_XDEVICEID(0)=""101200f367bff2cb""","<RESULT>
+    <TAB DIM=""999"" ID=""GRP1"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XMERCHADSER"" TYPE=""Char"">M02ML</FLD>
+            <FLD NAME=""I_XMERNAME"" TYPE=""Char"">BRENT TROUT</FLD>
+            <FLD NAME=""I_XBPC"" TYPE=""Char"">02364620</FLD>
+            <FLD NAME=""I_XBPCNAME"" TYPE=""Char"">COUNTRYMART 2704</FLD>
+            <FLD NAME=""I_XDATE"" TYPE=""Date"">19/05/2026</FLD>
+            <FLD NAME=""I_XTIME"" TYPE=""Char"">1518</FLD>
+            <FLD NAME=""I_XDAY"" TYPE=""Date""></FLD>
+            <FLD NAME=""I_XSTATUS"" TYPE=""Integer"">1</FLD>
+            <FLD NAME=""I_XDEVICEID"" TYPE=""Char"">101200f367bff2cb</FLD>
+        </LIN>
+    </TAB>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+    </GRP></RESULT>",O_XFLG=2,
+14,X10CXMISUS,X10CXMISUS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CXMISUS</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XBPC"" TYPE=""Char"">02943570</FLD>
+   <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""2"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4600899</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">25.00</FLD>
+         <FLD NAME=""I_XSTAT"" TYPE=""Integer"">2</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4600899</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">34.00</FLD>
+         <FLD NAME=""I_XSTAT"" TYPE=""Integer"">3</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XBPC=""02943570""; I_XFCY=""102""; I_XITMREF(0)=""4600899""; I_XQTY(0)=25.00; I_XSTAT(0)=2; I_XITMREF(1)=""4600899""; I_XQTY(1)=34.00; I_XSTAT(1)=3","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XBPC"" TYPE=""Char"">02943570</FLD>
+        <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""O_XMSG"" TYPE=""Char"">There is no stock present at the customer location to create the Misc. issue</FLD>
+        <FLD NAME=""O_XMISNUM"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""2"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">4600899</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">25.00</FLD>
+            <FLD NAME=""I_XLOT"" TYPE=""Char""/>
+            <FLD NAME=""I_XSTAT"" TYPE=""Integer"">2</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">4600899</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">34.00</FLD>
+            <FLD NAME=""I_XLOT"" TYPE=""Char""/>
+            <FLD NAME=""I_XSTAT"" TYPE=""Integer"">3</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XFLG=1,There is no stock present at the customer location to create the Misc. issue
+15,X1CSOHUPD,X1CSOHUPD,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X1CSOHUPD</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XSOHNUM"" TYPE=""Char"">1022602SON00000028</FLD>
+   <FLD NAME=""I_XDLVDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I_XSHIDAT"" TYPE=""Date"">date$</FLD>
+   <FLD NAME=""I_XORDDAT"" TYPE=""Date"">date$</FLD>
+
+   <TAB DIM=""100"" ID=""GRP2"" SIZE=""4"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">3000003</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">1000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">20</FLD>
+      </LIN>
+      <LIN NUM=""2"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1999999</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">40</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">2000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">25</FLD>
+      </LIN>
+      <LIN NUM=""3"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010101</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">12</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">3000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">30</FLD>
+      </LIN>
+      <LIN NUM=""4"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">010502</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">11</FLD>
+         <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">4000</FLD>
+         <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+         <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">35</FLD>
+      </LIN>
+   </TAB>
+</PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_XSOHNUM=""1022602SON00000028""; I_XITMREF(0)=""3000003""; I_XITMREF(1)=""1999999""; I_XITMREF(2)=""1010101""; I_XITMREF(3)=""010502""; I_XUOM(0)=""LB""; I_XUOM(1)=""LB""; I_XUOM(2)=""LB""; I_XUOM(3)=""LB""; I_XGROPRI(0)=20; I_XGROPRI(1)=25; I_XGROPRI(2)=30; I_XGROPRI(3)=35; I_XQTY(0)=10; I_XQTY(1)=40; I_XQTY(2)=12; I_XQTY(3)=11; I_XVCRLIN(0)=1000; I_XVCRLIN(1)=2000; I_XVCRLIN(2)=3000; I_XVCRLIN(3)=4000; I_XDLVDAT=date$; I_XSHIDAT=date$; I_XORDDAT=date$","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XVCRNUM"" TYPE=""Char""/>
+        <FLD NAME=""I_XSOHNUM"" TYPE=""Char"">1022602SON00000028</FLD>
+        <FLD NAME=""I_XFCY"" TYPE=""Char""/>
+        <FLD NAME=""I_XBPCNUM"" TYPE=""Char""/>
+        <FLD NAME=""I_XADR"" TYPE=""Char""/>
+        <FLD NAME=""I_XORDDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I_XDLVDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I_XSHIDAT"" TYPE=""Date"">date$</FLD>
+        <FLD NAME=""I_XUSERID"" TYPE=""Char""/>
+        <FLD NAME=""I_XMDL"" TYPE=""Char""/>
+        <FLD NAME=""I_XCOMMENTS"" TYPE=""Char""/>
+        <FLD NAME=""I_XPONUM"" TYPE=""Char""/>
+        <FLD NAME=""I_XORDTYP"" TYPE=""Char""/>
+        <FLD NAME=""I_XREVREQ"" TYPE=""Integer"">0</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XSFLG"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XSMESS"" TYPE=""Char"">Sales Order Updation Failed</FLD>
+        <FLD NAME=""O_XSOHNUM"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""4"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">3000003</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">10</FLD>
+            <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">1000</FLD>
+            <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+            <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">20</FLD>
+            <FLD NAME=""I_XDEAL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""2"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1999999</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">40</FLD>
+            <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">2000</FLD>
+            <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+            <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">25</FLD>
+            <FLD NAME=""I_XDEAL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""3"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010101</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">12</FLD>
+            <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">3000</FLD>
+            <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+            <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">30</FLD>
+            <FLD NAME=""I_XDEAL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+        <LIN NUM=""4"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">010502</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">11</FLD>
+            <FLD NAME=""I_XVCRLIN"" TYPE=""Integer"">4000</FLD>
+            <FLD NAME=""I_XUOM"" TYPE=""Char"">LB</FLD>
+            <FLD NAME=""I_XGROPRI"" TYPE=""Decimal"">35</FLD>
+            <FLD NAME=""I_XDEAL"" TYPE=""Integer"">0</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XSFLG=0,Sales Order Updation Failed
+16,X10CCNFDEP,X10CCNFDEP,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CCNFDEP</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XUSRID"" TYPE=""Char"">039904</FLD>
+   <FLD NAME=""I_XDAT"" TYPE=""Date"">20260512</FLD>
+   <FLD NAME=""I_XDOCNUM"" TYPE=""Char"">1022605SDI00000013</FLD>
+   <FLD NAME=""I_XNOP"" TYPE=""Char"">f</FLD>
+   <FLD NAME=""I_XDOCTYP"" TYPE=""Integer"">1</FLD>
+   <FLD NAME=""I_XVEHCODE"" TYPE=""Char"">102513017</FLD>
+   <FLD NAME=""I_XVR"" TYPE=""Char"">VR-102-260512-0011</FLD>
+   <FLD NAME=""I_XCONARRLAT"" TYPE=""Char"">17.4146434</FLD>
+   <FLD NAME=""I_XCONARRLOG"" TYPE=""Char"">78.498256</FLD>
+   <FLD NAME=""I_XCREDOCLAT"" TYPE=""Char"">17.4146394</FLD>
+   <FLD NAME=""I_XCREDOCLOG"" TYPE=""Char"">78.4982598</FLD>
+   <FLD NAME=""I_XCONDEPLAT"" TYPE=""Char"">17.4146434</FLD>
+   <FLD NAME=""I_XCONDEPLOG"" TYPE=""Char"">78.498256</FLD>
+   <FLD NAME=""I_XCONARRDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XCONARRTIM"" TYPE=""Char"">1743</FLD>
+   <FLD NAME=""I_XSTRUNLDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XSTRUNLTIM"" TYPE=""Char"">1743</FLD>
+   <FLD NAME=""I_XTIMDIFF"" TYPE=""Char"">00:00</FLD>
+   <FLD NAME=""I_XCAPDELTIM"" TYPE=""Char"">20240212</FLD>
+   <FLD NAME=""I_XENDUNLDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XENDUNLTIM"" TYPE=""Char"">1744</FLD>
+   <FLD NAME=""I_XCONDEPDAT"" TYPE=""Date"">20240212</FLD>
+   <FLD NAME=""I_XCONDEPTIM"" TYPE=""Char"">1744</FLD>
+   <FLD NAME=""I_XVALDOCDAT"" TYPE=""Date"">20230913</FLD>
+   <FLD NAME=""I_XVALDOCTIM"" TYPE=""Char"">1744</FLD>
+   <FLD NAME=""I_XSERVICETIME"" TYPE=""Char"">00:01</FLD>
+   <FLD NAME=""I_XBPRATING"" TYPE=""Decimal"">4</FLD>
+   <FLD NAME=""I_XACTDISTMTS"" TYPE=""Decimal"">13049547.41</FLD>
+   <FLD NAME=""I_XDEVICEID"" TYPE=""Char"">329dc7bdd32943fc</FLD>
+   <FLD NAME=""I_XGEOFLG"" TYPE=""Integer"">1</FLD>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XUSRID='039904'; I_XDAT='20260512'; I_XDOCNUM='1022605SDI00000013'; I_XNOP='f'; I_XDOCTYP=1; I_XVEHCODE='102513017'; I_XVR='VR-102-260512-0011'; I_XCONARRLAT='17.4146434'; I_XCONARRLOG='78.498256'; I_XCREDOCLAT='17.4146394'; I_XCREDOCLOG='78.4982598'; I_XCONDEPLAT='17.4146434'; I_XCONDEPLOG='78.498256'; I_XCONARRDAT='20240212'; I_XCONARRTIM='1743'; I_XSTRUNLDAT='20240212'; I_XSTRUNLTIM='1743'; I_XTIMDIFF='00:00'; I_XCAPDELTIM='20240212'; I_XENDUNLDAT='20240212'; I_XENDUNLTIM='1744'; I_XCONDEPDAT='20240212'; I_XCONDEPTIM='1744'; I_XVALDOCDAT='20230913'; I_XVALDOCTIM='1744'; I_XSERVICETIME='00:01'; I_XBPRATING=4; I_XACTDISTMTS=13049547.41; I_XDEVICEID='329dc7bdd32943fc'; I_XGEOFLG=1,"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XUSRID"" TYPE=""Char"">039904</FLD>
+        <FLD NAME=""I_XDAT"" TYPE=""Date"">20260512</FLD>
+        <FLD NAME=""I_XDOCNUM"" TYPE=""Char"">1022605SDI00000013</FLD>
+        <FLD NAME=""I_XNOP"" TYPE=""Char"">f</FLD>
+        <FLD NAME=""I_XDOCTYP"" TYPE=""Integer"">1</FLD>
+        <FLD NAME=""I_XVEHCODE"" TYPE=""Char"">102513017</FLD>
+        <FLD NAME=""I_XVR"" TYPE=""Char"">VR-102-260512-0011</FLD>
+        <FLD NAME=""I_XCONARRLAT"" TYPE=""Char"">17.4146434</FLD>
+        <FLD NAME=""I_XCONARRLOG"" TYPE=""Char"">78.498256</FLD>
+        <FLD NAME=""I_XCREDOCLAT"" TYPE=""Char"">17.4146394</FLD>
+        <FLD NAME=""I_XCREDOCLOG"" TYPE=""Char"">78.4982598</FLD>
+        <FLD NAME=""I_XCONDEPLAT"" TYPE=""Char"">17.4146434</FLD>
+        <FLD NAME=""I_XCONDEPLOG"" TYPE=""Char"">78.498256</FLD>
+        <FLD NAME=""I_XCONARRDAT"" TYPE=""Date"">20240212</FLD>
+        <FLD NAME=""I_XCONARRTIM"" TYPE=""Char"">1743</FLD>
+        <FLD NAME=""I_XSTRUNLDAT"" TYPE=""Date"">20240212</FLD>
+        <FLD NAME=""I_XSTRUNLTIM"" TYPE=""Char"">1743</FLD>
+        <FLD NAME=""I_XTIMDIFF"" TYPE=""Char"">00:00</FLD>
+        <FLD NAME=""I_XCAPDELDAT"" TYPE=""Date""></FLD>
+        <FLD NAME=""I_XCAPDELTIM"" TYPE=""Char"">20240212</FLD>
+        <FLD NAME=""I_XENDUNLDAT"" TYPE=""Date"">20240212</FLD>
+        <FLD NAME=""I_XENDUNLTIM"" TYPE=""Char"">1744</FLD>
+        <FLD NAME=""I_XCONDEPDAT"" TYPE=""Date"">20240212</FLD>
+        <FLD NAME=""I_XCONDEPTIM"" TYPE=""Char"">1744</FLD>
+        <FLD NAME=""I_XVALDOCDAT"" TYPE=""Date"">20230913</FLD>
+        <FLD NAME=""I_XVALDOCTIM"" TYPE=""Char"">1744</FLD>
+        <FLD NAME=""I_XNOTE"" TYPE=""Char""/>
+        <FLD NAME=""I_XSERVICETIME"" TYPE=""Char"">00:01</FLD>
+        <FLD NAME=""I_XBPRATING"" TYPE=""Decimal"">4</FLD>
+        <FLD NAME=""I_XACTDISTMTS"" TYPE=""Decimal"">13049547.41</FLD>
+        <FLD NAME=""I_XDEVICEID"" TYPE=""Char"">329dc7bdd32943fc</FLD>
+        <FLD NAME=""I_XGEOFLG"" TYPE=""Integer"">1</FLD>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">0</FLD>
+    </GRP></RESULT>",O_XFLG=0,
+17,X10CSIHCRE,X10CSIHCRE,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CSIHCRE</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XSDHNUM"" TYPE=""Char"">SHP600010152</FLD>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XSDHNUM='SHP600010152',"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XSDHNUM"" TYPE=""Char"">SHP600010152</FLD>
+    </GRP>
+    <GRP ID=""GRP2"">
+        <FLD NAME=""O_XSIHNUM"" TYPE=""Char""/>
+        <FLD NAME=""O_XMESS"" TYPE=""Char""/>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">0</FLD>
+    </GRP></RESULT>",O_XFLG=0,
+18,X10CSIHDET,X10CSIHDET,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">X10CSIHDET</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_XSIHNUM"" TYPE=""Char"">INV000002</FLD>
+   </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XSIHNUM='INV000002',"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XSIHNUM"" TYPE=""Char"">INV000002</FLD>
+        <FLD NAME=""O_XSIHNUM"" TYPE=""Char"">INV000002</FLD>
+        <FLD NAME=""O_XCREUSR"" TYPE=""Char"">TEMD1</FLD>
+        <FLD NAME=""O_XCREUSRNAM"" TYPE=""Char"">TEMADAVE1</FLD>
+        <FLD NAME=""O_XCREDAT"" TYPE=""Date"">20260803</FLD>
+        <FLD NAME=""O_XCRETIM"" TYPE=""Char""/>
+        <FLD NAME=""O_XREMARKS"" TYPE=""Char""/>
+        <FLD NAME=""O_XSDHREMARKS"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITE"" TYPE=""Char"">209</FLD>
+        <FLD NAME=""O_XSITEDES"" TYPE=""Char"">Chicago Baking Company</FLD>
+        <FLD NAME=""O_XSITADDLIG0"" TYPE=""Char"">1220 West Michigan</FLD>
+        <FLD NAME=""O_XSITADDLIG1"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITADDLIG2"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITCRY"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITCTY"" TYPE=""Char"">Evansville</FLD>
+        <FLD NAME=""O_XSITPOS"" TYPE=""Char"">47710</FLD>
+        <FLD NAME=""O_XSITLND"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITFAX"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITEML1"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITEML2"" TYPE=""Char""/>
+        <FLD NAME=""O_XSITWEB"" TYPE=""Char""/>
+        <FLD NAME=""O_XDAT"" TYPE=""Date"">20260819</FLD>
+        <FLD NAME=""O_XTIM"" TYPE=""Char"">07:05:30</FLD>
+        <FLD NAME=""O_XCPYNAM"" TYPE=""Char"">100</FLD>
+        <FLD NAME=""O_XCPYDES"" TYPE=""Char"">Lewis Brothers Bakeries Inc.</FLD>
+        <FLD NAME=""O_XCPYADDLIG0"" TYPE=""Char"">1220 West Michigan </FLD>
+        <FLD NAME=""O_XCPYADDLIG1"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYADDLIG2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYCRY"" TYPE=""Char"">WI, United States of America</FLD>
+        <FLD NAME=""O_XCPYCTY"" TYPE=""Char"">Evansville</FLD>
+        <FLD NAME=""O_XCPYPOS"" TYPE=""Char"">47710</FLD>
+        <FLD NAME=""O_XCPYLND"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYFAX"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYEML1"" TYPE=""Char""/>
+        <FLD NAME=""O_XCPYEML2"" TYPE=""Char""/>
+        <FLD BYTES=""11561"" MIMETYPE=""image/png"" NAME=""O_XCPYIMG"" TYPE=""Blob"">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</FLD>
+        <FLD NAME=""O_XBPCNUM"" TYPE=""Char"">09946550</FLD>
+        <FLD NAME=""O_XBPCSHO"" TYPE=""Char"">ROUTE: 4655</FLD>
+        <FLD NAME=""O_XBPADDLIG0"" TYPE=""Char"">X</FLD>
+        <FLD NAME=""O_XBPADDLIG1"" TYPE=""Char""/>
+        <FLD NAME=""O_XBPADDLIG2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSCRY"" TYPE=""Char"">United States of America</FLD>
+        <FLD NAME=""O_XCUSCTY"" TYPE=""Char"">X</FLD>
+        <FLD NAME=""O_XCUSPOS"" TYPE=""Char"">53110</FLD>
+        <FLD NAME=""O_XCUSLD"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSMOB"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSFAX"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSEML1"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSEML2"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSINVEM"" TYPE=""Char""/>
+        <FLD NAME=""O_XCUSTTRN"" TYPE=""Char""/>
+        <FLD NAME=""O_XSUPPLTRN"" TYPE=""Char""/>
+        <FLD NAME=""O_XPAYTERM"" TYPE=""Char"">NET30CASH-Net 30 Days CASH</FLD>
+        <FLD NAME=""O_XSIGNATURE"" TYPE=""Blob""></FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XTAX"" TYPE=""Char"">NT</FLD>
+        <FLD NAME=""O_XRATE"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XTAXAMT"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XTOTGRSS"" TYPE=""Decimal"">23.9</FLD>
+        <FLD NAME=""O_XTOTDIC"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XAMTNOT"" TYPE=""Decimal"">23.9</FLD>
+        <FLD NAME=""O_XTOTVAT"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""O_XAMTATI"" TYPE=""Decimal"">23.9</FLD>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">0</FLD>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""O_XITM"" TYPE=""Char"">4600822</FLD>
+            <FLD NAME=""O_XITMDES"" TYPE=""Char"">BUNNY WHOLE WHEAT 16</FLD>
+            <FLD NAME=""O_XDQTY"" TYPE=""Decimal"">10</FLD>
+            <FLD NAME=""O_XITMUNIT"" TYPE=""Char"">EA</FLD>
+            <FLD NAME=""O_XGRPRI"" TYPE=""Decimal"">2.39</FLD>
+            <FLD NAME=""O_XNETPRI"" TYPE=""Decimal"">2.39</FLD>
+            <FLD NAME=""O_XDISCOUNT"" TYPE=""Decimal"">0</FLD>
+            <FLD NAME=""O_XAMT"" TYPE=""Decimal"">23.9</FLD>
+            <FLD NAME=""O_XITAX"" TYPE=""Decimal"">23.9</FLD>
+            <FLD NAME=""O_XETAX"" TYPE=""Decimal"">23.9</FLD>
+            <FLD NAME=""O_XVATPERCENT"" TYPE=""Decimal"">0</FLD>
+            <FLD NAME=""O_XCUR"" TYPE=""Char"">USD</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XFLG=0,
+20,X10CSTOSDH,X10CSTOSDH,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CSTOSDH</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XFSALMGRLOC"" TYPE=""Char"">M02CO</FLD>
+   <FLD NAME=""I_XTCUSLOC"" TYPE=""Char"">02942930</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601022</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">1</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XFSALMGRLOC='M02CO'; I_XTCUSLOC='02942930'; I_XITMREF(0)='4601022'; I_XQTY(0)=1,"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XFSALMGRLOC"" TYPE=""Char"">M02CO</FLD>
+        <FLD NAME=""I_XTCUSLOC"" TYPE=""Char"">02942930</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""STAT"" TYPE=""Integer"">-1</FLD>
+        <FLD NAME=""MESSAGE"" TYPE=""Char"">Intersite transfer unsuccessful</FLD>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601022</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">1</FLD>
+        </LIN>
+    </TAB></RESULT>",STAT=-1,Intersite transfer unsuccessful
+21,X10CFCUSMG,X10CFCUSMG,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">X10CFCUSMG</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XFCUSLOC"" TYPE=""Char"">09632870</FLD>
+   <FLD NAME=""I_XTSALMGRLOC"" TYPE=""Char"">M0621</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601277</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">1.00</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XFCUSLOC='09632870'; I_XTSALMGRLOC='M0621'; I_XITMREF(0)='4601277'; I_XQTY(0)=1.00,"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XFCUSLOC"" TYPE=""Char"">02942930</FLD>
+        <FLD NAME=""I_XTSALMGRLOC"" TYPE=""Char"">M02CO</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""STAT"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""MESSAGE"" TYPE=""Char""/>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">4601022</FLD>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">1</FLD>
+        </LIN>
+    </TAB></RESULT>",STAT=0,
+22,XSALTRANS,XSALTRANS,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+
+         <publicName xsi:type=""xsd:string"">XSALTRANS</publicName>
+
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[
+<PARAM>
+   <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+   <FLD NAME=""I_SLOC"" TYPE=""Char"">0215</FLD>
+   <FLD NAME=""I_DLOC"" TYPE=""Char"">0218</FLD>
+
+   <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+      <LIN NUM=""1"">
+         <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010901</FLD>
+         <FLD NAME=""I_XQTY"" TYPE=""Decimal"">5.00</FLD>
+         <FLD NAME=""I_XLOT"" TYPE=""Char"">L26030130</FLD>
+      </LIN>
+   </TAB>
+</PARAM>
+            ]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>",I_XFCY='102'; I_SLOC='0215'; I_DLOC='0218'; I_XITMREF(0)='1010901'; I_XQTY(0)=5.00; I_XLOT(0)='L26030130',"<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XFCY"" TYPE=""Char"">102</FLD>
+        <FLD NAME=""I_SLOC"" TYPE=""Char"">0215</FLD>
+        <FLD NAME=""I_DLOC"" TYPE=""Char"">0218</FLD>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XSTKCHG"" TYPE=""Char""/>
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">2</FLD>
+        <FLD NAME=""O_XMSG"" TYPE=""Char"">Inventory transfer Successfully</FLD>
+    </GRP>
+    <TAB DIM=""999"" ID=""GRP2"" SIZE=""1"">
+        <LIN NUM=""1"">
+            <FLD NAME=""I_XITMREF"" TYPE=""Char"">1010901</FLD>
+            <FLD NAME=""I_XITMDES"" TYPE=""Char""/>
+            <FLD NAME=""I_XQTY"" TYPE=""Decimal"">5.00</FLD>
+            <FLD NAME=""I_XUNITS"" TYPE=""Char""/>
+            <FLD NAME=""I_XLOT"" TYPE=""Char"">L26030130</FLD>
+        </LIN>
+    </TAB></RESULT>",O_XFLG=2,Inventory transfer Successfully
+23,XUSRCKI1,XUSRCKI1,https://sage.lewisbakeries.com/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC,SoapUI 5.9.1,,ENG,PILOT,,,"<soapenv:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance""
+                  xmlns:xsd=""http://www.w3.org/2001/XMLSchema""
+                  xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/""
+                  xmlns:wss=""http://www.adonix.com/WSS"">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:run soapenv:encodingStyle=""http://schemas.xmlsoap.org/soap/encoding/"">
+         <callContext xsi:type=""wss:CAdxCallContext"">
+            <codeLang xsi:type=""xsd:string"">ENG</codeLang>
+            <poolAlias xsi:type=""xsd:string"">PILOT</poolAlias>
+            <poolId xsi:type=""xsd:string""></poolId>
+            <requestConfig xsi:type=""xsd:string""></requestConfig>
+         </callContext>
+         <publicName xsi:type=""xsd:string"">XUSRCKI1</publicName>
+         <inputXml xsi:type=""xsd:string"">
+            <![CDATA[<PARAM>
+   <FLD NAME=""I_X10CUSRID"" TYPE=""Char"">BERTO_11</FLD>
+   <FLD NAME=""I_XDATE"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XSRCNUM"" TYPE=""Char"">BERTO2204XCHG0000001</FLD>
+   <FLD NAME=""I_XDOCNUM"" TYPE=""Char"">XVR-220411-BERTO-001</FLD>
+   <FLD NAME=""I_XDSCONARRDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSCONARRTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSSTRLODDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSSTRLODTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSENDLODDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSENDLODTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSVEHINSPDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSVEHINSPTIM"" TYPE=""Char"">1904</FLD>
+   <FLD NAME=""I_XDSGATINSPDAT"" TYPE=""Date"">11/07/2022</FLD>
+   <FLD NAME=""I_XDSGATINSPTIM"" TYPE=""Char"">1904</FLD>
+    </PARAM>]]>
+         </inputXml>
+      </wss:run>
+   </soapenv:Body>
+</soapenv:Envelope>","I_X10CUSRID=""BERTO_11""; I_XDATE=[11/07/2022]; I_XSRCNUM=""BERTO2204XCHG0000001""; I_XDOCNUM=""XVR-220411-BERTO-001""; I_XDSCONARRDAT=[11/07/2022]; I_XDSCONARRTIM=""1904""; I_XDSSTRLODDAT=[11/07/2022]; I_XDSSTRLODTIM=""1904""; I_XDSENDLODDAT=[11/07/2022]; I_XDSENDLODTIM=""1904""; I_XDSVEHINSPDAT=[11/07/2022]; I_XDSVEHINSPTIM=""1904""; I_XDSGATINSPDAT=[11/07/2022]; I_XDSGATINSPTIM=""1904""","<RESULT>
+    <GRP ID=""GRP1"">
+        <FLD NAME=""I_XLOGINSEQNO"" TYPE=""Char""/>
+        <FLD NAME=""I_X10CUSRID"" TYPE=""Char"">BERTO_11</FLD>
+        <FLD NAME=""I_XTRAILER1"" TYPE=""Char""/>
+        <FLD NAME=""I_XTRAILER2"" TYPE=""Char""/>
+        <FLD NAME=""I_XDATE"" TYPE=""Date"">11/07/2022</FLD>
+        <FLD NAME=""I_XDOCTYP"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_XSRCNUM"" TYPE=""Char"">BERTO2204XCHG0000001</FLD>
+        <FLD NAME=""I_XDOCNUM"" TYPE=""Char"">XVR-220411-BERTO-001</FLD>
+        <FLD NAME=""I_XDSCONARRDAT"" TYPE=""Date"">11/07/2022</FLD>
+        <FLD NAME=""I_XDSCONARRTIM"" TYPE=""Char"">1904</FLD>
+        <FLD NAME=""I_XDSSTRLODDAT"" TYPE=""Date"">11/07/2022</FLD>
+        <FLD NAME=""I_XDSSTRLODTIM"" TYPE=""Char"">1904</FLD>
+        <FLD NAME=""I_XDSENDLODDAT"" TYPE=""Date"">11/07/2022</FLD>
+        <FLD NAME=""I_XDSENDLODTIM"" TYPE=""Char"">1904</FLD>
+        <FLD NAME=""I_XDSVEHINSPDAT"" TYPE=""Date"">11/07/2022</FLD>
+        <FLD NAME=""I_XDSVEHINSPTIM"" TYPE=""Char"">1904</FLD>
+        <FLD NAME=""I_XDSGATINSPDAT"" TYPE=""Date"">11/07/2022</FLD>
+        <FLD NAME=""I_XDSGATINSPTIM"" TYPE=""Char"">1904</FLD>
+        <FLD NAME=""I_XDSCHKINDAT"" TYPE=""Date""></FLD>
+        <FLD NAME=""I_XDSCHKINTIM"" TYPE=""Char""/>
+        <FLD NAME=""I_XODORED"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_XCIGEOX"" TYPE=""Char""/>
+        <FLD NAME=""I_XCIGEOY"" TYPE=""Char""/>
+        <FLD NAME=""I_XLOADBAY"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""I_XTIM_DIFF"" TYPE=""Char""/>
+        <FLD NAME=""I_XACTDISTCKIN"" TYPE=""Decimal"">0</FLD>
+        <FLD NAME=""I_XDEVICEID"" TYPE=""Char""/>
+    </GRP>
+    <GRP ID=""GRP3"">
+        <FLD NAME=""O_XFLG"" TYPE=""Integer"">0</FLD>
+        <FLD NAME=""O_XAPPVERSION"" TYPE=""Char"">1.5</FLD>
+    </GRP>
+    <TAB DIM=""99"" ID=""GRP2"" SIZE=""0""/></RESULT>",O_XFLG=0,

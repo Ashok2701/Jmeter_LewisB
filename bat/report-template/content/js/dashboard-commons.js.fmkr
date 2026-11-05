@@ -219,11 +219,13 @@ $(function() {
     });
 });
 
-// Populate the "Test and Report Information" table fields (Application Name,
-// API Type, Passed, Failed, Total APIs, Threads, Ramp-up Time). This runs on
-// every page that includes this script - index.html and the Over Time /
-// Throughput / Response Times / Custom Graphs sub-pages - since they all
-// share the same Test and Report Information table markup/classes.
+// Populate the summary cells (Application Name, API Type, Passed, Failed,
+// Total APIs, Threads, Ramp-up Time, Loops, Number of Users, Number of Runs).
+// This runs on every page that includes this script - index.html and the
+// Over Time / Throughput / Response Times / Custom Graphs sub-pages - since
+// they all share the same summary cell markup/classes. Each field is set by
+// class, independently of the others, so which cells a page happens to have
+// (and their order) doesn't matter here.
 $(function() {
     var runInfo = (typeof REPORT_RUN_INFO !== "undefined") ? REPORT_RUN_INFO : {};
     var config = (typeof REPORT_CONFIG !== "undefined") ? REPORT_CONFIG : {};
@@ -244,27 +246,20 @@ $(function() {
     $(".report-total-apis").text(runValue("totalApis", "-"));
     $(".report-threads").text(runValue("threads", "-"));
     $(".report-rampup").text(runValue("rampUpSeconds", "-") + " sec");
+    $(".report-loops").text(runValue("loops", "-"));
 
-    // Loops is appended here rather than added to each of the five page
-    // templates that share this table markup, so index and the Over Time /
-    // Throughput / Response Times / Custom Graphs pages all pick it up from
-    // this one place.
-    var extraRows = [
-        ["Loops", runValue("loops", "-")]
-    ];
-
-    var infoTable = $("#generalInfos");
-    if (infoTable.length && !infoTable.data("runInfoRowsAdded")) {
-        infoTable.data("runInfoRowsAdded", true);
-        $.each(extraRows, function(index, row) {
-            // .text() on both cells - never .html() - so a value typed by a
-            // user cannot inject markup into the report.
-            infoTable.append(
-                $("<tr>")
-                    .append($("<td>").text(row[0]))
-                    .append($("<td>").text(row[1]))
-            );
-        });
+    // Query Testing has no login, so no Number of Users - only show those
+    // cells when the run that produced this report actually had one. Number
+    // of Runs keeps its existing meaning here (Number of Users x Threads x
+    // Loops, written by scripts\Write-ReportRunInfo.ps1) - the *actual*
+    // per-user run counts, which can differ user to user, are the "Runs by
+    // User" graph below, not this cell.
+    var hasNumUsers = runInfo.numUsers !== undefined && runInfo.numUsers !== null;
+    if (hasNumUsers) {
+        $(".report-num-users").text(runInfo.numUsers);
+        $(".report-num-runs").text(runValue("numberOfRuns", "-"));
+    } else {
+        $(".report-cell-numusers, .report-cell-numruns").hide();
     }
 
     // Passed / Failed: computed from the actual aggregated JTL results - not
@@ -304,10 +299,129 @@ $(function() {
         apiFailures = statistics.overall.data[2];
     }
 
+    $(".report-passed-pct, .report-failed-pct").text("N/A");
+
     if (apiSamples !== null) {
-        $(".report-passed").text(apiSamples - apiFailures);
+        // Skipped rows (no Method/URL, or a placeholder value) were never sent,
+        // so they are neither passed nor failed: JTL marks them successful with
+        // response code SKIPPED, which must not inflate Passed. The count comes
+        // from report-sample-info.js (written from this run's results.jtl).
+        var skipped = 0;
+        if (typeof REPORT_SAMPLE_INFO !== "undefined" && REPORT_SAMPLE_INFO && $.isArray(REPORT_SAMPLE_INFO.totalCodes)) {
+            $.each(REPORT_SAMPLE_INFO.totalCodes, function(index, entry) {
+                if (entry && entry[0] === "SKIPPED") {
+                    skipped += entry[1];
+                }
+            });
+        }
+        $(".report-passed").text(Math.max(apiSamples - apiFailures - skipped, 0));
         $(".report-failed").text(apiFailures);
+        // Passed % / Failed %: share of the requests actually executed
+        // (Passed + Failed, the figures just above). N/A when none ran.
+        var passedCount = Math.max(apiSamples - apiFailures - skipped, 0);
+        var executed = passedCount + apiFailures;
+        if (executed > 0) {
+            var passedPct = Math.round10(passedCount * 100 / executed, -2);
+            $(".report-passed-pct").text(passedPct + "%");
+            $(".report-failed-pct").text(Math.round10(100 - passedPct, -2) + "%");
+        }
+        if (skipped > 0) {
+            $(".report-skipped").text(skipped);
+            $(".report-cell-skipped").show();
+        }
+        // Total Hits (client summary): every real request actually sent,
+        // passed or failed - the same figure Passed + Failed above add up to.
+        $(".report-total-hits").text(apiSamples);
     }
+});
+
+// Ramp-Up Progress chart (index page only): a staircase showing active users
+// climbing from 0 to the run's thread count over its ramp-up window, the way
+// JMeter itself starts one thread every (rampup / threads) seconds. This is
+// computed from the run's own numbers, not sampled over time, so it is an
+// illustration of the configured ramp-up shape rather than a measurement.
+$(function() {
+    var chartTarget = $("#flot-rampup-progress");
+    if (!chartTarget.length) {
+        return;
+    }
+
+    var runInfo = (typeof REPORT_RUN_INFO !== "undefined") ? REPORT_RUN_INFO : {};
+    var threads = parseInt(runInfo.threads, 10);
+    var rampup = parseInt(runInfo.rampUpSeconds, 10);
+
+    if (!(threads > 0) || !(rampup >= 0)) {
+        chartTarget.html('<p style="padding:40px 0;color:#777;">Not enough data to draw ramp-up progress.</p>');
+        return;
+    }
+
+    var points = [[0, 0]];
+    var interval = threads > 1 ? rampup / threads : rampup;
+    for (var i = 1; i <= threads; i++) {
+        points.push([Math.round10(i * interval, -2), i]);
+    }
+
+    $.plot(chartTarget, [{
+        data: points,
+        label: "Active Users",
+        color: "#337ab7",
+        lines: { show: true, steps: true, fill: 0.25, lineWidth: 2 },
+        shadowSize: 0
+    }], {
+        canvas: true,
+        xaxis: { axisLabel: "Time (sec)", min: 0, max: Math.max(rampup, interval) },
+        yaxis: { axisLabel: "Active Users", min: 0, max: threads, tickDecimals: 0 },
+        grid: { borderWidth: 1, hoverable: false },
+        legend: { show: false }
+    });
+});
+
+// Runs by User chart (index page only): the ACTUAL number of requests each
+// user's threads made, from scripts\Write-ReportUserInfo.ps1, which counts
+// them straight from results.jtl (grouping samples by thread, then mapping
+// each thread to the user scripts\AssignLoginUser.groovy gave it). Users are
+// never assumed to have run the same number of times - a user with one more
+// thread than another (Threads not evenly divisible by Number of Users) will
+// show a different bar, exactly as it actually ran. Empty for a run with no
+// login (Query Testing), or for an older report from before this graph
+// existed, where report-user-info.js is not present at all.
+$(function() {
+    var chartTarget = $("#flot-runs-by-user");
+    if (!chartTarget.length) {
+        return;
+    }
+
+    var users = (typeof REPORT_USER_INFO !== "undefined" && $.isArray(REPORT_USER_INFO)) ? REPORT_USER_INFO : [];
+    if (!users.length) {
+        chartTarget.closest(".panel").hide();
+        return;
+    }
+
+    var data = [];
+    var ticks = [];
+    $.each(users, function(i, u) {
+        data.push([i, u.runs]);
+        ticks.push([i, u.user]);
+    });
+
+    $.plot(chartTarget, [{
+        data: data,
+        bars: { show: true, align: "center", barWidth: 0.6, fillColor: "#337ab7" },
+        color: "#337ab7"
+    }], {
+        canvas: true,
+        xaxis: { ticks: ticks, axisLabel: "User" },
+        yaxis: { axisLabel: "Number of Runs", min: 0, tickDecimals: 0 },
+        grid: { borderWidth: 1, hoverable: true },
+        tooltip: true,
+        tooltipOpts: {
+            content: function(label, xval, yval) {
+                var u = users[xval];
+                return (u ? u.user : "User") + ": " + yval + " runs";
+            }
+        },
+        legend: { show: false }
+    });
 });
 
 /**

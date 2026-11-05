@@ -40,7 +40,7 @@ if (!execute) {
 }
 
 try {
-    URI uri = new URI(url)
+    URI uri = new URI(url.replace(" ", "%20"))
     vars.put("v_protocol", uri.getScheme())
     vars.put("v_server", uri.getHost())
     int port = uri.getPort()

@@ -118,40 +118,58 @@
             <div class="row">
                 <div class="col-lg-12">
                      <div class="panel panel-default">
-                        <div class="panel-heading" style="text-align:center;">
-                           <p class="dashboard-title">Test Configuration</p>
-                        </div>
                         <div class="panel-body">
-                        <table id="generalInfos" class="table table-bordered table-condensed " >
-                            <tr>
-                                <td>Application Name</td>
-                                <td class="report-app-name"></td>
-                            </tr>
-                            <tr>
-                                <td>API Type</td>
-                                <td class="report-api-type"></td>
-                            </tr>
-                            <tr>
-                                <td>Passed</td>
-                                <td class="report-passed"></td>
-                            </tr>
-                            <tr>
-                                <td>Failed</td>
-                                <td class="report-failed"></td>
-                            </tr>
-                            <tr>
-                                <td>Total APIs</td>
-                                <td class="report-total-apis"></td>
-                            </tr>
-                            <tr>
-                                <td>Threads</td>
-                                <td class="report-threads"></td>
-                            </tr>
-                            <tr>
-                                <td>Ramp-up Time</td>
-                                <td class="report-rampup"></td>
-                            </tr>
-                        </table>
+                            <div class="client-stat-row">
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Application Name</div>
+                                    <div class="client-stat-value report-app-name"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">API Type</div>
+                                    <div class="client-stat-value report-api-type"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Passed</div>
+                                    <div class="client-stat-value report-passed"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Failed</div>
+                                    <div class="client-stat-value report-failed"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Passed %</div>
+                                    <div class="client-stat-value report-passed-pct"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Failed %</div>
+                                    <div class="client-stat-value report-failed-pct"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Total APIs</div>
+                                    <div class="client-stat-value report-total-apis"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Threads</div>
+                                    <div class="client-stat-value report-threads"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Ramp-up Time</div>
+                                    <div class="client-stat-value report-rampup"></div>
+                                </div>
+                                <div class="client-stat-card">
+                                    <div class="client-stat-label">Loops</div>
+                                    <div class="client-stat-value report-loops"></div>
+                                </div>
+                                <div class="client-stat-card report-cell-numusers">
+                                    <div class="client-stat-label">Number of Users</div>
+                                    <div class="client-stat-value report-num-users"></div>
+                                </div>
+                                <div class="client-stat-card report-cell-numruns">
+                                    <div class="client-stat-label">Number of Runs</div>
+                                    <div class="client-stat-value report-num-runs"></div>
+                                </div>
+                            </div>
+                        </div>
                      </div>
                 </div>
             </div>
@@ -464,7 +482,7 @@
     <script src="../js/hashtable.js"></script>
     <script src="../js/jquery.numberformatter-1.2.3.min.js"></script>
     <script src="../js/curvedLines.js"></script>
-    <!-- Report configuration / per-run load info (Test Configuration) -->
+    <!-- Report configuration / per-run load info (summary cells) -->
     <script src="../js/report-config.js"></script>
     <script src="../js/report-run-info.js"></script>
     <script src="../js/dashboard-commons.js"></script>

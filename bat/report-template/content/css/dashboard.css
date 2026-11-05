@@ -112,3 +112,185 @@
     text-align: left;
     white-space: pre-wrap;
     word-break: break-word;
+}
+
+/* SOAP responses (content/js/soap-response.js): summary table above a
+   collapsible, highlighted copy of the XML. */
+.soap-summary
+{
+    width: 100%;
+    margin: 6px 0 8px;
+    border-collapse: collapse;
+    background: #ffffff;
+    border: 1px solid #d9dfe6;
+}
+.soap-summary > tbody > tr > th, .soap-summary > tbody > tr > td
+{
+    padding: 6px 10px;
+    border-bottom: 1px solid #e6ebf0;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+}
+.soap-summary > tbody > tr > th
+{
+    width: 170px;
+    color: #555;
+    background: #f1f4f7;
+    white-space: nowrap;
+}
+.soap-badge
+{
+    display: inline-block;
+    padding: 1px 9px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+.soap-failed { background: #c9302c; }
+.soap-unknown { background: #7a8794; }
+.soap-detail, .soap-none { margin-top: 3px; color: #777; font-style: italic; }
+.soap-message { margin: 1px 0; word-break: break-word; }
+.soap-source { color: #555; font-weight: bold; }
+.soap-subtitle { margin: 4px 0 2px; color: #555; font-weight: bold; }
+.soap-line { margin: 4px 0 1px; color: #777; }
+.soap-fields { width: auto; border-collapse: collapse; margin-bottom: 4px; }
+.soap-fields th, .soap-fields td
+{
+    padding: 1px 12px 1px 0;
+    font: 12px/1.4 Consolas, Menlo, "Courier New", monospace;
+    text-align: left;
+    vertical-align: top;
+    word-break: break-word;
+}
+.soap-fields th { color: #555; font-weight: normal; white-space: nowrap; }
+.soap-fields .soap-empty { color: #999; font-style: italic; }
+.soap-raw { margin: 4px 0 6px; }
+.soap-raw > summary { cursor: pointer; color: #337ab7; font-weight: bold; }
+.soap-raw-toggle
+{
+    margin: 4px 0 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #337ab7;
+    font-size: 12px;
+    cursor: pointer;
+}
+.soap-xml { max-height: 420px; }
+.sx-punct { color: #808080; }
+.sx-tag { color: #1a5fb4; font-weight: bold; }
+.sx-attr { color: #b5651d; }
+.sx-val { color: #2a7f3b; }
+.sx-text { color: #222; }
+.sx-cdata { color: #7e57c2; }
+.sx-comment { color: #999; font-style: italic; }
+.sx-decl { color: #999; }
+
+/* Client-friendly summary cards (top of index.html): plain, icon-led stat
+   cards for a non-technical reader, in place of reading the raw config
+   table further down the page. */
+.client-stat-row
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+}
+.client-stat-card
+{
+    flex: 1 1 180px;
+    max-width: 220px;
+    padding: 18px 12px;
+    border: 1px solid #e3e8ee;
+    border-radius: 8px;
+    background: #f7f9fb;
+    text-align: center;
+}
+.client-stat-icon
+{
+    font-size: 26px;
+    color: #1f3a5f;
+    margin-bottom: 8px;
+}
+.client-stat-value
+{
+    font-size: 28px;
+    font-weight: bold;
+    color: #1f3a5f;
+    line-height: 1.2;
+}
+.client-stat-label
+{
+    margin-top: 4px;
+    color: #555;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Passed / Failed highlight cards */
+.client-stat-passed
+{
+    border-color: #b7e1c1;
+    background: #eef9f1;
+}
+.client-stat-passed .client-stat-value
+{
+    color: #1e8e3e;
+}
+.client-stat-failed
+{
+    border-color: #f2b8b5;
+    background: #fdf0ef;
+}
+.client-stat-failed .client-stat-value
+{
+    color: #d93025;
+}
+
+.client-stat-skipped .client-stat-value
+{
+    color: #6b7280;
+}
+
+/* Totals panel (Total Services / Total Hits), next to the Ramp-Up Progress
+   chart - replaces a per-service breakdown table with two headline numbers. */
+.client-totals-row
+{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 10px 4px;
+}
+.client-total-card
+{
+    padding: 16px;
+    border: 1px solid #e3e8ee;
+    border-radius: 8px;
+    background: #f7f9fb;
+}
+.client-total-card-highlight
+{
+    background: #1f3a5f;
+    border-color: #1f3a5f;
+}
+.client-total-card-highlight .client-total-label,
+.client-total-card-highlight .client-total-value
+{
+    color: #ffffff;
+}
+.client-total-label
+{
+    color: #555;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.client-total-value
+{
+    margin-top: 4px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #1f3a5f;
+}

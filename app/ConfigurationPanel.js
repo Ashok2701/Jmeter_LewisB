@@ -29,6 +29,50 @@ function slotsFor(group) {
   }));
 }
 
+// A group whose users live in a CSV file in credentials\: shown read-only
+// (usernames and roles, never passwords). The file is edited directly.
+function FileUsersCard({ group }) {
+  return (
+    <section className="panel credential-card">
+      <div className="panel-header">
+        <h2 className="panel-title">{group.label}</h2>
+        <p className="panel-subtitle">
+          Logins used for {group.usedFor}. Number of Users on the Test Run page takes that many
+          users from the top of the list.
+        </p>
+      </div>
+
+      {group.fileError && (
+        <div className="error-banner" role="alert">
+          {group.fileError}
+        </div>
+      )}
+
+      {group.users.length === 0 && !group.fileError ? (
+        <p className="hint hint-error">
+          No users found. Add them to <code>credentials\{group.usersCsv}</code>.
+        </p>
+      ) : (
+        <ol className="hint" style={{ margin: '0 0 12px', paddingLeft: 24 }}>
+          {group.users.map((u, i) => (
+            <li key={i}>
+              <b>{u.username}</b>
+              {u.role ? ` - ${u.role}` : ''}
+            </li>
+          ))}
+        </ol>
+      )}
+
+      <p className="hint credential-csv-note">
+        {group.users.length} user{group.users.length === 1 ? '' : 's'} read from{' '}
+        <code>credentials\{group.usersCsv}</code> (LOGIN_USERNAME, LOGIN_PASSWORD columns). Passwords
+        are read from that file when a test starts and are never shown. To change a user, edit the
+        file and reload this page; keep it out of version control and off shared drives.
+      </p>
+    </section>
+  );
+}
+
 function CredentialCard({ group, onSaved }) {
   const [slots, setSlots] = useState(() => slotsFor(group));
   const [saving, setSaving] = useState(false);
@@ -206,9 +250,13 @@ export default function ConfigurationPanel() {
 
       {groups && (
         <div className="credential-grid">
-          {groups.map((group) => (
-            <CredentialCard key={group.id} group={group} onSaved={handleSaved} />
-          ))}
+          {groups.map((group) =>
+            group.fileBacked ? (
+              <FileUsersCard key={group.id} group={group} />
+            ) : (
+              <CredentialCard key={group.id} group={group} onSaved={handleSaved} />
+            )
+          )}
         </div>
       )}
     </div>
