@@ -83,6 +83,11 @@ REM scripts\ and report-template\ are resolved from PROJECT_DIR, never
 REM hardcoded, so moving/redeploying the project needs no script edits.
 set "SCRIPTS_DIR=%PROJECT_DIR%\scripts"
 set "TEST_PLAN=JMeter_API_Automation.jmx"
+REM The webapp's Merchandiser REST runs split by user type use a plan it
+REM generates for that run (one Thread Group per user type; see
+REM lib\rolePlan.js) and passes in TEST_PLAN_FILE. Unset (every other run, or
+REM this .bat started by hand) = the plan above, exactly as before.
+if defined TEST_PLAN_FILE set "TEST_PLAN=%TEST_PLAN_FILE%"
 set "EXITCODE=0"
 
 cd /d "%PROJECT_DIR%"
@@ -229,8 +234,16 @@ echo Total APIs: %TOTAL_APIS%
 echo Threads:  %THREADS%
 echo Ramp-Up:  %RAMPUP% seconds
 echo Loops:    %LOOPS%
+if defined TYPE_THREADS echo Threads by user type: %TYPE_THREADS%
+if defined PAGINATION_MODE echo Pagination: %PAGINATION_MODE% pages, %PAGINATION_PAGE_SIZE% records per page, no limit
 echo Test Started: %DATE% %TIME%
 echo.
+
+REM ---- Pagination (Merchandiser REST only): the page-by-page details of each request
+REM      (REC_PAGING, written by scripts\Paginate.groovy) are added to the results only
+REM      when the run asked for pagination, so every other run's results.jtl is unchanged. ----
+set "SAMPLE_VARS=REC_METHOD,REC_URL,REC_APINAME,REC_PASSFAIL,REC_ERROR,REC_RESPONSE"
+if /i "%PAGINATION_MODE%"=="all" set "SAMPLE_VARS=%SAMPLE_VARS%,REC_PAGING"
 
 REM ---- Run JMeter in non-GUI mode. THREADS/RAMPUP/LOOPS are passed as
 REM      JMeter properties read by the Thread Group in the .jmx.
@@ -238,7 +251,7 @@ REM      LOGIN_USERNAME/LOGIN_PASSWORD are passed as plain environment
 REM      variables, not -J, so they are never logged. ----
 REM CSV_FILE / CSV_ROW_COUNT are quoted as whole tokens so a path containing
 REM spaces reaches JMeter as a single argument.
-call "%JMETER_BAT%" -n -t "%TEST_PLAN%" -l "%RESULT_FILE%" -j "%LOG_FILE%" -JTHREADS=%THREADS% -JRAMPUP=%RAMPUP% -JLOOPS=%LOOPS% "-JCSV_FILE=%CSV_FILE%" "-JCSV_ROW_COUNT=%TOTAL_APIS%" -Jjmeter.save.saveservice.autoflush=true -Jsample_variables=REC_METHOD,REC_URL,REC_APINAME,REC_PASSFAIL,REC_ERROR,REC_RESPONSE
+call "%JMETER_BAT%" -n -t "%TEST_PLAN%" -l "%RESULT_FILE%" -j "%LOG_FILE%" -JTHREADS=%THREADS% -JRAMPUP=%RAMPUP% -JLOOPS=%LOOPS% "-JCSV_FILE=%CSV_FILE%" "-JCSV_ROW_COUNT=%TOTAL_APIS%" -Jjmeter.save.saveservice.autoflush=true "-Jsample_variables=%SAMPLE_VARS%"
 set "JMETER_EXIT_CODE=%ERRORLEVEL%"
 
 REM Clear the password from this process's environment as soon as we're done with it
@@ -323,6 +336,25 @@ if errorlevel 1 (
     echo Status Code columns may show "-".
 )
 
+REM ---- Group the Statistics table by logical API (multi-role CSVs only) ----
+REM scripts\Write-ReportApiGroups.ps1 reads this run's results.jtl plus the
+REM run's source CSV (uploaded.csv, kept beside test-data.csv by the web app,
+REM with the API_NAME column the JTL does not carry) and writes
+REM dashboard\content\js\report-api-groups.js. API_NAME is "<Role> - <API>"; when
+REM the CSV names several roles, the Statistics table shows one row per logical
+REM API with a per-role breakdown. For any other CSV the file just says
+REM {"enabled":false} and the report is unchanged. Nothing about the test run or
+REM its results.jtl is touched; if this step fails the report still opens.
+set "API_GROUPS_JTL=%CD%\%RESULT_FILE%"
+set "API_GROUPS_FILE=%CD%\%DASHBOARD_DIR%\content\js\report-api-groups.js"
+set "API_GROUPS_SOURCE_CSV="
+for %%G in ("%CSV_FILE%") do set "API_GROUPS_SOURCE_CSV=%%~dpGuploaded.csv"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS_DIR%\Write-ReportApiGroups.ps1"
+if errorlevel 1 (
+    echo WARNING: Could not write report-api-groups.js; the Statistics table
+    echo will list every role-specific execution separately.
+)
+
 REM ---- Add the actual per-user run counts to the generated report ----
 REM scripts\Write-ReportUserInfo.ps1 reads this run's results.jtl the same way
 REM Write-ReportSampleInfo.ps1 does, but grouped by which user each thread
@@ -338,6 +370,21 @@ if errorlevel 1 (
     echo WARNING: Could not write report-user-info.js; the report's Runs by
     echo User graph may be empty.
 )
+REM ---- Pagination section of the report (paged runs only) ----
+REM scripts\Write-ReportPaginationInfo.ps1 reads the per-page REC_PAGING column of this
+REM run's results.jtl and writes dashboard\content\js\report-pagination.js. Every page
+REM stays an ordinary sample in the Statistics table (grouped under its API); this adds
+REM the pages / records / duration / completeness view per API. Without pagination the
+REM file just says {"enabled":false} and the report is unchanged.
+set "PAGING_JTL=%CD%\%RESULT_FILE%"
+set "PAGING_FILE=%CD%\%DASHBOARD_DIR%\content\js\report-pagination.js"
+set "PAGING_SOURCE_CSV="
+for %%G in ("%CSV_FILE%") do set "PAGING_SOURCE_CSV=%%~dpGuploaded.csv"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPTS_DIR%\Write-ReportPaginationInfo.ps1"
+if errorlevel 1 (
+    echo WARNING: Could not write report-pagination.js; the report has no Pagination section.
+)
+
 echo.
 echo ========================================
 echo JMeter API Automation

@@ -248,6 +248,17 @@ $(function() {
     $(".report-rampup").text(runValue("rampUpSeconds", "-") + " sec");
     $(".report-loops").text(runValue("loops", "-"));
 
+    // Threads per user type: one cell per type (Merchandiser, Manager, DSM, Sales
+    // Coordinator, VP, Admin), 0 for a type given no threads. Only a run split by
+    // user type has them (written by scripts\Write-ReportRunInfo.ps1).
+    $.each($.isArray(runInfo.typeThreads) ? runInfo.typeThreads : [], function(index, type) {
+        $("#report-type-threads").append(
+            $('<div class="client-stat-card"></div>')
+                .append($('<div class="client-stat-label"></div>').text(type.label + " Threads"))
+                .append($('<div class="client-stat-value"></div>').text(type.threads))
+        );
+    });
+
     // Query Testing has no login, so no Number of Users - only show those
     // cells when the run that produced this report actually had one. Number
     // of Runs keeps its existing meaning here (Number of Users x Threads x

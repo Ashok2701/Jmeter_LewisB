@@ -7,7 +7,11 @@ import {
   apiTypesFor,
   credentialGroupFor,
   isApiTypeAllowed,
+  maxThreadsFor,
+  threadLimitMessage,
 } from '@/lib/applications';
+import { USER_TYPES, supportsUserTypeThreads, validateTypeThreads } from '@/lib/userTypes';
+import { PAGINATION, supportsPagination } from '@/lib/pagination';
 
 import ConfigurationPanel from './ConfigurationPanel';
 import HistoryPanel from './HistoryPanel';
@@ -40,6 +44,8 @@ const emptyConfig = (id) => ({
   threads: '',
   rampup: '',
   loops: '',
+  // Merchandiser REST only: optional threads per user type ({ merchandiser: '10', ... }).
+  typeThreads: {},
   csvInfo: null,
   csvError: null,
   csvErrorFile: null,
@@ -307,7 +313,12 @@ export default function Home() {
         current.apiType !== HIDDEN_API_TYPE && isApiTypeAllowed(nextApplication, current.apiType)
           ? current.apiType
           : '';
-      updateConfig(id, { applicationName: nextApplication, apiType: nextApiType, numUsers: '' });
+      updateConfig(id, {
+        applicationName: nextApplication,
+        apiType: nextApiType,
+        numUsers: '',
+        typeThreads: {},
+      });
       setError(null);
       inspectCsv(id, nextApplication, nextApiType);
     },
@@ -318,7 +329,11 @@ export default function Home() {
   // looked up again from scratch.
   const handleApiTypeChange = useCallback(
     (id, nextApiType) => {
-      updateConfig(id, { apiType: nextApiType, numUsers: '' });
+      updateConfig(id, {
+        apiType: nextApiType,
+        numUsers: '',
+        typeThreads: {},
+      });
       setError(null);
       inspectCsv(id, configs.find((c) => c.id === id)?.applicationName ?? '', nextApiType);
     },
@@ -404,6 +419,11 @@ export default function Home() {
           setError(`${prefix}Please enter a valid number of threads.`);
           return;
         }
+        const overLimit = threadLimitMessage(config.applicationName, config.apiType, config.threads.trim());
+        if (overLimit) {
+          setError(`${prefix}${overLimit}`);
+          return;
+        }
         if (!/^[1-9][0-9]*$/.test(config.rampup.trim())) {
           setError(`${prefix}Please enter a valid ramp-up time.`);
           return;
@@ -411,6 +431,13 @@ export default function Home() {
         if (!/^[1-9][0-9]*$/.test(config.loops.trim())) {
           setError(`${prefix}Please enter a valid number of loops.`);
           return;
+        }
+        if (supportsUserTypeThreads(config.applicationName, config.apiType)) {
+          const split = validateTypeThreads(config.typeThreads, config.threads.trim());
+          if (!split.ok) {
+            setError(`${prefix}${split.message}`);
+            return;
+          }
         }
       }
       if (selected.some(({ config }) => config.apiType === 'SQL')) {
@@ -449,6 +476,9 @@ export default function Home() {
             threads: config.threads.trim(),
             rampup: config.rampup.trim(),
             loops: config.loops.trim(),
+            ...(supportsUserTypeThreads(config.applicationName, config.apiType)
+              ? { typeThreads: config.typeThreads }
+              : {}),
           }))
         )
       );
@@ -842,17 +872,105 @@ export default function Home() {
                               id={`${key}${config.id}`}
                               type="number"
                               min="1"
+                              max={key === 'threads' ? maxThreadsFor(config.applicationName, config.apiType) ?? undefined : undefined}
                               step="1"
                               inputMode="numeric"
                               placeholder={placeholder}
                               value={config[key]}
                               onChange={(e) => updateConfig(config.id, { [key]: e.target.value })}
                               disabled={isRunning}
+                              aria-invalid={key === 'threads' && Boolean(threadLimitMessage(config.applicationName, config.apiType, config.threads)) ? true : undefined}
                             />
-                            <span className="field-desc">{desc}</span>
+                            <span className="field-desc">
+                              {desc}
+                              {key === 'threads' && maxThreadsFor(config.applicationName, config.apiType) !== null
+                                ? ` (max ${maxThreadsFor(config.applicationName, config.apiType).toLocaleString('en-US')})`
+                                : ''}
+                            </span>
+                            {key === 'threads' && threadLimitMessage(config.applicationName, config.apiType, config.threads) ? (
+                              <span className="field-desc" role="alert" style={{ color: 'var(--danger, #c0392b)' }}>
+                                {threadLimitMessage(config.applicationName, config.apiType, config.threads)}
+                              </span>
+                            ) : null}
                           </div>
                         ))}
                       </div>
+
+                      {/* Merchandiser REST only: once Total Threads is entered, the
+                          threads can be split between user types. Every box is
+                          optional; if any is filled they must add up to Total Threads.
+                          Each type's threads run only that type's APIs, each thread
+                          with its own user code from that type's sheet. */}
+                      {supportsUserTypeThreads(config.applicationName, config.apiType) &&
+                        /^[1-9][0-9]*$/.test(config.threads.trim()) &&
+                        (() => {
+                          const total = Number(config.threads.trim());
+                          const filled = USER_TYPES.filter(
+                            (t) => String(config.typeThreads[t.key] ?? '').trim() !== ''
+                          );
+                          const sum = filled.reduce(
+                            (n, t) => n + (Number(config.typeThreads[t.key]) || 0),
+                            0
+                          );
+                          const mismatch = filled.length > 0 && sum !== total;
+                          return (
+                            <div className="type-threads" style={{ marginTop: 18 }}>
+                              <p className="hint">
+                                Optional - split the {total} threads between user types. Each user
+                                type runs only its own APIs, every thread with a different user code
+                                from that type&apos;s sheet. Leave all empty to run every API on
+                                every thread.
+                              </p>
+                              <div className="row load-row">
+                                {USER_TYPES.map((type) => (
+                                  <div className="field" key={type.key}>
+                                    <label htmlFor={`type-${type.key}${config.id}`}>
+                                      {type.label}
+                                    </label>
+                                    <input
+                                      id={`type-${type.key}${config.id}`}
+                                      type="number"
+                                      min="0"
+                                      step="1"
+                                      inputMode="numeric"
+                                      placeholder="0"
+                                      value={config.typeThreads[type.key] ?? ''}
+                                      onChange={(e) =>
+                                        updateConfig(config.id, {
+                                          typeThreads: {
+                                            ...config.typeThreads,
+                                            [type.key]: e.target.value,
+                                          },
+                                        })
+                                      }
+                                      disabled={isRunning}
+                                    />
+                                    <span className="field-desc">Threads for {type.label}</span>
+                                  </div>
+                                ))}
+                              </div>
+                              <p
+                                className={`hint${mismatch ? ' hint-error' : ''}`}
+                                aria-live="polite"
+                              >
+                                {filled.length === 0
+                                  ? `Not split - ${total} threads run on every API.`
+                                  : mismatch
+                                    ? `✕ Allocated ${sum} of ${total} threads - they must add up to ${total}.`
+                                    : `✓ Allocated ${sum} of ${total} threads.`}
+                              </p>
+                            </div>
+                          );
+                        })()}
+
+                      {/* Merchandiser REST only: every API is paged automatically - all pages, 1,000 records
+                          per page, until the API has no more records (no page or record limit). */}
+                      {supportsPagination(config.applicationName, config.apiType) && (
+                        <p className="hint" style={{ marginTop: 18 }}>
+                          Pagination: all pages, {PAGINATION.pageSize.toLocaleString('en-US')} records per page,
+                          until the API has no more records.
+                        </p>
+                      )}
                     </section>
                   ))}
 

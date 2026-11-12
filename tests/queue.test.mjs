@@ -154,3 +154,54 @@ test('rows dropped before the run are listed as Skipped', async () => {
     cleanup();
   }
 });
+
+test('a split run lists every thread with its user type and user code, and what it is running', async () => {
+  const plan = [
+    { jmeterThread: 'API Execution - Merchandisers 1-1', label: 'Merchandiser 1', userType: 'Merchandiser', userCode: '02B888', codes: null, apis: 1 },
+    { jmeterThread: 'API Execution - Merchandisers 1-2', label: 'Merchandiser 2', userType: 'Merchandiser', userCode: '02B887', codes: null, apis: 1 },
+    { jmeterThread: 'API Execution - Managers 2-1', label: 'Manager 1', userType: 'Manager', userCode: 'M0205', codes: null, apis: 1 },
+  ];
+  const { run, jtl, cleanup } = setup(
+    ['Merchandiser - Orders', 'Sales Manager - Orders', 'DSM - Orders'],
+    [restRow('GET', '/a'), restRow('GET', '/b'), restRow('GET', '/c')],
+    { threads: '3' }
+  );
+  fs.writeFileSync(
+    path.join(path.dirname(run.testDataPath), 'run-config.json'),
+    JSON.stringify({
+      apiNames: ['Merchandiser - Orders', 'Sales Manager - Orders', 'DSM - Orders'],
+      typeThreads: { merchandiser: 2, manager: 1, dsm: 0, salco: 0, vp: 0, admin: 0 },
+      threadPlan: plan,
+    })
+  );
+  try {
+    let q = await readRunQueue(run);
+    assert.deepEqual(
+      q.threads.map((t) => [t.label, t.userType, t.userCode, t.status]),
+      [
+        ['Merchandiser 1', 'Merchandiser', '02B888', 'waiting'],
+        ['Merchandiser 2', 'Merchandiser', '02B887', 'waiting'],
+        ['Manager 1', 'Manager', 'M0205', 'waiting'],
+      ]
+    );
+    // Only the threads of an API's own user type are expected to run it; an API of a
+    // type given no threads never runs.
+    assert.deepEqual(q.items.map((i) => i.expected), [2, 1, 0]);
+    assert.deepEqual(statuses(q), ['pending', 'pending', 'skipped']);
+
+    fs.writeFileSync(jtl, HEADER + sample('API Execution - Merchandisers 1-1', 'Prepare - GET /a', 200, 'OK', true)
+      + sample('API Execution - Managers 2-1', 'Prepare - GET /b', 200, 'OK', true));
+    q = await readRunQueue(run);
+    assert.deepEqual(q.threads.map((t) => t.status), ['running', 'waiting', 'running']);
+    assert.equal(q.threads[0].current, 'Merchandiser - Orders');
+    assert.equal(q.threads[2].current, 'Sales Manager - Orders');
+
+    fs.appendFileSync(jtl, sample('API Execution - Managers 2-1', 'GET /b', 200, 'OK', true, 'PASS'));
+    q = await readRunQueue(run);
+    assert.equal(q.threads[2].status, 'done', 'a thread that ran all its APIs is done');
+    assert.equal(q.threads[2].executed, 1);
+    assert.equal(q.threads[0].status, 'running');
+  } finally {
+    cleanup();
+  }
+});

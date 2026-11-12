@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import { NextResponse } from 'next/server';
 
 import {
@@ -15,7 +16,10 @@ import { detectSchema, normaliseCsv, parseCsv } from '@/lib/csvSchema';
 import { normaliseSoapCsv } from '@/lib/soapCsvSchema';
 import { normaliseSqlCsv } from '@/lib/sqlCsvSchema';
 import { loadAppCsv, validateApplicationName } from '@/lib/appCsv';
-import { API_TYPES, credentialGroupFor, isApiTypeAllowed } from '@/lib/applications';
+import { buildRolesPlan, buildThreadPlan, splitApiCsvByType } from '@/lib/rolePlan';
+import { USER_TYPES, supportsUserTypeThreads, validateTypeThreads } from '@/lib/userTypes';
+import { PAGINATION, buildPaginationConfig, supportsPagination } from '@/lib/pagination';
+import { API_TYPES, credentialGroupFor, isApiTypeAllowed, threadLimitMessage } from '@/lib/applications';
 import { loadCredentials, writeRunUsersCsv, writeUsersCsv } from '@/lib/credentials';
 import { checkDbReachable, dbDefaults } from '@/lib/dbConfig';
 import { getActiveRun, startRun, toPublicRun } from '@/lib/runs';
@@ -90,6 +94,8 @@ function readConfigurations(form) {
       threads: c?.threads == null ? '' : String(c.threads),
       rampup: c?.rampup == null ? '' : String(c.rampup),
       loops: c?.loops == null ? '' : String(c.loops),
+      // Merchandiser REST only: optional Threads per user type ({ key: '10', ... }).
+      typeThreads: c?.typeThreads && typeof c.typeThreads === 'object' ? c.typeThreads : null,
     })),
   };
 }
@@ -134,6 +140,10 @@ async function prepareConfig(cfg, shared) {
       message: `${apiTypeLabel(apiKind)} is not available for ${appNameCheck.value}.`,
     };
   }
+
+  // Maximum Threads for this application + API Type (never trust the form's check).
+  const threadLimit = threadLimitMessage(appNameCheck.value, apiKind, load.threads);
+  if (threadLimit) return { ok: false, message: threadLimit };
 
   // The CSV is no longer uploaded: it is the file in csv files\ for this
   // Application Name + API Type, picked server-side by lib/appCsv.js. From
@@ -236,6 +246,98 @@ async function prepareConfig(cfg, shared) {
 
   const skippedRows = [...(normalised.skipped ?? []), ...(csv.skipped ?? [])];
 
+  // Merchandiser REST only: Total Threads optionally split between user types.
+  // Each type with threads gets its own API list (its own APIs only) and the
+  // run uses a generated plan with one Thread Group per type (lib/rolePlan.js).
+  let split = null; // [{ key, label, threads, csv, rows }] when the run is split
+  if (supportsUserTypeThreads(appNameCheck.value, apiKind)) {
+    const typeCheck = validateTypeThreads(cfg.typeThreads, load.threads);
+    if (!typeCheck.ok) return { ok: false, message: typeCheck.message };
+    if (typeCheck.value) {
+      const parts = splitApiCsvByType(csvText);
+      if (!parts.ok) return { ok: false, message: `${csv.fileName}: ${parts.message}` };
+
+      const codeCounts = new Map();
+      if (csv.userCodesCsv) {
+        for (const [role, code] of parseCsv(csv.userCodesCsv).slice(1)) {
+          if (role && code) codeCounts.set(role, (codeCounts.get(role) ?? 0) + 1);
+        }
+      }
+
+      split = [];
+      for (const type of USER_TYPES) {
+        const threads = typeCheck.value[type.key];
+        if (!threads) continue;
+        const part = parts.byType[type.key];
+        if (!part.apiNames.length) {
+          return { ok: false, message: `${csv.fileName} has no ${type.label} APIs, so ${type.label} cannot be given threads.` };
+        }
+        // Every thread of a type uses a different user code of that type's
+        // sheet, so a type cannot have more threads than the sheet has codes.
+        for (const slug of part.roleSlugs) {
+          const available = codeCounts.get(slug) ?? 0;
+          if (threads > available) {
+            return {
+              ok: false,
+              message:
+                `${type.label}: ${threads} threads need ${threads} different user codes, but the ` +
+                `${type.label} sheet has ${available}${process.env.USER_CODES_MAX_PER_ROLE ? ' (limited by USER_CODES_MAX_PER_ROLE)' : ''}. ` +
+                `Reduce ${type.label} threads to ${available} or fewer, or add codes to the sheet.`,
+            };
+          }
+        }
+        const typeNormalised = normaliseCsv(part.csv, baseUrlValue ? { baseUrl: baseUrlValue } : {});
+        if (!typeNormalised.ok) return { ok: false, message: `${type.label}: ${typeNormalised.message}` };
+        split.push({ key: type.key, label: type.label, threads, csv: typeNormalised.csv, rows: typeNormalised.apiCount });
+      }
+
+      // Fail now, not mid-run, if the base plan cannot be split.
+      try {
+        buildRolesPlan(
+          fs.readFileSync(path.join(BAT_DIR, 'JMeter_API_Automation.jmx'), 'utf8'),
+          split.map((t) => ({ label: t.label, threads: t.threads, rows: t.rows, csvPath: 'x' }))
+        );
+      } catch (err) {
+        return { ok: false, status: 500, message: `The user-type test plan could not be built: ${err.message}` };
+      }
+    }
+  }
+  // Pagination (Merchandiser REST only): always every page, 1,000 records per page, with no
+  // page or record limit (lib/pagination.js PAGINATION; see Paginate.groovy). Every other
+  // app / API type runs exactly as before.
+  let pagination = null;
+  let paginationConfigCsv = '';
+  if (supportsPagination(appNameCheck.value, apiKind)) {
+    pagination = PAGINATION;
+    // Per-API settings (PAGINATION / PAGE_TYPE / PAGE_PARAM / SIZE_PARAM columns of the API list).
+    const perApi = buildPaginationConfig(csvText, normalised);
+    if (!perApi.ok) return { ok: false, message: `${csv.fileName}: ${perApi.message}` };
+    paginationConfigCsv = perApi.csv;
+  }
+
+  // The user type and user code of every thread, for the Test Running popup. It
+  // applies the same thread -> code rule scripts\PrepareRequest.groovy applies.
+  // An API list that cannot be told apart by user type simply has no listing.
+  let threadPlan = null;
+  if (supportsUserTypeThreads(appNameCheck.value, apiKind)) {
+    const all = splitApiCsvByType(csvText);
+    if (all.ok) {
+      const codesByRole = new Map();
+      if (csv.userCodesCsv) {
+        for (const [role, code] of parseCsv(csv.userCodesCsv).slice(1)) {
+          if (!role || !code) continue;
+          if (!codesByRole.has(role)) codesByRole.set(role, []);
+          codesByRole.get(role).push(code);
+        }
+      }
+      threadPlan = buildThreadPlan({ parts: all.byType, split, totalThreads: load.threads, codesByRole });
+    }
+  }
+  // Threads per user type, every type listed (0 = none), for the report and run record.
+  const typeThreads = split
+    ? Object.fromEntries(USER_TYPES.map((t) => [t.key, split.find((s) => s.key === t.key)?.threads ?? 0]))
+    : null;
+
   return {
     ok: true,
     apiKind,
@@ -249,6 +351,22 @@ async function prepareConfig(cfg, shared) {
         normalisedCsv: normalised.csv,
       });
 
+      // A split run: one API list per user type and the generated plan that
+      // runs them side by side. Written into the bat folder (the plan's scripts
+      // are found relative to its own folder) and removed when the run ends.
+      let testPlanFile = '';
+      if (split) {
+        const groups = [];
+        for (const t of split) {
+          const csvPath = path.join(runDir, `test-data-${t.key}.csv`);
+          await fs.promises.writeFile(csvPath, t.csv, 'utf8');
+          groups.push({ label: t.label, threads: t.threads, rows: t.rows, csvPath });
+        }
+        const base = await fs.promises.readFile(path.join(BAT_DIR, 'JMeter_API_Automation.jmx'), 'utf8');
+        testPlanFile = path.join(BAT_DIR, `run-plan-${id}.jmx`);
+        await fs.promises.writeFile(testPlanFile, buildRolesPlan(base, groups), 'utf8');
+      }
+
       // The actual login data JMeter reads for this run: only the first
       // `numUsers` configured logins, written fresh into this run's own
       // directory. Overrides usersCsvPath (which so far points at the group's
@@ -257,6 +375,21 @@ async function prepareConfig(cfg, shared) {
       let runUsersCsvPath = usersCsvPath;
       if (apiKind !== 'SQL') {
         runUsersCsvPath = await writeRunUsersCsv(runDir, selectedUsers);
+      }
+
+      // Workbook APIs only: the role -> user codes list PrepareRequest.groovy
+      // reads, written into this run's own directory like the other run files.
+      let userCodesCsvPath = '';
+      if (csv.userCodesCsv) {
+        userCodesCsvPath = path.join(runDir, 'user-codes.csv');
+        await fs.promises.writeFile(userCodesCsvPath, csv.userCodesCsv, 'utf8');
+      }
+
+      // Per-API pagination settings JMeter reads (PAGINATION_CONFIG_CSV), when the API list has any.
+      let paginationConfigPath = '';
+      if (paginationConfigCsv) {
+        paginationConfigPath = path.join(runDir, 'pagination-config.csv');
+        await fs.promises.writeFile(paginationConfigPath, paginationConfigCsv, 'utf8');
       }
 
       await writeRunConfig(runDir, {
@@ -272,6 +405,9 @@ async function prepareConfig(cfg, shared) {
         threads: load.threads,
         rampup: load.rampup,
         loops: load.loops,
+        typeThreads,
+        threadPlan,
+        pagination,
         numUsers,
         createdAt: new Date().toISOString(),
       });
@@ -287,6 +423,11 @@ async function prepareConfig(cfg, shared) {
         username,
         password,
         usersCsvPath: runUsersCsvPath,
+        userCodesCsvPath,
+        testPlanFile,
+        typeThreads,
+        pagination,
+        paginationConfigPath,
         numUsers,
         // Display only - never used to build a path.
         csvName: csv.fileName,

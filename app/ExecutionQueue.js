@@ -17,6 +17,13 @@ const STATUS_LABEL = {
   skipped: 'Skipped',
 };
 
+const THREAD_STATUS_LABEL = {
+  waiting: 'Waiting',
+  running: 'Running',
+  done: 'Done',
+  notrun: 'Not run',
+};
+
 export default function ExecutionQueue({ runId, running, isSql = false }) {
   const [queue, setQueue] = useState(null);
   const listRef = useRef(null);
@@ -107,6 +114,67 @@ export default function ExecutionQueue({ runId, running, isSql = false }) {
               ? 'Moving to the next one…'
               : 'Starting JMeter…'}
         </p>
+      )}
+
+      {/* Which user type and user code every thread of the run uses (the same
+          assignment the threads follow - see lib/rolePlan.js buildThreadPlan),
+          and what each is doing now. Only runs that have such a listing. */}
+      {queue.threads?.length > 0 && (
+        <>
+          <h4 className="queue-subtitle">Threads · User Type &amp; User Code</h4>
+          <div className="queue-threads">
+            <table>
+              <thead>
+                <tr>
+                  <th>Thread</th>
+                  <th>User Type</th>
+                  <th>User Code</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {queue.threads.map((thread, i) => (
+                  <tr key={i} data-status={thread.status}>
+                    <td>{thread.label}</td>
+                    <td>{thread.userType}</td>
+                    <td className="queue-code">
+                      {thread.codes?.length ? (
+                        thread.codes.map((c) => (
+                          <span key={c.userType} className="queue-code-line">
+                            {c.userType}: <b>{c.userCode}</b>
+                          </span>
+                        ))
+                      ) : thread.userCode ? (
+                        <b>{thread.userCode}</b>
+                      ) : (
+                        <span title="This user type's APIs use fixed values, not a user code">—</span>
+                      )}
+                    </td>
+                    <td>
+                      <span
+                        className={`queue-badge ${
+                          thread.status === 'running'
+                            ? 'queue-badge-running'
+                            : thread.status === 'done'
+                              ? 'queue-badge-passed'
+                              : ''
+                        }`}
+                      >
+                        {thread.status === 'running' && <span className="queue-dot" aria-hidden="true" />}
+                        {THREAD_STATUS_LABEL[thread.status]}
+                      </span>
+                      {thread.status === 'running' && thread.current && (
+                        <small className="queue-thread-api" title={thread.current}>
+                          {thread.current}
+                        </small>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
       <ol className="queue-list" ref={listRef}>

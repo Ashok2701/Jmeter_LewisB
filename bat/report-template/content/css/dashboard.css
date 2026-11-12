@@ -76,6 +76,44 @@
     color: #23527c;
     outline: none;
 }
+/* Statistics grouped by logical API: the role arrow, the one-line summary above
+   the table, and the per-role rows that open beneath an API. */
+.role-toggle
+{
+    padding: 0 6px 0 0;
+    border: 0;
+    background: none;
+    color: #337ab7;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+}
+.role-toggle:hover, .role-toggle:focus
+{
+    color: #23527c;
+    outline: none;
+}
+.api-group-note
+{
+    margin: 0 0 8px;
+    color: #666;
+    text-align: left;
+}
+.api-more
+{
+    color: #888;
+    font-style: italic;
+}
+#statisticsTable tr.role-row > td
+{
+    background: #eef3f9 !important;
+    font-size: 0.95em;
+}
+#statisticsTable tr.role-row .role-indent
+{
+    padding-left: 22px;
+    color: #555;
+}
 #statisticsTable tr.response-row > td
 {
     padding: 10px 14px;

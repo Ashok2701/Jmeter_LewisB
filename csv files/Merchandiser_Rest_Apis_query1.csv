@@ -1,0 +1,64 @@
+API_ID,API_NAME,ENDPOINT,BASE_URL
+1,Merchandiser - Customer Products,/X10CITMBP?representation=X10CITMBP.$query&where=XDRIVERIDM%20eq%20%27028500%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+2,Merchandiser - Assigned Customers,/XX10CMBPC?representation=XX10CMBPC.$query&where=XMBPC%20eq%20%27020453%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+3,Merchandiser - Sales Orders,/XORDCHNG?representation=XORDCHNG.$query&where=XORDDAT%20eq%20%2720261026%27%20AND%20XMERCH%20eq%20%27076869%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+4,Merchandiser - Planned Deliveries,/XORDCHGDL?representation=XORDCHGDL.$query&where=XORDDAT%20eq%20%2720261003%27%20AND%20XMERCH%20eq%20%2702A862%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+5,Merchandiser - Service Visits,/X10CUSMELST?representation=X10CUSMELST.$query&where=XDATE%20eq%20%2720261019%27%20AND%20XMERCH%20eq%20%27028500%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+6,Merchandiser - Shipment Adjustments,/X10CSAM?representation=X10CSAM.$query&where=XDRIVERID%20eq%20%27030398%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+7,Merchandiser - Working Days Calendar,/XBPCWDYSFM?representation=XBPCWDYSFM.$query&where=XMDRIVER%20eq%20%27020453%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+8,Merchandiser - Item Delivery Items,/XITMDAYSFM?representation=XITMDAYSFM.$query&where=XMDRIVER%20eq%20%27020453%27%20AND%20XDATE%20eq%20%2720261106%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+9,Merchandiser - Sales History,/XSALHISMER?representation=XSALHISMER.$query&where=XINVDATE%20eq%20%2720250105%27%20AND%20XMERCH%20eq%20%27020749%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+10,Sales Manager - Manager Customer Products,/X10CITMBP1?representation=X10CITMBP1.$query&where=XSALESMNGR%20eq%20%27M02AE%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+11,Sales Manager - Sales Customers,/X10CSLAMBPC?representation=X10CSLAMBPC.$query&where=XSALESREPMAN%20eq%20%27M0205%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+12,Sales Manager - Manager Orders,/XORDCHSAL?representation=XORDCHSAL.$query&where=XSALESMGR%20eq%20%27M06BJ%27%20OR%20XORDDAT%20eq%20%2720261106%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+13,Sales Manager - Manager Deliveries,/XORDCHGMGR?representation=XORDCHGMGR.$query&where=XMERCH%20eq%20%27M02BM%27%20OR%20XORDDAT%20eq%20%2720261003%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+14,Sales Manager - Sales Services,/X10CUSAMLST?representation=X10CUSAMLST.$query&where=XSALMGR%20eq%20%27M02BM%27%20AND%20XDATE%20eq%20%2720261003%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+15,Sales Manager - Shipping Adjustments,/X10CSAL?representation=X10CSAL.$query&where=XDRIVERID%20eq%20%27M02CO%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+16,Sales Manager - Assigned Customer Stock,/XSALCUS?representation=XSALCUS.$query&where=XSALMGR%20eq%20%27M0215%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+17,Sales Manager - Manager Products (Location),/XITMSAMLOC?representation=XITMSAMLOC.$query&where=LOC%20eq%20%27AVOCTANK%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+18,Sales Manager - Historical Invoices,/XINVHISAL?representation=XINVHISAL.$query&where=XSALMGR%20eq%20%27M0205%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+19,Sales Manager - Sales Managers Directory,/X10CSMGLST?representation=X10CSMGLST.$query&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+20,Sales Manager - Working Days Calendar,/XBPCWDYSM?representation=XBPCWDYSM.$query&where=XSMDRIVER%20eq%20%27%20%27%20AND%20XDATE%20eq%20%2720260103%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+21,Sales Manager - Item Delivery Days,/XITMDAYSFSM?representation=XITMDAYSFSM.$query&where=XSMDRIVER%20eq%20%27M0205%27%20AND%20XDATE%20eq%20%2720261106%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+22,Sales Manager - Sales History,/XSALHISWEK?representation=XSALHISWEK.$query&where=XSALMGR%20eq%20%27M02CO%27%20AND%20XINTDATE%20eq%20%2720261106%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+23,DSM - Products,/X10CITMDSM?representation=X10CITMDSM.$query&where=XDSM%20eq%20%27D0265%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+24,DSM - Customers,/X10CDSMSAL?representation=X10CDSMSAL.$query&where=XDSMCOR%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+25,DSM - Orders,/XORDLSDSM?representation=XORDLSDSM.$query&where=XDSM%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+26,DSM - Deliveries,/XORDCHGDSM?representation=XORDCHGDSM.$query&where=XDSM%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+27,DSM - Services,/X10CDCI?representation=X10CDCI.$query&where=XSALMGR%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+28,DSM - Adjustments,/X10CDS?representation=X10CDS.$query&where=XSALMGR%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+29,DSM - Working Days,/XBPCWDYDSM?representation=XBPCWDYDSM.$query&where=XDSM%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+30,DSM - Item Days,/XITMDAYSFDSM?representation=XITMDAYSFDSM.$query&where=XDSM%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+31,DSM - Assignments,/X10CSMLIS?representation=X10CSMLIS.$query&where=XDSM%20eq%20%27D0207%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+32,DSM - Sales History,/XSALHISDSM?representation=XSALHISDSM.$query&where=XDSM%20eq%20%27D0207%27%20AND%20XINVDATE%20eq%20%2720260509%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+33,SALCO - Products,/X10CITMSALC?representation=X10CITMSALC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+34,SALCO - Customers,/X10CBPCSAL?representation=X10CBPCSAL.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+35,SALCO - Orders,/XORDLSALC?representation=XORDLSALC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+36,SALCO - Deliveries,/XORDCHGSALC?representation=XORDCHGSALC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+37,SALCO - Services,/X10CSCINV?representation=X10CSCINV.$query&where=XSALMGR%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+38,SALCO - Adjustments,/X10CSALC?representation=X10CSALC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+39,SALCO - Working Days,/XBPCWDYSALC?representation=XBPCWDYSALC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+40,SALCO - Item Days,/XITMDAYSSALC?representation=XITMDAYSSALC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+41,SALCO - Assignments,/X10CSMLISC?representation=X10CSMLISC.$query&where=XSALCORD%20eq%20%27CO2JB%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+42,SALCO - Sales History,/XSALHISALCOR?representation=XSALHISALCOR.$query&where=XSALCORD%20eq%20%27CO2JB%27%20AND%20XINVDATE%20eq%20%2720260509%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+43,VP - Products,/X10CITMVP?representation=X10CITMVP.$query&where=X10CVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+44,VP - Customers,/X10CVPCUST?representation=X10CVPCUST.$query&where=XVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+45,VP - Orders,/XORDLVP?representation=XORDLVP.$query&where=XVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+46,VP - Deliveries,/XORDCHGVP?representation=XORDCHGVP.$query&where=X10CVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+47,VP - Services,/X10CVPINV?representation=X10CVPINV.$query&where=XSALMGR%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+48,VP - Adjustments,/X10CSAVP?representation=X10CSAVP.$query&where=XVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+49,VP - Working Days,/XBPCWDYVP?representation=XBPCWDYVP.$query&where=X10CVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+50,VP - Item Days,/XITMDAYSFVP?representation=XITMDAYSFVP.$query&where=X10CVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+51,VP - Assignments,/X10CSMGR?representation=X10CSMGR.$query&where=X10CVP%20eq%20%27V0202%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+52,VP - Sales History,/XSALHISVP?representation=XSALHISVP.$query&where=XVP%20eq%20%27V0202%27%20AND%20XINVDATE%20eq%20%2720260509%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+53,Admin - Products,/X10CITMADM?representation=X10CITMADM.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+54,Admin - Customers,/X10CADMBPC?representation=X10CADMBPC.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+55,Admin - Orders,/XORDLADM?representation=XORDLADM.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+56,Admin - Deliveries,/XORDCHGADM?representation=XORDCHGADM.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+57,Admin - Services,/X10CADMINV?representation=X10CADMINV.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+58,Admin - Adjustments,/X10CSAJADM?representation=X10CSAJADM.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+59,Admin - Working Days,/XBPCALDADM?representation=XBPCALDADM.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+60,Admin - Item Days,/XITMAVLADM?representation=XITMAVLADM.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+61,Admin - Assignments,/X10CMLA?representation=X10CMLA.$query&where=XSALADM%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+62,Admin - Assignments 2,/X10CSMLISC?representation=X10CSMLISC.$query&where=XSALCORD%20eq%20%27V0302%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT
+63,Admin - Sales History,/XSALHISADMN?representation=XSALHISADMN.$query&where=XSALADMIN%20eq%20%27V0302%27%20AND%20XINVDATE%20eq%20%2720260509%27&count=1000,https://sage.lewisbakeries.com/api1/x3/erp/PILOT

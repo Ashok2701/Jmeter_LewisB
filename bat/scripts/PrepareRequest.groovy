@@ -19,6 +19,146 @@ def method = (vars.get("Method") ?: "").trim()
 def url = (vars.get("URL") ?: "").trim()
 def bodyTemplate = vars.get("Request_Body")
 
+// {USER_CODE:<role>} in the URL (workbook APIs, see lib\userCodes.js) is filled
+// in here with THIS thread's own code of that role, in the order of the role's
+// sheet: thread 1 = the sheet's code 1, thread 2 = code 2, ... Nothing is random,
+// so a run always uses the same users (lib\rolePlan.js buildThreadPlan lists the
+// same assignment for the Test Running popup). A plain, unsplit run with more
+// threads than codes wraps round; a split run is rejected before that can happen.
+// The codes come from USER_CODES_CSV (ROLE,CODE rows, written per run by the
+// webapp). Only the request URL is changed; the sample label (Path) keeps the
+// placeholder, so every thread reports under the one API.
+String codeError = ""
+if (url.contains("USER_CODE:") ) {
+    def codesByRole = null
+    synchronized (props) {
+        codesByRole = props.get("USER_CODES_BY_ROLE")
+        if (codesByRole == null) {
+            codesByRole = [:]
+            def csvPath = System.getenv("USER_CODES_CSV") ?: props.get("USER_CODES_CSV")
+            def csvFile = csvPath ? new File(csvPath as String) : null
+            if (csvFile != null && csvFile.isFile()) {
+                csvFile.withReader("UTF-8") { reader ->
+                    def buffered = new BufferedReader(reader)
+                    org.apache.jmeter.save.CSVSaveService.csvReadFile(buffered, (char) ',') // header
+                    while (buffered.ready()) {
+                        def row = org.apache.jmeter.save.CSVSaveService.csvReadFile(buffered, (char) ',')
+                        if (row != null && row.length >= 2 && row[0] && row[1]) {
+                            codesByRole.get(row[0], []) << row[1]
+                        }
+                    }
+                }
+            } else {
+                log.warn("PrepareRequest: USER_CODES_CSV is not set or not found - {USER_CODE:...} cannot be filled in")
+            }
+            props.put("USER_CODES_BY_ROLE", codesByRole)
+        }
+    }
+    def token = ~/(?i)(?:\{|%7B)USER_CODE:([a-z0-9_]+)(?:\}|%7D)/
+    url = url.replaceAll(token) { whole, role ->
+        def codes = codesByRole[role.toLowerCase()]
+        if (!codes) {
+            codeError = "No user codes for role '" + role + "'"
+            return whole
+        }
+        String code = codes[ctx.getThreadNum() % codes.size()]
+        return java.net.URLEncoder.encode(code, "UTF-8").replace("+", "%20")
+    }
+}
+
+// ---- Pagination (Merchandiser REST runs only) -------------------------------
+// PAGINATION_MODE (env, set by the webapp for Merchandiser REST runs) is "all":
+// every API is paged, PAGINATION_PAGE_SIZE records (1000) per page, until the API
+// has no more records - there is no page or record limit. Unset (every other
+// run) leaves this iteration exactly as it always was: one request, and
+// scripts\Paginate.groovy ends the page loop straight away.
+// This sets up the PER-THREAD pagination state of the API about to run, so
+// every thread (user) pages on its own - nothing here is shared between threads.
+// The per-API settings (PAGINATION_CONFIG_CSV, one row per API path) can switch an
+// API off (PAGINATION = No) or give it another mechanism: PAGE_TYPE
+// (link = Sage "$links.$next", page, offset) and the parameter names for the
+// page / offset types. Only the page size (count=...) of the first request is
+// changed; every other parameter is left exactly as the API list has it.
+vars.put("PAGE_MORE", "true")
+vars.put("PAGE_NO", "1")
+vars.put("PAGE_MODE", "off")
+vars.put("REC_PAGING", "")
+String runPagingMode = (System.getenv("PAGINATION_MODE") ?: "").trim().toLowerCase()
+if (runPagingMode == "all") {
+    def pagingByPath = null
+    synchronized (props) {
+        pagingByPath = props.get("PAGINATION_BY_PATH")
+        if (pagingByPath == null) {
+            pagingByPath = [:]
+            def cfgPath = System.getenv("PAGINATION_CONFIG_CSV")
+            def cfgFile = cfgPath ? new File(cfgPath as String) : null
+            if (cfgFile != null && cfgFile.isFile()) {
+                cfgFile.withReader("UTF-8") { reader ->
+                    def buffered = new BufferedReader(reader)
+                    org.apache.jmeter.save.CSVSaveService.csvReadFile(buffered, (char) ',') // header
+                    while (buffered.ready()) {
+                        def r = org.apache.jmeter.save.CSVSaveService.csvReadFile(buffered, (char) ',')
+                        if (r != null && r.length >= 5 && r[0]) {
+                            pagingByPath.put(r[0], [pagination: r[1], type: r[2], pageParam: r[3], sizeParam: r[4]])
+                        }
+                    }
+                }
+            }
+            props.put("PAGINATION_BY_PATH", pagingByPath)
+        }
+    }
+    def apiCfg = pagingByPath.get(vars.get("Path") ?: "") ?: [:]
+
+    // Per-thread counter: (thread name, sequence) identifies one API's run of pages in the JTL.
+    int seq = ((vars.get("PAGE_SEQ_N") ?: "0") as int) + 1
+    vars.put("PAGE_SEQ_N", String.valueOf(seq))
+    vars.put("PAGE_SEQ", String.valueOf(seq))
+    vars.putObject("PAGE_SEEN", new HashSet<String>())
+    vars.put("PAGE_LAST_HASH", "")
+    vars.put("PAGE_TOTAL", "0")
+
+    String type = (apiCfg.type ?: "link").toLowerCase()
+    String sizeText = System.getenv("PAGINATION_PAGE_SIZE") ?: "1000"
+    vars.put("PAGE_TYPE", type)
+
+    // param(url, name) -> current value or null; setParam(url, name, value) -> url with it set.
+    def param = { String u, String n ->
+        def m = (u =~ ("(?<=[?&])" + java.util.regex.Pattern.quote(n) + "=([^&]*)"))
+        return m.find() ? m.group(1) : null
+    }
+    def setParam = { String u, String n, String v ->
+        def m = (u =~ ("(?<=[?&])" + java.util.regex.Pattern.quote(n) + "=[^&]*"))
+        if (m.find()) return u.substring(0, m.start()) + n + "=" + v + u.substring(m.end())
+        return u + (u.contains("?") ? "&" : "?") + n + "=" + v
+    }
+
+    if (!"no".equals(apiCfg.pagination) && !url.isEmpty()) {
+        vars.put("PAGE_MODE", runPagingMode)
+        if (type == "page" || type == "offset") {
+            String pageParam = apiCfg.pageParam ?: (type == "page" ? "page" : "offset")
+            String sizeParam = apiCfg.sizeParam ?: (type == "page" ? "pageSize" : "limit")
+            vars.put("PAGE_PARAM", pageParam)
+            vars.put("SIZE_PARAM", sizeParam)
+            if (sizeText) url = setParam(url, sizeParam, sizeText)
+            String have = param(url, sizeParam)
+            vars.put("PAGE_SIZE_N", have ?: "0")
+            vars.put("PAGE_COUNT", have ?: "")
+            String start = param(url, pageParam)
+            if (start == null) { start = (type == "page") ? "1" : "0"; url = setParam(url, pageParam, start) }
+            vars.put("PAGE_START", start)
+            vars.put("PAGE_BASE_URL", url)
+        } else {
+            if (sizeText) url = setParam(url, "count", sizeText)
+            String have = param(url, "count")
+            vars.put("PAGE_SIZE_N", have ?: "0")
+            vars.put("PAGE_COUNT", have ?: "")
+        }
+    } else {
+        vars.put("PAGE_SIZE_N", "0")
+        vars.put("PAGE_COUNT", "")
+    }
+}
+
 boolean execute = !method.isEmpty() && !url.isEmpty()
 vars.put("EXECUTE_FLAG", execute as String)
 vars.put("SKIP_FLAG", (!execute) as String)
@@ -39,6 +179,17 @@ if (!execute) {
     return
 }
 
+if (codeError) {
+    log.error("PrepareRequest: (" + apiName + ") - " + codeError)
+    vars.put("EXECUTE_FLAG", "false")
+    vars.put("SKIP_FLAG", "true")
+    vars.put("RESOLVED_BODY", "")
+    SampleResult.setResponseCode("ERROR")
+    SampleResult.setSuccessful(false)
+    SampleResult.setResponseData(codeError + " - check the role sheet in the workbook.", "UTF-8")
+    return
+}
+
 try {
     URI uri = new URI(url.replace(" ", "%20"))
     vars.put("v_protocol", uri.getScheme())
@@ -50,6 +201,9 @@ try {
         path = path + "?" + uri.getRawQuery()
     }
     vars.put("v_path", path)
+    // Pagination only follows links on the host the first page was requested from.
+    vars.put("PAGE_ORIGIN", uri.getScheme().toLowerCase() + "://" + uri.getHost().toLowerCase() + ":" +
+        (port == -1 ? ("https".equalsIgnoreCase(uri.getScheme()) ? 443 : 80) : port))
 } catch (Exception e) {
     log.error("PrepareRequest: could not parse URL for (" + apiName + ") (" + url + ") - " + e.getMessage())
     vars.put("EXECUTE_FLAG", "false")

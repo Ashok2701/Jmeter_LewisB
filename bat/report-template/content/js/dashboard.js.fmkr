@@ -28,8 +28,9 @@ function summaryTableHeader(header) {
     newRow.className = "tablesorter-no-sort";
     var cell = document.createElement('th');
     cell.setAttribute("data-sorter", false);
-    // S.No, Method, Service, Status Code
-    cell.colSpan = 4;
+    // S.No, Method, Service, Status Code - plus Role and API when the table is
+    // grouped by logical API (see reportApiGroups below).
+    cell.colSpan = statisticsRequestColumns;
     cell.innerHTML = "Requests";
     newRow.appendChild(cell);
 
@@ -83,6 +84,18 @@ function renameColumnTitle(title) {
  */
 var reportSampleInfo = (typeof REPORT_SAMPLE_INFO !== "undefined" && REPORT_SAMPLE_INFO) || {};
 
+/*
+ * Logical-API grouping of the Statistics table, from content/js/report-api-groups.js
+ * (scripts\Write-ReportApiGroups.ps1). Present and enabled only for a CSV whose
+ * API_NAME is "<Role> - <API>" across several roles; otherwise null and the
+ * Statistics table is JMeter's normal one row per label.
+ */
+var reportApiGroups = (typeof REPORT_API_GROUPS !== "undefined" && REPORT_API_GROUPS
+    && REPORT_API_GROUPS.enabled && REPORT_API_GROUPS.groups) ? REPORT_API_GROUPS : null;
+// Request columns before "# Services": S.No, Method, Service (4), or with
+// grouping S.No, Method, API Name, Role, API, Status Code (6).
+var statisticsRequestColumns = reportApiGroups ? 6 : 4;
+
 // Upper-case only: the REST labels are "<METHOD> <path>", and a SOAP service
 // name such as "Get Customer" must not be mistaken for a GET.
 var HTTP_METHOD_PREFIX = /^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE|CONNECT)\s/;
@@ -126,6 +139,15 @@ function methodForLabel(label, recordedMethod) {
 // no such prefix (e.g. SOAP service names) are shown as-is.
 function pathForLabel(label) {
     return String(label).replace(/^\s*(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE|CONNECT|SQL)?\s+/, "");
+}
+
+// A sample label keeps the {USER_CODE:<role>} placeholder (so every user code of
+// an API reports under that one API); the Errors tables show the user code the
+// failed request really used instead. The code comes from report-sample-info.js
+// (written from the request URL in results.jtl); with none, the text is unchanged.
+var USER_CODE_PLACEHOLDER = /\{USER_CODE:[A-Za-z0-9_]+\}|%7BUSER_CODE:[A-Za-z0-9_]+%7D/gi;
+function withUserCode(text, userCode) {
+    return userCode ? String(text).replace(USER_CODE_PLACEHOLDER, userCode) : String(text);
 }
 
 // One status code as JMeter recorded it. A real HTTP response always shows
@@ -363,11 +385,86 @@ function toggleResponse(button) {
     showResponse($button.attr("data-label"), $panel);
 }
 
+// ---- Statistics grouped by logical API: per-role breakdown ----
+//
+// Source-column layout of a grouped Statistics row: 0 key, 1..13 JMeter's
+// statistics (samples ... sent KB/s), then 14 S.No, 15 Method, 16 Status Code,
+// 17 API Name, 18 Response, 19 Role, 20 API. Displayed in GROUPED_COLUMN_ORDER.
+var GROUPED_COLUMN_ORDER = [14, 15, 17, 19, 20, 16, 1, 18, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+// The API column of a group: its endpoint without the role-specific filter
+// (the query string). One path is shown as is; several show the first plus a
+// count, with every path in the tooltip.
+function apiPathsCell(paths) {
+    if (!paths || paths.length === 0) {
+        return "-";
+    }
+    var first = escapeHtmlText(paths[0]);
+    if (paths.length === 1) {
+        return first;
+    }
+    return '<span title="' + escapeHtmlText(paths.join("\n")) + '">' + first +
+        ' <span class="api-more">(+' + (paths.length - 1) + ' more)</span></span>';
+}
+
+function roleToggleCell(index, name) {
+    return '<button type="button" class="role-toggle" aria-expanded="false" ' +
+        'title="Show role breakdown" data-group="' + index + '">' + ARROW_DOWN + '</button> ' +
+        '<span class="api-name">' + escapeHtmlText(name) + '</span>';
+}
+
+function setRoleToggle($button, open) {
+    $button.attr("aria-expanded", open ? "true" : "false")
+        .attr("title", open ? "Hide role breakdown" : "Show role breakdown")
+        .text(open ? ARROW_UP : ARROW_DOWN);
+}
+
+function collapseAllRoles($table) {
+    $table.find("tr.role-row, tr.response-row").remove();
+    setRoleToggle($table.find(".role-toggle"), false);
+    setResponseToggle($table.find(".response-toggle"), false);
+}
+
+// Source-data row of one role's own execution(s) of a logical API.
+function roleStatsData(group, member) {
+    return [member.label].concat(member.stats).concat([
+        "", methodForLabel(member.label, group.method), formatStatusCodes(member.codes),
+        '<span class="role-indent">' + escapeHtmlText(group.name) + '</span>',
+        responseToggleCell(member.label), escapeHtmlText(member.role),
+        escapeHtmlText(member.path)]);
+}
+
+function toggleRoles(button, formatter) {
+    var $button = $(button);
+    var $row = $button.closest("tr");
+    if ($button.attr("aria-expanded") === "true") {
+        $row.nextUntil("tr:not(.role-row):not(.response-row)").remove();
+        setRoleToggle($button, false);
+        return;
+    }
+    var group = reportApiGroups.groups[parseInt($button.attr("data-group"), 10)];
+    if (!group) {
+        return;
+    }
+    setRoleToggle($button, true);
+    var $after = $row;
+    for (var m = 0; m < group.members.length; m++) {
+        var data = roleStatsData(group, group.members[m]);
+        var $tr = $('<tr class="role-row"></tr>');
+        for (var c = 0; c < GROUPED_COLUMN_ORDER.length; c++) {
+            var source = GROUPED_COLUMN_ORDER[c];
+            $('<td></td>').html(formatter(source, data[source])).appendTo($tr);
+        }
+        $after.after($tr);
+        $after = $tr;
+    }
+}
+
 // Numbers the visible rows of a table's sortable body 1..n in their current
 // display order, so S.No stays sequential after the user re-sorts.
 function renumberRows(table, column) {
     table.find("tbody").not(".tablesorter-no-sort").each(function() {
-        $(this).children("tr").not(".response-row").each(function(index) {
+        $(this).children("tr").not(".response-row, .role-row").each(function(index) {
             this.cells[column].innerHTML = index + 1;
         });
     });
@@ -533,8 +630,32 @@ $(document).ready(function() {
     // The raw label (0) is not displayed but stays in the data, so the series
     // filter still matches on it. The formatter still receives each column's
     // original index, so every existing calculation and format is unchanged.
+    //
+    // Multi-role CSVs (reportApiGroups): one row per LOGICAL API instead -
+    // S.No | Method | API Name | Role | API | Status Code | # Services | Response |
+    // FAIL ... Sent - with every statistic computed from all of the API's
+    // underlying samples across its roles (report-api-groups.js), and an arrow
+    // on each row that opens the per-role rows beneath it.
     var statisticsSummary = ${statisticsSummary!"{}"};
-    if (statisticsSummary.titles) {
+    var statisticsColumnOrder = [14, 15, 17, 16, 1, 18, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    if (statisticsSummary.titles && reportApiGroups) {
+        statisticsColumnOrder = GROUPED_COLUMN_ORDER;
+        statisticsSummary.titles = statisticsSummary.titles.concat(
+            ["S.No", "Method", "Status Code", "API Name", "Response", "Role", "API"]);
+        if (statisticsSummary.overall) {
+            var groupedOverall = statisticsSummary.overall.data;
+            statisticsSummary.overall.data = groupedOverall.concat(
+                ["", "", "", groupedOverall[0], "", "", ""]);
+        }
+        statisticsSummary.items = [];
+        for (var g = 0; g < reportApiGroups.groups.length; g++) {
+            var group = reportApiGroups.groups[g];
+            statisticsSummary.items.push({ data: [group.name].concat(group.stats).concat([
+                "", methodForLabel(group.method + " " + group.name, group.method),
+                formatStatusCodes(group.codes), roleToggleCell(g, group.name), "",
+                escapeHtmlText(group.roles.join(", ")), apiPathsCell(group.paths)]) });
+        }
+    } else if (statisticsSummary.titles) {
         statisticsSummary.titles = statisticsSummary.titles.concat(
             ["S.No", "Method", "Status Code", "Service/API Path", "Response"]);
         if (statisticsSummary.overall) {
@@ -552,7 +673,7 @@ $(document).ready(function() {
             }
         }
     }
-    createTable($("#statisticsTable"), statisticsSummary, function(index, item){
+    function statisticsCellFormat(index, item) {
         switch(index){
             // Errors pct
             case 3:
@@ -579,7 +700,15 @@ $(document).ready(function() {
                 break;
         }
         return item;
-    }, [[2, 0]], 0, summaryTableHeader, [14, 15, 17, 16, 1, 18, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+    }
+    createTable($("#statisticsTable"), statisticsSummary, statisticsCellFormat,
+        [[2, 0]], 0, summaryTableHeader, statisticsColumnOrder);
+    if (reportApiGroups) {
+        $("#statisticsTable").before($('<p class="api-group-note"></p>').text(
+            reportApiGroups.apiCount + " APIs across " + reportApiGroups.roleCount +
+            " roles (" + reportApiGroups.executionCount + " executions). Each row combines " +
+            "every role's executions of that API; use the arrow to see the roles."));
+    }
     // createTable pins the Total row above the API rows; in this table it goes
     // last (its Status Code cell is left empty above - the API rows carry the
     // codes). It is a separate, unsorted body, so sorting never moves it.
@@ -596,6 +725,11 @@ $(document).ready(function() {
     });
     $("#statisticsTable").on("sortStart", function() {
         collapseAllResponses($(this));
+        // Grouped by logical API: the per-role rows close the same way.
+        collapseAllRoles($(this));
+    });
+    $("#statisticsTable").on("click", ".role-toggle", function() {
+        toggleRoles(this, statisticsCellFormat);
     });
 
     // Create error table: one row per failed API, from results.jtl -
@@ -615,7 +749,7 @@ $(document).ready(function() {
             errorTable.items.push({ data: [
                 "",
                 methodForLabel(errorRow.label, errorRow.method),
-                escapeHtmlText(pathForLabel(errorRow.label)),
+                escapeHtmlText(withUserCode(pathForLabel(errorRow.label), errorRow.userCode)),
                 formatStatusCode(errorRow.code),
                 escapeHtmlText(errorRow.error || "-"),
                 errorRow.count,
@@ -662,7 +796,28 @@ $(document).ready(function() {
     }
 
         // Create top5 errors by sampler
+    // This table is JMeter's own, grouped by API label, so it can only name the
+    // user code(s) of the failed requests of that API: each label's placeholder
+    // becomes the code(s) that failed (several are listed, comma separated).
+    var failedCodesByLabel = {};
+    var failedRows = reportSampleInfo.errorRows || [];
+    for (var f = 0; f < failedRows.length; f++) {
+        var failed = failedRows[f];
+        if (!failed.userCode) {
+            continue;
+        }
+        var failedCodes = failedCodesByLabel[failed.label] || (failedCodesByLabel[failed.label] = []);
+        if (failedCodes.indexOf(failed.userCode) < 0) {
+            failedCodes.push(failed.userCode);
+        }
+    }
     createTable($("#top5ErrorsBySamplerTable"), ${top5ErrorsBySampler!"{}"}, function(index, item){
+        if (index === 0 && typeof item === "string") {
+            var codes = failedCodesByLabel[decodeHtmlText(item)];
+            if (codes && codes.length) {
+                return withUserCode(item, codes.join(", "));
+            }
+        }
         return item;
     }, [[0, 0]], 0);
 

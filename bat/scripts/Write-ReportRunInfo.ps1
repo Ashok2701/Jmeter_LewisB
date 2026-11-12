@@ -61,6 +61,29 @@ $numUsersRaw = $env:RUN_INFO_NUM_USERS
 $numUsers = Get-IntOrZero $numUsersRaw
 $hasNumUsers = -not [string]::IsNullOrWhiteSpace($numUsersRaw) -and $numUsers -gt 0
 
+# Threads per user type (Merchandiser REST runs split by user type), from
+# TYPE_THREADS = "merchandiser=10;manager=5;dsm=0;...". Absent for every other
+# run, in which case the report shows no per-type cells.
+$typeThreads = @()
+$typeLabels = [ordered]@{
+    merchandiser = 'Merchandiser'
+    manager      = 'Manager'
+    dsm          = 'DSM'
+    salco        = 'Sales Coordinator'
+    vp           = 'VP'
+    admin        = 'Admin'
+}
+if (-not [string]::IsNullOrWhiteSpace($env:TYPE_THREADS)) {
+    $given = @{}
+    foreach ($pair in $env:TYPE_THREADS.Split(';')) {
+        $kv = $pair.Split('=')
+        if ($kv.Count -eq 2) { $given[$kv[0].Trim()] = Get-IntOrZero $kv[1] }
+    }
+    foreach ($key in $typeLabels.Keys) {
+        $typeThreads += [ordered]@{ key = $key; label = $typeLabels[$key]; threads = $(if ($given.ContainsKey($key)) { $given[$key] } else { 0 }) }
+    }
+}
+
 $info = [ordered]@{
     applicationName = Get-TextOrDefault $env:APP_NAME 'Not specified'
     apiType         = Get-TextOrDefault $env:API_TYPE 'Not specified'
@@ -69,7 +92,8 @@ $info = [ordered]@{
     threads         = $threads
     rampUpSeconds   = Get-IntOrZero $env:RUN_INFO_RAMPUP
     loops           = $loops
-    numUsers        = if ($hasNumUsers) { $numUsers } else { $null }
+    typeThreads     = $typeThreads
+    numUsers       = if ($hasNumUsers) { $numUsers } else { $null }
     numberOfRuns    = if ($hasNumUsers) { $numUsers * $threads * $loops } else { $null }
     testDateTime    = Get-TextOrDefault $env:RUN_INFO_STARTED (Get-Date -Format 'dd-MMM-yyyy hh:mm tt')
 }

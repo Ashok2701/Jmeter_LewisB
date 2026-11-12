@@ -65,7 +65,39 @@ public static class JtlSampleInfo
         public string Method = "";
         public string Code;
         public string Error;
+        // The user code the failed requests actually used ("" when the API has
+        // no {USER_CODE:...} placeholder, or it cannot be recovered).
+        public string UserCode = "";
         public long Count;
+    }
+
+    // The placeholder scripts\PrepareRequest.groovy fills in at run time. A
+    // sample's label keeps it (so every user code reports under one API), but
+    // the request's URL in the JTL has the real code in its place.
+    static readonly System.Text.RegularExpressions.Regex UserCodePlaceholder =
+        new System.Text.RegularExpressions.Regex(
+            @"\{USER_CODE:[A-Za-z0-9_]+\}|%7BUSER_CODE:[A-Za-z0-9_]+%7D",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+    // The user code a request used, read back from its URL: the label's path
+    // ("GET /x?w=%27{USER_CODE:managers}%27&c=1") is split at the placeholder,
+    // and whatever the URL has between the same prefix and suffix is the code.
+    // "" if the label has no placeholder or the URL does not match.
+    static string UserCodeFor(string label, string url)
+    {
+        if (url.Length == 0) return "";
+        int sp = label.IndexOf(' ');
+        string path = sp >= 0 ? label.Substring(sp + 1) : label;
+        System.Text.RegularExpressions.Match m = UserCodePlaceholder.Match(path);
+        if (!m.Success) return "";
+        string prefix = path.Substring(0, m.Index);
+        string suffix = path.Substring(m.Index + m.Length);
+        int start = url.IndexOf(prefix, StringComparison.Ordinal);
+        if (start < 0) return "";
+        int codeStart = start + prefix.Length;
+        int codeEnd = url.Length - suffix.Length;
+        if (codeEnd < codeStart || !url.EndsWith(suffix, StringComparison.Ordinal)) return "";
+        return url.Substring(codeStart, codeEnd - codeStart);
     }
 
     const string NonHttpMessagePrefix = "Non HTTP response message: ";
@@ -159,6 +191,7 @@ public static class JtlSampleInfo
             int iFailure = header.IndexOf("failureMessage");
             int iMethod = header.IndexOf("REC_METHOD");
             int iResp = header.IndexOf("REC_RESPONSE");
+            int iUrl = header.IndexOf("URL");
             HasResponseColumn = iResp >= 0;
             if (iLabel < 0 || iCode < 0) return;
 
@@ -240,7 +273,11 @@ public static class JtlSampleInfo
                 if (failure.Length > 0 && (IsSuccessCode(code) || error.Length == 0))
                     error = failure;
 
-                string rowKey = label + "\u0001" + code + "\u0001" + error;
+                // Which user code the failed request used (see UserCodeFor), so
+                // the same API failing for two different users is two rows.
+                string userCode = iUrl >= 0 && iUrl < row.Count ? UserCodeFor(label, row[iUrl]) : "";
+
+                string rowKey = label + "\u0001" + code + "\u0001" + error + "\u0001" + userCode;
                 ErrorRow errorRow;
                 if (!ErrorRows.TryGetValue(rowKey, out errorRow))
                 {
@@ -248,6 +285,7 @@ public static class JtlSampleInfo
                     errorRow.Label = label;
                     errorRow.Code = code;
                     errorRow.Error = error;
+                    errorRow.UserCode = userCode;
                     ErrorRows[rowKey] = errorRow;
                 }
                 if (errorRow.Method.Length == 0) errorRow.Method = method;
@@ -364,6 +402,7 @@ foreach ($row in ([JtlSampleInfo]::ErrorRows.Values | Sort-Object -Property @{ E
         method = $row.Method
         code   = $row.Code
         error  = $row.Error
+        userCode = $row.UserCode
         count  = $row.Count
     }
 }
