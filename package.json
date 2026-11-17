@@ -7,10 +7,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "create-user": "node --no-warnings scripts/create-user.mjs",
+    "delete-user": "node --no-warnings scripts/delete-user.mjs",
     "test": "node --no-warnings --test tests/*.test.mjs"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "next": "^16.3.4",
+    "pg": "^8.23.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   }

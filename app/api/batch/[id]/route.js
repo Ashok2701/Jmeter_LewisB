@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { getBatch, toPublicBatch } from '@/lib/batches';
@@ -6,6 +7,9 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { id } = await params;
   const batch = getBatch(id);
 

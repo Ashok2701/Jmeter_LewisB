@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { deleteHistoryRecord } from '@/lib/history';
@@ -7,6 +8,9 @@ export const dynamic = 'force-dynamic';
 
 /** Deletes one run from History (its saved record and log - not its report). */
 export async function DELETE(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { id } = await params;
 
   try {

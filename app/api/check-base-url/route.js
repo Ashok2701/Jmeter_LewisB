@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { detectSchema, normaliseCsv, parseCsv } from '@/lib/csvSchema';
@@ -13,6 +14,9 @@ export const dynamic = 'force-dynamic';
  * and as a pre-flight when a run is submitted.
  */
 export async function POST(request) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   let form;
   try {
     form = await request.formData();

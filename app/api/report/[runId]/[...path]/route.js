@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
@@ -41,6 +42,9 @@ const CONTENT_TYPES = {
  * /api/report/<runId>/index.html without any rewriting of the report.
  */
 export async function GET(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { runId, path: segments } = await params;
 
   const run = await loadRun(runId);

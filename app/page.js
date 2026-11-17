@@ -16,6 +16,7 @@ import { PAGINATION, supportsPagination } from '@/lib/pagination';
 import ConfigurationPanel from './ConfigurationPanel';
 import HistoryPanel from './HistoryPanel';
 import RunModal from './RunModal';
+import SessionControls from './SessionControls';
 
 const POLL_INTERVAL_MS = 3000;
 
@@ -537,6 +538,7 @@ export default function Home() {
             <span className="brand-tag">Performance Testing Platform</span>
           </div>
         </div>
+        <SessionControls />
       </header>
 
       <div className="app-body" inert={modalOpen}>

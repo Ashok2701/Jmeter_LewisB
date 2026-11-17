@@ -10,10 +10,12 @@ import { PAGINATION, buildPaginationConfig, supportsPagination } from '../lib/pa
 import { readRunQueue } from '../lib/queue.js';
 import { buildRolesPlan } from '../lib/rolePlan.js';
 
-test('only Merchandiser App REST can page', () => {
+test('only Merchandiser App REST and Route App REST can page', () => {
   assert.equal(supportsPagination('Merchandiser App', 'REST'), true);
+  assert.equal(supportsPagination('Route App', 'REST'), true);
   assert.equal(supportsPagination('Merchandiser App', 'SOAP'), false);
-  assert.equal(supportsPagination('Route App', 'REST'), false);
+  assert.equal(supportsPagination('Route App', 'SOAP'), false);
+  assert.equal(supportsPagination('Sales Order Adjustment Web App', 'REST'), false);
 });
 
 test('pagination is fixed: all pages, 1,000 per page, and nothing limits it', () => {

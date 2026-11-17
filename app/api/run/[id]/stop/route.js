@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { getRun, stopRun, toPublicRun } from '@/lib/runs';
@@ -7,6 +8,9 @@ export const dynamic = 'force-dynamic';
 
 // Stops this one execution (its JMeter process tree). Other runs are untouched.
 export async function POST(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { id } = await params;
   if (!getRun(id)) {
     return NextResponse.json({ error: 'Unknown test run.' }, { status: 404 });

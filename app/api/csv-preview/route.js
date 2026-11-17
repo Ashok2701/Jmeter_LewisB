@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { detectSchema, normaliseCsv, parseCsv } from '@/lib/csvSchema';
@@ -22,6 +23,9 @@ export const dynamic = 'force-dynamic';
  * client's API Type dropdown - not auto-detected from the CSV's own shape.
  */
 export async function POST(request) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   let form;
   try {
     form = await request.formData();

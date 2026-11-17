@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import fs from 'node:fs';
 import path from 'node:path';
 import { NextResponse } from 'next/server';
@@ -16,7 +17,8 @@ import { detectSchema, normaliseCsv, parseCsv } from '@/lib/csvSchema';
 import { normaliseSoapCsv } from '@/lib/soapCsvSchema';
 import { normaliseSqlCsv } from '@/lib/sqlCsvSchema';
 import { loadAppCsv, validateApplicationName } from '@/lib/appCsv';
-import { buildRolesPlan, buildThreadPlan, splitApiCsvByType } from '@/lib/rolePlan';
+import { buildCodeThreadPlan, buildRolesPlan, buildThreadPlan, splitApiCsvByType } from '@/lib/rolePlan';
+import { shuffleUserCodesCsv, usesRandomUserCodes } from '@/lib/userCodes';
 import { USER_TYPES, supportsUserTypeThreads, validateTypeThreads } from '@/lib/userTypes';
 import { PAGINATION, buildPaginationConfig, supportsPagination } from '@/lib/pagination';
 import { API_TYPES, credentialGroupFor, isApiTypeAllowed, threadLimitMessage } from '@/lib/applications';
@@ -42,7 +44,10 @@ function fail(message, status = 400, extra = {}) {
   return NextResponse.json({ error: message, ...extra }, { status });
 }
 
-export async function GET() {
+export async function GET(request) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   // Lets the UI recover its state after a page refresh mid-test.
   const batch = getActiveBatch();
   if (batch) return NextResponse.json({ run: null, batch: toPublicBatch(batch) });
@@ -319,6 +324,24 @@ async function prepareConfig(cfg, shared) {
   // applies the same thread -> code rule scripts\PrepareRequest.groovy applies.
   // An API list that cannot be told apart by user type simply has no listing.
   let threadPlan = null;
+
+  // The user codes this run hands to JMeter. Route App REST: a fresh random
+  // order every run, so the first N threads get N random distinct drivers.
+  let userCodesCsv = csv.userCodesCsv;
+  if (usesRandomUserCodes(appNameCheck.value, apiKind) && userCodesCsv) {
+    userCodesCsv = shuffleUserCodesCsv(userCodesCsv);
+    const codes = parseCsv(userCodesCsv)
+      .slice(1)
+      .filter(([role, code]) => role && code)
+      .map(([, code]) => code);
+    threadPlan = buildCodeThreadPlan({
+      userType: 'Driver',
+      codes,
+      totalThreads: load.threads,
+      apiCount: normalised.apiCount,
+    });
+  }
+
   if (supportsUserTypeThreads(appNameCheck.value, apiKind)) {
     const all = splitApiCsvByType(csvText);
     if (all.ok) {
@@ -380,9 +403,9 @@ async function prepareConfig(cfg, shared) {
       // Workbook APIs only: the role -> user codes list PrepareRequest.groovy
       // reads, written into this run's own directory like the other run files.
       let userCodesCsvPath = '';
-      if (csv.userCodesCsv) {
+      if (userCodesCsv) {
         userCodesCsvPath = path.join(runDir, 'user-codes.csv');
-        await fs.promises.writeFile(userCodesCsvPath, csv.userCodesCsv, 'utf8');
+        await fs.promises.writeFile(userCodesCsvPath, userCodesCsv, 'utf8');
       }
 
       // Per-API pagination settings JMeter reads (PAGINATION_CONFIG_CSV), when the API list has any.
@@ -444,6 +467,9 @@ async function prepareConfig(cfg, shared) {
 }
 
 export async function POST(request) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   // One test (or one batch of tests) at a time - two JMeter runs at once would
   // compete for the machine and make both sets of timings meaningless.
   const activeBatch = getActiveBatch();

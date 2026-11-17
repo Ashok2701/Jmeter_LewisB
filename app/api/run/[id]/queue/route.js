@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { readRunQueue } from '@/lib/queue';
@@ -8,6 +9,9 @@ export const dynamic = 'force-dynamic';
 
 // Live execution queue of one run, read from the results JMeter is writing.
 export async function GET(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { id } = await params;
   const run = await loadRun(id);
 

@@ -5,6 +5,8 @@ test-runs/
 bat/test-runs/
 *.zip
 .env
+.env.*
+!.env.example
 bat/output/
 bat/jmeter.log
 .credentials.json

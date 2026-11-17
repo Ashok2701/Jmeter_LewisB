@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { getBatch, stopBatch, toPublicBatch } from '@/lib/batches';
@@ -8,6 +9,9 @@ export const dynamic = 'force-dynamic';
 // Body { runId } stops only that configuration; an empty body stops every
 // configuration still running in the batch.
 export async function POST(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { id } = await params;
   const batch = getBatch(id);
   if (!batch) {

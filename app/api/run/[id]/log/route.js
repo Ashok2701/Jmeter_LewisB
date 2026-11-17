@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import { Readable } from 'node:stream';
@@ -12,6 +13,9 @@ export const dynamic = 'force-dynamic';
  * troubleshooting a failure. The UI links here from its error state.
  */
 export async function GET(request, { params }) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   const { id } = await params;
 
   const run = await loadRun(id);

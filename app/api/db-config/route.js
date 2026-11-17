@@ -1,3 +1,4 @@
+import { requireAuth } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 import { publicDbDefaults } from '@/lib/dbConfig';
@@ -10,6 +11,9 @@ export const dynamic = 'force-dynamic';
  * form can pre-fill Host / Port / Name / Username. The password itself is
  * never sent - only whether one is configured.
  */
-export async function GET() {
+export async function GET(request) {
+  const auth = await requireAuth(request);
+  if (auth.response) return auth.response;
+
   return NextResponse.json(publicDbDefaults());
 }
